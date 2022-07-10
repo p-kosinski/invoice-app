@@ -5,7 +5,7 @@ type Props = {
 const MainLayout: React.FC<Props> = ({ children }) => (
   <>
     <header>
-      <h1>MainLayout</h1>
+      <h1>Header</h1>
     </header>
     <main>
       {children}
