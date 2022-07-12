@@ -1,12 +1,60 @@
 import 'styled-components';
 
+// [TO DO] update types to match refactored themes
+
 interface Color {
-  dark: string;
-  light: string;
+  dark?: string;
+  light?: string;
+  main?: string;
+  opaque?: string;
+};
+
+interface StatusColor {
+  [key: string]: Color;
+};
+
+interface BackgroundColors {
+  page: string;
+  banner: string;
+  card: string;
+  cardInner: string;
+  invoiceTotal: string;
+  form: string;
+};
+
+interface TextColors {
+  main: string;
+  secondary: string;
+  highlight: string;
+  highlightDarker: string;
+};
+
+interface FormColors {
+  outline: {
+    default: string;
+    active: string;
+  };
+  labelsText: string;
+};
+
+interface ButtonColorSettings {
+  bg: string,
+  text: string,
+  hoverBg: string,
+};
+
+interface ButtonColors {
+  [key: string]: ButtonColorSettings;
 };
 
 interface Colors {
-  [key: string]: Color;
+  accent: Color;
+  error: Color;
+  status: StatusColor;
+  backgrounds: BackgroundColors;
+  text: TextColors;
+  formElements: FormColors;
+  buttons: ButtonColors;
 };
 
 interface FontWeights {
@@ -27,8 +75,11 @@ interface FontLetterSpacings {
 
 interface FontSettings {
   family: string;
-  weights : FontWeights,
-  sizes: FontSizes,
+  weights: FontWeights,
+};
+
+interface TypographySettings {
+  fontSizes: FontSizes;
   lineHeights: FontLineHeights,
   letterSpacings: FontLetterSpacings
 };
@@ -37,5 +88,6 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     colors: Colors,
     font: FontSettings;
+    typography: TypographySettings;
   }
 }
