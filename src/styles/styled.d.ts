@@ -1,7 +1,5 @@
 import 'styled-components';
 
-// [TO DO] update types to match refactored themes
-
 interface Color {
   dark?: string;
   light?: string;

@@ -36,8 +36,8 @@ const colorPalette = {
       opaque: 'hsla(34, 100%, 50%, 0.06)'
     },
     draft: {
-      main: 'hsla(34, 100%, 50%, 1)',
-      opaque: 'hsla(34, 100%, 50%, 0.06)'
+      main:'hsla(231, 20%, 27%, 1)',
+      opaque: 'hsla(231, 20%, 27%, 0.06)'
     }
   }
 };
