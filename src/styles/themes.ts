@@ -75,6 +75,12 @@ const typographySettings = {
   }
 };
 
+const breakpoints = {
+  desktop: '1024px',
+  tablet: '768px',
+  mobile: '375px'
+};
+
 export const lightTheme: DefaultTheme = {
   colors: {
     accent: colorPalette.accent,
@@ -114,7 +120,8 @@ export const lightTheme: DefaultTheme = {
     }
   },
   font: fontSettings,
-  typography: typographySettings
+  typography: typographySettings,
+  breakpoints: breakpoints
 };
 
 export const darkTheme: DefaultTheme = {
@@ -156,5 +163,6 @@ export const darkTheme: DefaultTheme = {
     }
   },
   font: fontSettings,
-  typography: typographySettings
+  typography: typographySettings,
+  breakpoints: breakpoints
 };

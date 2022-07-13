@@ -82,10 +82,15 @@ interface TypographySettings {
   letterSpacings: FontLetterSpacings
 };
 
+interface Breakpoints {
+  [key: string]: string;
+};
+
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: Colors,
     font: FontSettings;
     typography: TypographySettings;
+    breakpoints: Breakpoints;
   }
 }
