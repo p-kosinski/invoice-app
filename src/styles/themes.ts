@@ -11,11 +11,12 @@ const colorPalette = {
   },
   dark: {
     main: 'hsla(233, 31%, 17%, 1)',
-    light: 'hsla(233, 30%, 21%, 1)'
+    light: 'hsla(233, 30%, 21%, 1)',
   },
   lightGrey: {
     main: 'hsla(231, 20%, 61%, 1)',
-    light: 'hsla(231, 75%, 93%, 1)'
+    light: 'hsla(231, 75%, 93%, 1)',
+    lighter: 'hsla(231, 67%, 99%, 1)',
   },
   grey: {
     main: 'hsla(231, 28%, 7%, 1)',
@@ -81,35 +82,34 @@ export const lightTheme: DefaultTheme = {
     status: colorPalette.status,
     backgrounds: {
       page: colorPalette.neutral.light,
-      banner: 'hsla(231, 20%, 27%, 1)',
+      banner: colorPalette.status.draft.main,
       card: colorPalette.neutral.white,
-      cardInner: 'hsla(231, 67%, 99%, 1)',
-      invoiceTotal: 'hsla(231, 20%, 27%, 1)',
+      cardInner: colorPalette.lightGrey.lighter,
+      invoiceTotal: colorPalette.status.draft.main,
       form: colorPalette.neutral.white
     },
     text: {
-      main: 'hsla(231, 28%, 7%, 1)',
-      secondary: 'hsla(231, 20%, 61%, 1)',
-      highlight: 'hsla(231, 36%, 63%, 1)',
-      highlightDarker: 'hsla(231, 23%, 61%, 1)'
+      main: colorPalette.grey.main,
+      secondary: colorPalette.lightGrey.main,
+      highlight: colorPalette.grey.light
     },
     formElements: {
       outline: {
         default: colorPalette.lightGrey.light,
-        active: colorPalette.accent.main,
+        active: colorPalette.accent.main
       },
-      labelsText: 'hsla(231, 36%, 63%, 1)',
+      labelsText: colorPalette.grey.light
     },
     buttons: {
       button3: {
-        bg: 'hsla(231, 67%, 99%, 1)',
-        text: 'hsla(231, 36%, 63%, 1)',
-        hoverBg: 'hsla(231, 73%, 93%, 1)',
+        bg: colorPalette.lightGrey.lighter,
+        text: colorPalette.grey.light,
+        hoverBg: colorPalette.lightGrey.light
       },
       button4: {
-        bg: 'hsla(231, 20%, 27%, 1)',
-        text: 'hsla(231, 20%, 61%, 1)',
-        hoverBg: 'hsla(231, 28%, 7%, 1)'
+        bg: colorPalette.status.draft.main,
+        text: colorPalette.lightGrey.main,
+        hoverBg: colorPalette.grey.main
       }
     }
   },
@@ -133,13 +133,12 @@ export const darkTheme: DefaultTheme = {
     text: {
       main: colorPalette.neutral.white,
       secondary: colorPalette.lightGrey.light,
-      highlight: colorPalette.lightGrey.light,
-      highlightDarker: colorPalette.lightGrey.light,
+      highlight: colorPalette.lightGrey.light
     },
     formElements: {
       outline: {
         default: colorPalette.dark.light,
-        active: colorPalette.dark.light,
+        active: colorPalette.dark.light
       },
       labelsText: colorPalette.lightGrey.light,
     },
@@ -147,10 +146,10 @@ export const darkTheme: DefaultTheme = {
       button3: {
         bg: colorPalette.dark.light,
         text: colorPalette.lightGrey.light,
-        hoverBg: colorPalette.neutral.white,
+        hoverBg: colorPalette.neutral.white
       },
       button4: {
-        bg: 'hsla(231, 20%, 27%, 1)',
+        bg: colorPalette.status.draft.main,
         text: colorPalette.lightGrey.light,
         hoverBg: colorPalette.dark.main
       }

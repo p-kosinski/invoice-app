@@ -5,6 +5,7 @@ interface Color {
   light?: string;
   main?: string;
   opaque?: string;
+  lighter? : string;
 };
 
 interface StatusColor {
@@ -24,7 +25,6 @@ interface TextColors {
   main: string;
   secondary: string;
   highlight: string;
-  highlightDarker: string;
 };
 
 interface FormColors {
