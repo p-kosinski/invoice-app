@@ -1,13 +1,15 @@
+import { useEffect } from 'react';
 import {
   BrowserRouter,
   Routes,
   Route,
 } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { Normalize } from 'styled-normalize';
 
-import { useAppSelector } from './hooks/reduxHooks';
-import { selectThemeMode } from './redux/themeSlice';
-import type { ThemeMode } from './redux/themeSlice';
+import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
+import { selectCurrentTheme, changeCurrentTheme } from './redux/themeSlice';
+import type { CurrentTheme } from './redux/themeSlice';
 
 import Header from './components/layout/Header/Header';
 import Invoices from './components/views/Invoices/Invoices';
@@ -17,15 +19,32 @@ import Invoice from './components/views/Invoice/Invoice';
 import { lightTheme, darkTheme } from './styles/themes';
 
 const App: React.FC = () => {
-  const themeMode: ThemeMode = useAppSelector(selectThemeMode);
+  const currentTheme: CurrentTheme = useAppSelector(selectCurrentTheme);
+  const dispatch = useAppDispatch();
+
+  const setThemeMode = (mode: CurrentTheme) => {
+    dispatch(changeCurrentTheme(mode));
+  };
+
+  useEffect(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      setThemeMode('dark');
+    } else {
+      setThemeMode('light');
+    }
+  }, []);
 
   const themes = {
-    'light': lightTheme,
-    'dark': darkTheme
+    dark: lightTheme,
+    light: darkTheme
   };
 
   return (
-    <ThemeProvider theme={themes[themeMode]}>
+    <ThemeProvider theme={themes[currentTheme]}>
+      <Normalize />
       <BrowserRouter>
         <Header />
         <Routes>
