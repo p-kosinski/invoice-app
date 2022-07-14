@@ -25,13 +25,13 @@ export const invoicesSlice = createSlice({
   name: 'invoices',
   initialState,
   reducers: {
-    setLoadingActive: (state, action: PayloadAction<boolean>) => {
+    setLoadingActive: (state: InvoicesState, action: PayloadAction<boolean>) => {
       state.loading.active = action.payload;
     },
-    setLoadingError: (state, action: PayloadAction<boolean>) => {
+    setLoadingError: (state: InvoicesState, action: PayloadAction<boolean>) => {
       state.loading.error = action.payload;
     },
-    setData: (state, action: PayloadAction<anyArray>) => {
+    setData: (state: InvoicesState, action: PayloadAction<anyArray>) => {
       state.data = action.payload;
     }
   }
