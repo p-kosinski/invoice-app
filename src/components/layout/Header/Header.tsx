@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-import { ReactComponent as Logo } from '../../../assets/logo.svg';
+import Logo from '../../../assets/logo.svg';
 //import { ReactComponent as SunIcon } from '../../../assets/icon-sun.svg';
 import { ReactComponent as MoonIcon } from '../../../assets/icon-moon.svg';
 import UserProfilePicture from '../../../assets/image-avatar.jpg';
-
-// [TO DO] Add styling to elements
-// [TO DO] Split styled components code to another file/files
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -15,6 +12,14 @@ const StyledHeader = styled.header`
   background-color: ${props => props.theme.colors.backgrounds.banner};
   display: flex;
   justify-content: space-between;
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 103px;
+    height: 100%;
+    left: 0;
+    flex-direction: column;
+    border-radius: 0 20px 20px 0;
+  }
 `;
 
 const AppLogo = styled.div`
@@ -38,9 +43,19 @@ const AppLogo = styled.div`
     z-index: 1;
   }
 
-  svg {
+  img {
     place-self: center;
     z-index: 2;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 103px;
+    height: 103px;
+
+    img {
+      width: 40px;
+      height: 37.71px;
+    }
   }
 `;
 
@@ -49,6 +64,13 @@ const ButtonsWrapper = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 24px;
+  margin-right: 24px;
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    flex-direction: column;
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
 `;
 
 const Divider = styled.hr`
@@ -57,6 +79,13 @@ const Divider = styled.hr`
   margin: 0;
   height: 100%;
   border-left: 1px solid hsla(231, 20%, 36%, 1);
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    border-left: none;
+    border-top: 1px solid hsla(231, 20%, 36%, 1);
+    height: auto;
+    width: 100%;
+  }
 `;
 
 const ThemeToggler = styled.button`
@@ -75,7 +104,6 @@ const ThemeToggler = styled.button`
 `;
 
 const UserAvatar = styled.button`
-  margin-right: 24px;
   padding: 0;
   border: none;
   height: 32px;
@@ -88,12 +116,16 @@ const UserAvatar = styled.button`
     height: 100%;
     width: 100%;
   }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    margin-right: 0;
+  }
 `;
 
 const Header: React.FC = () => (
   <StyledHeader>
     <AppLogo>
-      <Logo />
+      <img src={Logo} alt='app logo' />
     </AppLogo>
     <ButtonsWrapper>
       <ThemeToggler>
