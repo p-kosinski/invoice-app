@@ -88,7 +88,7 @@ export const lightTheme: DefaultTheme = {
     status: colorPalette.status,
     backgrounds: {
       page: colorPalette.neutral.light,
-      banner: colorPalette.status.draft.main,
+      banner: colorPalette.dark.main,
       card: colorPalette.neutral.white,
       cardInner: colorPalette.lightGrey.lighter,
       invoiceTotal: colorPalette.status.draft.main,
@@ -131,7 +131,7 @@ export const darkTheme: DefaultTheme = {
     status: colorPalette.status,
     backgrounds: {
       page: colorPalette.neutral.dark,
-      banner: colorPalette.dark.main,
+      banner: colorPalette.status.draft.main,
       card: colorPalette.dark.main,
       cardInner: colorPalette.dark.light,
       invoiceTotal: colorPalette.grey.main,
