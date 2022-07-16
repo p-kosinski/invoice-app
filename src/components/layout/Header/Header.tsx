@@ -1,23 +1,16 @@
-import Styled from './Styled';
+import HeaderLogo from '../../common/HeaderLogo/HeaderLogo';
+import ThemeToggler from '../../features/ThemeToggler/ThemeToggler';
+import UserAvatar from '../../common/UserAvatar/UserAvatar';
 
-import Logo from '../../../assets/logo.svg';
-//import { ReactComponent as SunIcon } from '../../../assets/icon-sun.svg';
-import { ReactComponent as MoonIcon } from '../../../assets/icon-moon.svg';
-import UserProfilePicture from '../../../assets/image-avatar.jpg';
+import Styled from './Styled';
 
 const Header: React.FC = () => (
   <Styled.Header>
-    <Styled.AppLogo>
-      <img src={Logo} alt='company logo' />
-    </Styled.AppLogo>
+    <HeaderLogo />
     <Styled.ButtonsWrapper>
-      <Styled.ThemeToggler>
-        <MoonIcon />
-      </Styled.ThemeToggler>
+      <ThemeToggler />
       <Styled.Divider />
-      <Styled.UserAvatar>
-        <img src={UserProfilePicture} alt='current user profile picture' />
-      </Styled.UserAvatar>
+      <UserAvatar />
     </Styled.ButtonsWrapper>
   </Styled.Header>
 );
