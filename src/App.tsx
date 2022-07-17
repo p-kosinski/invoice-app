@@ -20,22 +20,6 @@ import { lightTheme, darkTheme } from './styles/themes';
 
 const App: React.FC = () => {
   const currentTheme: ThemeMode = useAppSelector(selectCurrentTheme);
-  const dispatch = useAppDispatch();
-
-  const setThemeMode = (mode: ThemeMode) => {
-    dispatch(setCurrentTheme(mode));
-  };
-
-  useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      setThemeMode('dark');
-    } else {
-      setThemeMode('light');
-    }
-  }, []);
 
   const themes = {
     dark: lightTheme,
