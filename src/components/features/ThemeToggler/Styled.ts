@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const ThemeToggleButton = styled.button`
+const ThemeToggleButton = styled.button(({ theme }) => css`
   border: none;
   padding: 0;
   height: fit-content;
@@ -11,8 +11,24 @@ const ThemeToggleButton = styled.button`
 
   svg {
     place-self: center;
+    fill: ${theme.colors.buttons.themeToggler.default};
+    transition: fill 0.15s ease-in-out;
   }
-`;
+
+  &:active {
+    svg {
+      fill: ${theme.colors.buttons.themeToggler.active};
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      svg {
+        fill: ${theme.colors.buttons.themeToggler.active};
+      }
+    }
+  }
+`);
 
 const Styled = {
   ThemeToggleButton: ThemeToggleButton,

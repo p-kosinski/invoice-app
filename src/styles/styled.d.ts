@@ -43,14 +43,21 @@ interface FormColors {
   labelsText: string;
 };
 
-interface ButtonColorSettings {
+interface TextButtonColorSettings {
   bg: string,
   text: string,
   hoverBg: string,
 };
 
+interface ButtonColorSettings {
+  default: string;
+  active: string;
+};
+
 interface ButtonColors {
-  [key: string]: ButtonColorSettings;
+  button3: TextButtonColorSettings;
+  button4: TextButtonColorSettings;
+  themeToggler: ButtonColorSettings;
 };
 
 interface ColorPalette {
