@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const HeaderLogo = styled.div`
+const HeaderLogo = styled.div(({ theme }) => css`
   width: 72px;
   height: 72px;
-  background-color: ${props => props.theme.colors.accent.main};
+  background-color: ${theme.colors.accent.main};
   border-radius: 0 20px 20px 0;
   display: grid;
   position: relative;
@@ -16,7 +16,7 @@ const HeaderLogo = styled.div`
     top: 50%;
     height: 100%;
     width: 100%;
-    background-color: ${props => props.theme.colors.accent.light};
+    background-color: ${theme.colors.accent.light};
     border-radius: 20px 0 0 0;
     z-index: 1;
   }
@@ -25,17 +25,17 @@ const HeaderLogo = styled.div`
     place-self: center;
     z-index: 2;
 
-    @media only screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    @media only screen and (min-width: ${theme.breakpoints.desktop}) {
       width: 40px;
       height: 37.71px;
     }
   }
 
-  @media only screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+  @media only screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 103px;
     height: 103px;
   }
-`;
+`);
 
 const Styled = {
   HeaderLogo: HeaderLogo,

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const UserAvatarButton = styled.button`
+const UserAvatarButton = styled.button(({ theme }) => css`
   padding: 0;
   border: none;
   height: 32px;
@@ -14,10 +14,10 @@ const UserAvatarButton = styled.button`
     width: 100%;
   }
 
-  @media only screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+  @media only screen and (min-width: ${theme.breakpoints.desktop}) {
     margin-right: 0;
   }
-`;
+`);
 
 const Styled = {
   UserAvatarButton: UserAvatarButton,

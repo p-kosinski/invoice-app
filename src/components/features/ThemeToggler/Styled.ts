@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const ThemeToggleButton = styled.button`
   border: none;
   padding: 0;
-  margin: 0;
   height: fit-content;
   width: fit-content;
   display: grid;
