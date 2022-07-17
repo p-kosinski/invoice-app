@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 
-export type CurrentTheme = 'light' | 'dark';
+export type ThemeMode = 'light' | 'dark';
 
 export interface ThemeState {
-  current: CurrentTheme;
+  current: ThemeMode;
 };
 
 const initialState: ThemeState = {
@@ -15,14 +15,14 @@ export const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    changeCurrentTheme: (state: ThemeState, action: PayloadAction<CurrentTheme>) => {
+    setCurrentTheme: (state: ThemeState, action: PayloadAction<ThemeMode>) => {
       state.current = action.payload;
     }
   }
 });
 
-export const { changeCurrentTheme } = themeSlice.actions;
+export const { setCurrentTheme } = themeSlice.actions;
 
-export const selectCurrentTheme= (state: RootState) => state.theme.current;
+export const selectCurrentTheme = (state: RootState) => state.theme.current;
 
 export default themeSlice.reducer;

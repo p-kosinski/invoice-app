@@ -8,8 +8,8 @@ import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
 import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
-import { selectCurrentTheme, changeCurrentTheme } from './redux/themeSlice';
-import type { CurrentTheme } from './redux/themeSlice';
+import { selectCurrentTheme, setCurrentTheme } from './redux/themeSlice';
+import type { ThemeMode } from './redux/themeSlice';
 
 import Header from './components/layout/Header/Header';
 import Invoices from './components/views/Invoices/Invoices';
@@ -19,11 +19,11 @@ import Invoice from './components/views/Invoice/Invoice';
 import { lightTheme, darkTheme } from './styles/themes';
 
 const App: React.FC = () => {
-  const currentTheme: CurrentTheme = useAppSelector(selectCurrentTheme);
+  const currentTheme: ThemeMode = useAppSelector(selectCurrentTheme);
   const dispatch = useAppDispatch();
 
-  const setThemeMode = (mode: CurrentTheme) => {
-    dispatch(changeCurrentTheme(mode));
+  const setThemeMode = (mode: ThemeMode) => {
+    dispatch(setCurrentTheme(mode));
   };
 
   useEffect(() => {
