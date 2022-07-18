@@ -1,14 +1,9 @@
-import { useEffect } from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
-import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
-import { selectCurrentTheme, setCurrentTheme } from './redux/themeSlice';
+import { useAppSelector } from './hooks/reduxHooks';
+import { selectCurrentTheme } from './redux/themeSlice';
 import type { ThemeMode } from './redux/themeSlice';
 
 import Header from './components/layout/Header/Header';
