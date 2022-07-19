@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
-import { selectCurrentTheme, setCurrentTheme } from '../../../redux/themeSlice';
+import { selectThemeMode, setThemeMode } from '../../../redux/themeSlice';
 import type { ThemeMode } from '../../../redux/themeSlice';
 
 import Styled from './Styled';
@@ -11,10 +11,10 @@ import { ReactComponent as MoonIcon } from '../../../assets/icon-moon.svg';
 
 const ThemeToggler: React.FC = () => {
   const dispatch = useAppDispatch();
-  const currentTheme: ThemeMode = useAppSelector(selectCurrentTheme);
+  const themeMode: ThemeMode = useAppSelector(selectThemeMode);
 
-  const setThemeMode = (mode: ThemeMode) => {
-    dispatch(setCurrentTheme(mode));
+  const changeThemeMode = (mode: ThemeMode) => {
+    dispatch(setThemeMode(mode));
   };
 
   useEffect(() => {
@@ -22,32 +22,32 @@ const ThemeToggler: React.FC = () => {
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches
     ) {
-      setThemeMode('dark');
+      changeThemeMode('dark');
     } else {
-      setThemeMode('light');
+      changeThemeMode('light');
     }
   }, []);
 
-  const handleThemeToggle = (currentTheme: ThemeMode) => {
-    if (currentTheme === 'light') {
-      setThemeMode('dark');
+  const handleThemeToggle = (themeMode: ThemeMode) => {
+    if (themeMode === 'light') {
+      changeThemeMode('dark');
     } else {
-      setThemeMode('light');
+      changeThemeMode('light');
     }
   };
 
   return (
     <Styled.ThemeToggleButton
-      onClick={() => handleThemeToggle(currentTheme)}
+      onClick={() => handleThemeToggle(themeMode)}
       aria-label={
-        currentTheme === 'dark' ? 'set light color theme'
+        themeMode === 'dark' ? 'set light color theme'
                                 : 'set dark color theme'
       }
     >
-      <Styled.LightThemeIconWrapper $active={currentTheme === 'dark'}>
+      <Styled.LightThemeIconWrapper $active={themeMode === 'dark'}>
         <SunIcon />
       </Styled.LightThemeIconWrapper>
-      <Styled.DarkThemeIconWrapper $active={currentTheme === 'light'}>
+      <Styled.DarkThemeIconWrapper $active={themeMode === 'light'}>
         <MoonIcon />
       </Styled.DarkThemeIconWrapper>
     </Styled.ThemeToggleButton>
