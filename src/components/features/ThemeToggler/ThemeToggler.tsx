@@ -29,7 +29,7 @@ const ThemeToggler: React.FC = () => {
   }, []);
 
   const handleThemeToggle = (currentTheme: ThemeMode) => {
-    if(currentTheme === 'light') {
+    if (currentTheme === 'light') {
       setThemeMode('dark');
     } else {
       setThemeMode('light');
@@ -40,7 +40,12 @@ const ThemeToggler: React.FC = () => {
     <Styled.ThemeToggleButton
       onClick={() => handleThemeToggle(currentTheme)}
     >
-      {currentTheme === 'light' ? <MoonIcon /> : <SunIcon />}
+      <Styled.LightThemeIconWrapper $active={currentTheme === 'dark'}>
+        <SunIcon />
+      </Styled.LightThemeIconWrapper>
+      <Styled.DarkThemeIconWrapper $active={currentTheme === 'light'}>
+        <MoonIcon />
+      </Styled.DarkThemeIconWrapper>
     </Styled.ThemeToggleButton>
   );
 };
