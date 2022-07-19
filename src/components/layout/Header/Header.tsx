@@ -8,7 +8,7 @@ import Styled from './Styled';
 
 const Header: React.FC = () => (
   <Styled.Header>
-    <Link to='/'>
+    <Link to='/' aria-label='home page'>
       <HeaderLogo />
     </Link>
     <Styled.ButtonsWrapper>

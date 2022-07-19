@@ -39,6 +39,10 @@ const ThemeToggler: React.FC = () => {
   return (
     <Styled.ThemeToggleButton
       onClick={() => handleThemeToggle(currentTheme)}
+      aria-label={
+        currentTheme === 'dark' ? 'set light color theme'
+                                : 'set dark color theme'
+      }
     >
       <Styled.LightThemeIconWrapper $active={currentTheme === 'dark'}>
         <SunIcon />

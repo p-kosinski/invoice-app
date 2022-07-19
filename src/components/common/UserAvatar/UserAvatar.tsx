@@ -3,8 +3,10 @@ import Styled from './Styled';
 import UserProfilePicture from '../../../assets/image-avatar.jpg';
 
 const UserAvatar: React.FC = () => (
-  <Styled.UserAvatarButton>
-    <img src={UserProfilePicture} alt='current user profile picture' />
+  <Styled.UserAvatarButton
+    aria-label='open user menu'
+  >
+    <img src={UserProfilePicture} alt='' />
   </Styled.UserAvatarButton>
 );
 

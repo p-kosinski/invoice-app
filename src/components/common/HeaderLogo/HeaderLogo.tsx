@@ -4,7 +4,7 @@ import Logo from '../../../assets/logo.svg';
 
 const HeaderLogo: React.FC = () => (
   <Styled.HeaderLogo>
-    <img src={Logo} alt='company logo' />
+    <img src={Logo} alt='' />
   </Styled.HeaderLogo>
 );
 
