@@ -15,7 +15,7 @@ export const lightTheme: DefaultTheme = {
     black: colorPalette.black,
     backgrounds: {
       page: colorPalette.neutral.light,
-      banner: colorPalette.dark.main,
+      banner: colorPalette.black.main,
       card: colorPalette.neutral.white,
       cardInner: colorPalette.lightGrey.lighter,
       invoiceTotal: colorPalette.black.main,
@@ -64,7 +64,7 @@ export const darkTheme: DefaultTheme = {
     black: colorPalette.black,
     backgrounds: {
       page: colorPalette.neutral.dark,
-      banner: colorPalette.black.main,
+      banner: colorPalette.dark.main,
       card: colorPalette.dark.main,
       cardInner: colorPalette.dark.light,
       invoiceTotal: colorPalette.grey.main,

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const Header = styled.header(({ theme }) => css`
+  height: 72px;
   width: 100%;
   position: fixed;
   top: 0;

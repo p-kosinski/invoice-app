@@ -1,4 +1,7 @@
 import Header from '../Header/Header';
+import Container from '../Container/Container';
+
+import Styled from './Styled';
 
 type Props = {
   children?: React.ReactNode;
@@ -7,9 +10,11 @@ type Props = {
 const MainLayout: React.FC<Props> = ({ children }) => (
   <>
     <Header />
-    <main>
-      {children}
-    </main>
+    <Styled.Main>
+      <Container>
+        {children}
+      </Container>
+    </Styled.Main>
   </>
 );
 
