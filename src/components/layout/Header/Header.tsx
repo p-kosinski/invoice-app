@@ -1,16 +1,22 @@
-type Props = {
-  children?: React.ReactNode;
-};
+import { Link } from 'react-router-dom';
 
-const MainLayout: React.FC<Props> = ({ children }) => (
-  <>
-    <header>
-      <h1>Header</h1>
-    </header>
-    <main>
-      {children}
-    </main>
-  </>
+import HeaderLogo from '../../common/HeaderLogo/HeaderLogo';
+import ThemeToggler from '../../features/ThemeToggler/ThemeToggler';
+import UserAvatar from '../../common/UserAvatar/UserAvatar';
+
+import Styled from './Styled';
+
+const Header: React.FC = () => (
+  <Styled.Header>
+    <Link to='/' aria-label='home page'>
+      <HeaderLogo />
+    </Link>
+    <Styled.ButtonsWrapper>
+      <ThemeToggler />
+      <Styled.Divider />
+      <UserAvatar />
+    </Styled.ButtonsWrapper>
+  </Styled.Header>
 );
 
-export default MainLayout;
+export default Header;

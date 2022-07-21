@@ -1,17 +1,12 @@
-import { useEffect } from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
-import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
-import { selectCurrentTheme, changeCurrentTheme } from './redux/themeSlice';
-import type { CurrentTheme } from './redux/themeSlice';
+import { useAppSelector } from './hooks/reduxHooks';
+import { selectThemeMode } from './redux/themeSlice';
+import type { ThemeMode } from './redux/themeSlice';
 
-import Header from './components/layout/Header/Header';
+import MainLayout from './components/layout/MainLayout/MainLayout';
 import Invoices from './components/views/Invoices/Invoices';
 import InvoiceEdit from './components/views/InvoiceEdit/InvoiceEdit';
 import Invoice from './components/views/Invoice/Invoice';
@@ -19,42 +14,27 @@ import Invoice from './components/views/Invoice/Invoice';
 import { lightTheme, darkTheme } from './styles/themes';
 
 const App: React.FC = () => {
-  const currentTheme: CurrentTheme = useAppSelector(selectCurrentTheme);
-  const dispatch = useAppDispatch();
-
-  const setThemeMode = (mode: CurrentTheme) => {
-    dispatch(changeCurrentTheme(mode));
-  };
-
-  useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      setThemeMode('dark');
-    } else {
-      setThemeMode('light');
-    }
-  }, []);
+  const themeMode: ThemeMode = useAppSelector(selectThemeMode);
 
   const themes = {
-    dark: lightTheme,
-    light: darkTheme
+    light: lightTheme,
+    dark: darkTheme
   };
 
   return (
-    <ThemeProvider theme={themes[currentTheme]}>
+    <ThemeProvider theme={themes[themeMode]}>
       <Normalize />
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Invoices />}>
-            <Route path='new' element={<InvoiceEdit newInvoice />} />
-          </Route>
-          <Route path='/:id' element={<Invoice />}>
-            <Route path='edit' element={<InvoiceEdit />} />
-          </Route>
-        </Routes>
+        <MainLayout>
+          <Routes>
+            <Route path='/' element={<Invoices />}>
+              <Route path='new' element={<InvoiceEdit newInvoice />} />
+            </Route>
+            <Route path='/:id' element={<Invoice />}>
+              <Route path='edit' element={<InvoiceEdit />} />
+            </Route>
+          </Routes>
+        </MainLayout>
       </BrowserRouter>
     </ThemeProvider>
   );

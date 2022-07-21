@@ -1,15 +1,23 @@
 import 'styled-components';
 
-interface Color {
-  dark?: string;
-  light?: string;
-  main?: string;
-  opaque?: string;
-  lighter? : string;
+interface DefaultColorVariants {
+  main: string;
+  light: string;
 };
 
-interface StatusColor {
-  [key: string]: Color;
+interface ExtendedColorVariants extends DefaultColorVariants {
+  lighter: string;
+}
+
+interface OpaqueColorVariants {
+  main: string;
+  opaque: string;
+};
+
+interface NeutralColors {
+  dark: string;
+  light: string;
+  white: string;
 };
 
 interface BackgroundColors {
@@ -35,20 +43,41 @@ interface FormColors {
   labelsText: string;
 };
 
-interface ButtonColorSettings {
+interface TextButtonColorSettings {
   bg: string,
   text: string,
   hoverBg: string,
 };
 
-interface ButtonColors {
-  [key: string]: ButtonColorSettings;
+interface ButtonColorSettings {
+  default: string;
+  active: string;
 };
 
-interface Colors {
-  accent: Color;
-  error: Color;
-  status: StatusColor;
+interface ButtonColors {
+  button3: TextButtonColorSettings;
+  button4: TextButtonColorSettings;
+  themeToggler: ButtonColorSettings;
+};
+
+interface ColorPalette {
+  success: OpaqueColorVariants;
+  warning: OpaqueColorVariants;
+  error: DefaultColorVariants;
+  accent: DefaultColorVariants;
+  black: OpaqueColorVariants;
+  dark: DefaultColorVariants;
+  lightGrey: ExtendedColorVariants;
+  grey: DefaultColorVariants;
+  neutral: NeutralColors;
+};
+
+interface ThemeColors {
+  success: OpaqueColorVariants;
+  warning: OpaqueColorVariants;
+  error: DefaultColorVariants;
+  accent: DefaultColorVariants;
+  black: OpaqueColorVariants;
   backgrounds: BackgroundColors;
   text: TextColors;
   formElements: FormColors;
@@ -88,7 +117,7 @@ interface Breakpoints {
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: Colors,
+    colors: ThemeColors,
     font: FontSettings;
     typography: TypographySettings;
     breakpoints: Breakpoints;
