@@ -78,6 +78,10 @@ interface ThemeColors {
   error: DefaultColorVariants;
   accent: DefaultColorVariants;
   black: OpaqueColorVariants;
+  dark: DefaultColorVariants;
+  lightGrey: ExtendedColorVariants;
+  grey: DefaultColorVariants;
+  neutral: NeutralColors;
   backgrounds: BackgroundColors;
   text: TextColors;
   formElements: FormColors;

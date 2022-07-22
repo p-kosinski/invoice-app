@@ -13,6 +13,10 @@ export const lightTheme: DefaultTheme = {
     error: colorPalette.error,
     accent: colorPalette.accent,
     black: colorPalette.black,
+    dark: colorPalette.dark,
+    lightGrey: colorPalette.lightGrey,
+    grey: colorPalette.grey,
+    neutral: colorPalette.neutral,
     backgrounds: {
       page: colorPalette.neutral.light,
       banner: colorPalette.black.main,
@@ -62,6 +66,10 @@ export const darkTheme: DefaultTheme = {
     error: colorPalette.error,
     accent: colorPalette.accent,
     black: colorPalette.black,
+    dark: colorPalette.dark,
+    lightGrey: colorPalette.lightGrey,
+    grey: colorPalette.grey,
+    neutral: colorPalette.neutral,
     backgrounds: {
       page: colorPalette.neutral.dark,
       banner: colorPalette.dark.main,
