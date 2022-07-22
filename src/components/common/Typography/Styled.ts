@@ -1,8 +1,5 @@
 import styled, { css } from 'styled-components';
 
-// ADDED NEW STYLED COMPONENTS 
-// (eg. if you want h3 styling but span element)
-
 const H1 = styled.h1(({theme}) => css`
   font-family: ${theme.font.family};
   font-weight: ${theme.font.weights.bold};

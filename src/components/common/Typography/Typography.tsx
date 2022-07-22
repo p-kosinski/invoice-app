@@ -6,9 +6,6 @@ type Props = {
   element?: string;
 };
 
-// ADDED NEW CASES
-// (eg. if you want h3 styling but span element)
-
 const Typography: React.FC<Props> = ({ variant, children, element }) => {
   switch(variant) {
     case 'h1':
