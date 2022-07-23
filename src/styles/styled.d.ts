@@ -36,11 +36,11 @@ interface TextColors {
 };
 
 interface FormColors {
-  outline: {
-    default: string;
-    active: string;
-  };
+  outline: string;
+  background: string;
+  text: string;
   labelsText: string;
+  dividers: string;
 };
 
 interface TextButtonColorSettings {

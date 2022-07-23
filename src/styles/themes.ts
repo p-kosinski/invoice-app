@@ -32,11 +32,11 @@ export const lightTheme: DefaultTheme = {
       highlight: colorPalette.grey.light
     },
     formElements: {
-      outline: {
-        default: colorPalette.lightGrey.light,
-        active: colorPalette.accent.main
-      },
-      labelsText: colorPalette.grey.light
+      outline: colorPalette.lightGrey.light,
+      background: colorPalette.neutral.white,
+      text: colorPalette.grey.main,
+      labelsText: colorPalette.grey.light,
+      dividers: colorPalette.lightGrey.light
     },
     buttons: {
       button3: {
@@ -86,11 +86,11 @@ export const darkTheme: DefaultTheme = {
       highlight: colorPalette.lightGrey.light
     },
     formElements: {
-      outline: {
-        default: colorPalette.dark.light,
-        active: colorPalette.dark.light
-      },
+      outline: colorPalette.dark.light,
+      background: colorPalette.dark.main,
+      text: colorPalette.neutral.white,
       labelsText: colorPalette.lightGrey.light,
+      dividers: colorPalette.dark.main
     },
     buttons: {
       button3: {
