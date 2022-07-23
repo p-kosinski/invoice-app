@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-// [DONE] Add button variants styling
-
 const TextWrapper = styled.div`
   display: inline-block;
   margin: 0 8px 0 16px;
