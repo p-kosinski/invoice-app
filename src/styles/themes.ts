@@ -3,7 +3,8 @@ import {
   colorPalette,
   fontSettings,
   typographySettings,
-  breakpoints
+  breakpoints,
+  transitionDuration
 } from './variables';
 
 export const lightTheme: DefaultTheme = {
@@ -56,7 +57,8 @@ export const lightTheme: DefaultTheme = {
   },
   font: fontSettings,
   typography: typographySettings,
-  breakpoints: breakpoints
+  breakpoints: breakpoints,
+  transitionDuration: transitionDuration
 };
 
 export const darkTheme: DefaultTheme = {
@@ -109,5 +111,6 @@ export const darkTheme: DefaultTheme = {
   },
   font: fontSettings,
   typography: typographySettings,
-  breakpoints: breakpoints
+  breakpoints: breakpoints,
+  transitionDuration: transitionDuration
 };

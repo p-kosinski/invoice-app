@@ -2,7 +2,8 @@ import type {
   ColorPalette,
   FontSettings,
   TypographySettings,
-  Breakpoints
+  Breakpoints,
+  TransitionDuration
 } from './styled';
 
 export const colorPalette: ColorPalette = {
@@ -83,3 +84,5 @@ export const breakpoints: Breakpoints = {
   tablet: '768px',
   mobile: '375px'
 };
+
+export const transitionDuration: TransitionDuration = '0.15s';

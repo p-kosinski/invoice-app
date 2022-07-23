@@ -8,7 +8,7 @@ const Header = styled.header(({ theme }) => css`
   background-color: ${theme.colors.backgrounds.banner};
   display: flex;
   justify-content: space-between;
-  transition: background-color 0.15s ease-in-out;
+  transition: background-color ${theme.transitionDuration} ease-in-out;
 
   @media only screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 103px;

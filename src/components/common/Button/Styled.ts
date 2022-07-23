@@ -25,7 +25,7 @@ const Button1 = styled.button(({ theme }) => css`
   background-color: ${theme.colors.accent.main};
   color: ${theme.colors.neutral.white};
   cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
+  transition: background-color ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.accent.light};
@@ -46,7 +46,7 @@ const Button2 = styled.button(({ theme }) => css`
   background-color: ${theme.colors.accent.main};
   color: ${theme.colors.neutral.white};
   cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
+  transition: background-color ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.accent.light};
@@ -68,8 +68,8 @@ const Button3 = styled.button(({ theme }) => css`
   color: ${theme.colors.buttons.button3.text};
   cursor: pointer;
   transition:
-    background-color 0.15s ease-in-out,
-    color 0.15s ease-in-out;
+    background-color ${theme.transitionDuration} ease-in-out,
+    color ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.buttons.button3.hoverBg};
@@ -91,8 +91,8 @@ const Button4 = styled.button(({ theme }) => css`
   color: ${theme.colors.buttons.button4.text};
   cursor: pointer;
   transition:
-    background-color 0.15s ease-in-out,
-    color 0.15s ease-in-out;
+    background-color ${theme.transitionDuration} ease-in-out,
+    color ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.buttons.button4.hoverBg};
@@ -113,7 +113,7 @@ const Button5 = styled.button(({ theme }) => css`
   background-color: ${theme.colors.error.main};
   color: ${theme.colors.neutral.white};
   cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
+  transition: background-color ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.error.light};
@@ -134,7 +134,7 @@ const Button6 = styled.button(({ theme }) => css`
   background-color: ${theme.colors.lightGrey.lighter};
   color: ${theme.colors.grey.light};
   cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
+  transition: background-color ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.lightGrey.light};

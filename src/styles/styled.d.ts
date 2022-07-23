@@ -119,11 +119,14 @@ interface Breakpoints {
   [key: string]: string;
 };
 
+type TransitionDuration = string;
+
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: ThemeColors,
     font: FontSettings;
     typography: TypographySettings;
     breakpoints: Breakpoints;
+    transitionDuration: TransitionDuration;
   }
 }

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 
 const ThemeToggleButton = styled.button(({ theme }) => css`
   border: none;
@@ -15,7 +15,7 @@ const ThemeToggleButton = styled.button(({ theme }) => css`
     left: 50%;
     transform: translate(-50%, -50%);
     fill: ${theme.colors.buttons.themeToggler.default};
-    transition: fill 0.15s ease-in-out;
+    transition: fill ${theme.transitionDuration} ease-in-out;
   }
 
   &:active {
@@ -33,15 +33,24 @@ const ThemeToggleButton = styled.button(({ theme }) => css`
   }
 `);
 
-const LightThemeIconWrapper = styled.div<{ $active: boolean }>`
-  opacity: ${(props) => props.$active ? 1 : 0};
-  transition: opacity 0.15s ease-in-out;
-`;
+type ThemeIconProps = {
+  theme: DefaultTheme;
+  $active: boolean;
+};
 
-const DarkThemeIconWrapper = styled.div<{ $active: boolean }>`
-  opacity: ${(props) => props.$active ? 1 : 0};
-  transition: opacity 0.15s ease-in-out;
-`;
+const LightThemeIconWrapper = styled.div<ThemeIconProps>(
+  ({ theme, $active }) => css`
+    opacity: ${$active ? 1 : 0};
+    transition: opacity ${theme.transitionDuration} ease-in-out;
+  `
+);
+
+const DarkThemeIconWrapper = styled.div<ThemeIconProps>(
+  ({ theme, $active }) => css`
+    opacity: ${$active ? 1 : 0};
+    transition: opacity ${theme.transitionDuration} ease-in-out;
+  `
+);
 
 const Styled = {
   ThemeToggleButton: ThemeToggleButton,
