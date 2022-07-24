@@ -71,11 +71,11 @@ export const typographySettings: TypographySettings = {
     5: '2.25rem'
   },
   letterSpacings: {
-    1: -1,
-    2: -0.8,
-    3: -0.63,
-    4: -0.25,
-    5: -0.23
+    1: '-1px',
+    2: '-0.8px',
+    3: '-0.63px',
+    4: '-0.25px',
+    5: '-0.23px'
   }
 };
 

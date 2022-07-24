@@ -101,7 +101,7 @@ interface FontLineHeights {
 };
 
 interface FontLetterSpacings {
-  [level: number]: number;
+  [level: number]: string;
 };
 
 interface FontSettings {
