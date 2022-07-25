@@ -25,13 +25,23 @@ const TextField: React.FC<Props> = ({
   value,
   onChange
 }) => (
-  <Styled.Label $invalid={invalid}>
-    <Typography variant='body1' element='span'>
-      {label}
-    </Typography>
+  <Styled.Wrapper>
+    <Styled.TextWrapper>
+      <Styled.Label htmlFor={name} $invalid={invalid}>
+        <Typography variant='body1' element='span'>
+          {label}
+        </Typography>
+      </Styled.Label>
+      <Styled.ErrorMsg $invalid={invalid}>
+        <Typography variant='body1' element='p'>
+          {errorMsg}
+        </Typography>
+      </Styled.ErrorMsg>
+    </Styled.TextWrapper>
     <Styled.Input
       type='text'
       name={name}
+      id={name}
       aria-label={ariaLabel}
       aria-invalid={invalid}
       placeholder={placeholder}
@@ -39,7 +49,7 @@ const TextField: React.FC<Props> = ({
       value={value}
       onChange={(event) => onChange(event.target.value)}
     />
-  </Styled.Label>
+  </Styled.Wrapper>
 );
 
 export default TextField;
