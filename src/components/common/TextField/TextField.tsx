@@ -1,9 +1,14 @@
+import Typography from '../Typography/Typography';
+import Styled from './Styled';
+
 type Props = {
   name: string;
   label?: string;
   ariaLabel?: string;
   placeholder?: string;
   required?: boolean;
+  invalid?: boolean;
+  errorMsg: string;
   disabled?: boolean;
   value: string;
   onChange: (value: string) => any;
@@ -15,23 +20,26 @@ const TextField: React.FC<Props> = ({
   ariaLabel,
   placeholder,
   required,
-  disabled,
+  invalid,
+  errorMsg,
   value,
   onChange
 }) => (
-  <label>
-    {label}
-    <input
+  <Styled.Label $invalid={invalid}>
+    <Typography variant='body1' element='span'>
+      {label}
+    </Typography>
+    <Styled.Input
       type='text'
       name={name}
       aria-label={ariaLabel}
+      aria-invalid={invalid}
       placeholder={placeholder}
       required={required}
-      disabled={disabled}
       value={value}
       onChange={(event) => onChange(event.target.value)}
     />
-  </label>
+  </Styled.Label>
 );
 
 export default TextField;
