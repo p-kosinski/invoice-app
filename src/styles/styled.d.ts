@@ -39,8 +39,10 @@ interface FormColors {
   outline: string;
   background: string;
   text: string;
+  optionsText: string;
   labelsText: string;
   dividers: string;
+  shadow: string;
 };
 
 interface TextButtonColorSettings {
