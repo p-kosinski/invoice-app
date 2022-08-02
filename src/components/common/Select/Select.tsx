@@ -14,7 +14,6 @@ type Option = {
 interface Props {
   name: string;
   label?: string;
-  ariaLabel?: string;
   options: Option[];
   defaultOptionValue: string;
   onChange: (value: string) => void;
@@ -23,7 +22,6 @@ interface Props {
 const Select: React.FC<Props> = ({
   name,
   label,
-  ariaLabel,
   options,
   defaultOptionValue,
   onChange,
@@ -80,7 +78,7 @@ const Select: React.FC<Props> = ({
         tabIndex={0}
         role='button'
         id={name}
-        aria-label={ariaLabel}
+        aria-label={`${label} - ${options[selectedOption].label}`}
         aria-haspopup='listbox'
         aria-expanded={optionsOpen}
         ref={selectButton}
