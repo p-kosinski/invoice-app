@@ -90,7 +90,6 @@ const OptionsList = styled.ul<OptionsListProps>(
     transition: 
       box-shadow ${theme.transitionDuration} ease-in-out,
       background-color ${theme.transitionDuration} ease-in-out,
-      color ${theme.transitionDuration} ease-in-out,
       opacity ${theme.transitionDuration} ease-in-out,
       transform ${theme.transitionDuration} ease-in-out,
       visibility ${theme.transitionDuration} ease-in-out;
