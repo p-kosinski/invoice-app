@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Styled from './Styled';
 
 type Props = {
@@ -9,6 +8,7 @@ type Props = {
   disabled?: boolean;
   max?: number;
   min?: number;
+  step?: string;
   value: number;
   onChange: (value: number) => any;
 };
@@ -20,6 +20,7 @@ const NumberInput: React.FC<Props> = ({
   invalid,
   max,
   min,
+  step,
   value,
   onChange
 }) => (
@@ -33,8 +34,9 @@ const NumberInput: React.FC<Props> = ({
       required={required}
       max={max}
       min={min}
+      step={step}
       value={value}
-      onChange={(event) => onChange(parseInt(event.target.value))}
+      onChange={(event) => onChange(parseFloat(event.target.value))}
     />
   </>
 );
