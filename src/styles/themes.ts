@@ -13,6 +13,10 @@ export const lightTheme: DefaultTheme = {
     warning: colorPalette.warning,
     error: colorPalette.error,
     accent: colorPalette.accent,
+    draft: {
+      main: colorPalette.black.main,
+      opaque: colorPalette.black.opaque,
+    },
     black: colorPalette.black,
     dark: colorPalette.dark,
     lightGrey: colorPalette.lightGrey,
@@ -69,6 +73,10 @@ export const darkTheme: DefaultTheme = {
     warning: colorPalette.warning,
     error: colorPalette.error,
     accent: colorPalette.accent,
+    draft: {
+      main: colorPalette.lightGrey.light,
+      opaque: colorPalette.lightGrey.lightOpaque,
+    },
     black: colorPalette.black,
     dark: colorPalette.dark,
     lightGrey: colorPalette.lightGrey,

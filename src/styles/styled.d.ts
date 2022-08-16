@@ -7,11 +7,15 @@ interface DefaultColorVariants {
 
 interface ExtendedColorVariants extends DefaultColorVariants {
   lighter: string;
-}
+};
 
 interface OpaqueColorVariants {
   main: string;
   opaque: string;
+};
+
+interface LightGreyVariants extends ExtendedColorVariants {
+  lightOpaque: string;
 };
 
 interface NeutralColors {
@@ -69,7 +73,7 @@ interface ColorPalette {
   accent: DefaultColorVariants;
   black: OpaqueColorVariants;
   dark: DefaultColorVariants;
-  lightGrey: ExtendedColorVariants;
+  lightGrey: LightGreyVariants;
   grey: DefaultColorVariants;
   neutral: NeutralColors;
 };
@@ -79,6 +83,7 @@ interface ThemeColors {
   warning: OpaqueColorVariants;
   error: DefaultColorVariants;
   accent: DefaultColorVariants;
+  draft: OpaqueColorVariants;
   black: OpaqueColorVariants;
   dark: DefaultColorVariants;
   lightGrey: ExtendedColorVariants;

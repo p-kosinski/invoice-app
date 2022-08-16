@@ -20,14 +20,14 @@ const StatusChip = styled.div<StatusProps>(
       ||
       ($status === 'pending' && theme.colors.warning.opaque)
       ||
-      ($status === 'draft' && theme.colors.black.opaque)
+      ($status === 'draft' && theme.colors.draft.opaque)
     };
     color: ${
       ($status === 'paid' && theme.colors.success.main)
       ||
       ($status === 'pending' && theme.colors.warning.main)
       ||
-      ($status === 'draft' && theme.colors.black.main)
+      ($status === 'draft' && theme.colors.draft.main)
     };
     transition: background-color ${theme.transitionDuration} ease-in-out,
     color ${theme.transitionDuration} ease-in-out;
@@ -41,7 +41,7 @@ const Bull = styled.div<StatusProps>(
       ||
       ($status === 'pending' && theme.colors.warning.main)
       ||
-      ($status === 'draft' && theme.colors.black.main)
+      ($status === 'draft' && theme.colors.draft.main)
     };
     width: 8px;
     height: 8px;

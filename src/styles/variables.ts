@@ -34,6 +34,7 @@ export const colorPalette: ColorPalette = {
   lightGrey: {
     main: 'hsla(231, 20%, 61%, 1)',
     light: 'hsla(231, 75%, 93%, 1)',
+    lightOpaque: 'hsla(231, 75%, 93%, 0.06)',
     lighter: 'hsla(231, 67%, 99%, 1)',
   },
   grey: {
