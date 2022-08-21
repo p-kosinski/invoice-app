@@ -28,7 +28,6 @@ const Select = styled.button(({ theme }) => css`
   border: 1px solid ${theme.colors.formElements.outline};
   border-radius: 4px;
   cursor: pointer;
-  perspective: 300px;
   transition: 
     background-color ${theme.transitionDuration} ease-in-out,
     color ${theme.transitionDuration} ease-in-out,
@@ -84,9 +83,8 @@ const OptionsList = styled.ul<OptionsListProps>(
     top: 55.5px;
     visibility: ${$visible ? 'visible' : 'hidden'};
     opacity: ${$visible ? 1 : 0};
-    transform: 
-      translateZ(${$visible ? '0px' : '-10px'})
-      translateY(${$visible ? '0px' : '20px'});
+    transform: translateY(${$visible ? '0px' : '20px'});
+    z-index: 999;
     transition: 
       box-shadow ${theme.transitionDuration} ease-in-out,
       background-color ${theme.transitionDuration} ease-in-out,
