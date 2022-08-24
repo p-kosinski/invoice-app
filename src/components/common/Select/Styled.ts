@@ -19,7 +19,7 @@ const Label = styled.label(({ theme }) => css`
 const Select = styled.button(({ theme }) => css`
   display: block;
   position: relative;
-  min-width: 207px;
+  min-width: 240px;
   min-height: 48px;
   padding: 15.5px 20px;
   font-weight: ${theme.font.weights.bold};
