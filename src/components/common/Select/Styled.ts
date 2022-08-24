@@ -120,7 +120,7 @@ const Option = styled.li(({ theme }) => css`
     color: ${theme.colors.accent.main};
   }
 
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
       color: ${theme.colors.accent.main};
     }
