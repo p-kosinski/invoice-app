@@ -38,6 +38,7 @@ const Label = styled.label<LabelProps>(
 
 const Input = styled.input(({ theme }) => css`
   display: block;
+  min-width: 198px;
   padding: 15.5px 20px;
   background-color: ${theme.colors.formElements.background};
   border: 1px solid ${theme.colors.formElements.outline};
