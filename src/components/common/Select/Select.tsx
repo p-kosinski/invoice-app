@@ -1,4 +1,5 @@
 import { useState, useEffect, KeyboardEvent, useRef } from 'react';
+import ClickAwayListener from 'react-click-away-listener';
 
 import Typography from '../Typography/Typography';
 
@@ -40,10 +41,6 @@ const Select: React.FC<Props> = ({
     onChange(defaultOptionValue);
   }, []);
 
-  const toggleOptions = () => {
-    setOptionsOpen(!optionsOpen);
-  };
-
   const handleOptionClick = (i: number, clickedValue: string) => () => {
     onChange(clickedValue);
     setSelectedOption(i);
@@ -68,49 +65,51 @@ const Select: React.FC<Props> = ({
     };
 
   return (
-    <Styled.Wrapper>
-      <Styled.Label htmlFor={name}>
-        <Typography variant='body1' element='span'>
-          {label}
-        </Typography>
-      </Styled.Label>
-      <Styled.Select
-        tabIndex={0}
-        role='button'
-        id={name}
-        aria-label={`${label} - ${options[selectedOption].label}`}
-        aria-haspopup='listbox'
-        aria-expanded={optionsOpen}
-        ref={selectButton}
-        onClick={toggleOptions}
-      >
-        <Styled.SelectWrapper>
-          {options[selectedOption].label}
-          <ArrowDownIcon />
-        </Styled.SelectWrapper>
-        <Styled.OptionsList
-          aria-hidden={!optionsOpen}
-          role='listbox'
-          aria-activedescendant={options[selectedOption].value}
-          tabIndex={-1}
-          $visible={optionsOpen}
+    <ClickAwayListener onClickAway={() => setOptionsOpen(false)}>
+      <Styled.Wrapper>
+        <Styled.Label htmlFor={name}>
+          <Typography variant='body1' element='span'>
+            {label}
+          </Typography>
+        </Styled.Label>
+        <Styled.Select
+          tabIndex={0}
+          role='button'
+          id={name}
+          aria-label={`${label} - ${options[selectedOption].label}`}
+          aria-haspopup='listbox'
+          aria-expanded={optionsOpen}
+          ref={selectButton}
+          onClick={() => setOptionsOpen(!optionsOpen)}
         >
-          {options.map((option, i) => (
-            <Styled.Option
-              key={i}
-              id={option.value}
-              tabIndex={0}
-              role='option'
-              aria-selected={selectedOption === i}
-              onClick={handleOptionClick(i, option.value)}
-              onKeyDown={handleOptionKeyDown(i, option.value)}
-            >
-              {option.label}
-            </Styled.Option>
-          ))}
-        </Styled.OptionsList>
-      </Styled.Select>
-    </Styled.Wrapper>
+          <Styled.SelectWrapper>
+            {options[selectedOption].label}
+            <ArrowDownIcon />
+          </Styled.SelectWrapper>
+          <Styled.OptionsList
+            aria-hidden={!optionsOpen}
+            role='listbox'
+            aria-activedescendant={options[selectedOption].value}
+            tabIndex={-1}
+            $visible={optionsOpen}
+          >
+            {options.map((option, i) => (
+              <Styled.Option
+                key={i}
+                id={option.value}
+                tabIndex={0}
+                role='option'
+                aria-selected={selectedOption === i}
+                onClick={handleOptionClick(i, option.value)}
+                onKeyDown={handleOptionKeyDown(i, option.value)}
+              >
+                {option.label}
+              </Styled.Option>
+            ))}
+          </Styled.OptionsList>
+        </Styled.Select>
+      </Styled.Wrapper>
+    </ClickAwayListener>
   );
 };
 
