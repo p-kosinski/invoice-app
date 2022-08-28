@@ -84,7 +84,7 @@ const OptionsList = styled.ul<OptionsListProps>(
     visibility: ${$visible ? 'visible' : 'hidden'};
     opacity: ${$visible ? 1 : 0};
     transform: translateY(${$visible ? '0px' : '20px'});
-    z-index: 999;
+    z-index: 998;
     transition: 
       box-shadow ${theme.transitionDuration} ease-in-out,
       background-color ${theme.transitionDuration} ease-in-out,
