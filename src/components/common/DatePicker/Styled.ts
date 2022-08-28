@@ -32,6 +32,13 @@ const Input = styled.button(({ theme, disabled }) => css`
     color ${theme.transitionDuration} ease-in-out,
     border ${theme.transitionDuration} ease-in-out,
     outline ${theme.transitionDuration} ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   &:focus, :focus-visible {
     outline: 1px solid ${theme.colors.accent.main};
