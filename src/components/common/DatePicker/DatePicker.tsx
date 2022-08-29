@@ -1,20 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-dayjs.extend(utc);
 import ClickAwayListener from 'react-click-away-listener';
 
-import {
-  changeDateMonth,
-  getCalendarRows,
-  checkIfCellDateIsSelected
-} from '../../../utils/dateUtils';
-
 import Typography from '../Typography/Typography';
+import Calendar from './Calendar/Calendar';
 
 import { ReactComponent as CalendarIcon } from '../../../assets/icon-calendar.svg';
-import { ReactComponent as LeftArrowIcon } from '../../../assets/icon-arrow-left.svg';
-import { ReactComponent as RightArrowIcon } from '../../../assets/icon-arrow-right.svg';
 
 import Styled from './Styled';
 
@@ -34,27 +25,10 @@ const DatePicker: React.FC<Props> = ({
   onChange
 }) => {
   const [calendarOpen, setCalendarOpen] = useState(false);
-  const [shownDate, setShownDate] = useState(dayjs(selectedDate));
 
-  useEffect(() => {
-    setShownDate(dayjs(selectedDate));
-  }, [selectedDate]);
-
-  const handleArrowClick = (isNextMonth: boolean) => {
-    return () => {
-      setShownDate(changeDateMonth(shownDate, isNextMonth));
-    };
-  };
-
-  const rows = useMemo(() => getCalendarRows(shownDate), [shownDate]);
-  
   const getSelectedDateString = useCallback(() => {
     return dayjs(selectedDate).format('DD MMM YYYY');
   }, [selectedDate]);
-
-  const getShownDateString = useCallback(() => {
-    return shownDate.format('MMM YYYY');
-  }, [shownDate]);
 
   return (
     <ClickAwayListener onClickAway={() => setCalendarOpen(false)}>
@@ -80,44 +54,12 @@ const DatePicker: React.FC<Props> = ({
             <CalendarIcon />
           </Styled.InputWrapper>
         </Styled.Input>
-        <Styled.PopupCard
-          aria-hidden={!calendarOpen}
-          $visible={calendarOpen}
-        >
-          <Styled.MonthPicker>
-            <Styled.MonthPickerButton onClick={handleArrowClick(false)}>
-              <LeftArrowIcon />
-            </Styled.MonthPickerButton>
-            <Typography variant='h4' element='span'>
-              {getShownDateString()}
-            </Typography>
-            <Styled.MonthPickerButton onClick={handleArrowClick(true)}>
-              <RightArrowIcon />
-            </Styled.MonthPickerButton>
-          </Styled.MonthPicker>
-          <Styled.Calendar>
-            {rows.map((cells, rowIndex) => (
-              <Styled.CalendarRow key={rowIndex}>
-                {cells.map(({ text, value, inShownMonth }, cellIndex) => (
-                  <Styled.CalendarCell
-                    key={`${text} - ${cellIndex}`}
-                    $selected={checkIfCellDateIsSelected(value, selectedDate)}
-                    $inShownMonth={inShownMonth}
-                    disabled={!inShownMonth}
-                    onClick={() => {
-                      onChange(dayjs.utc(value).toISOString());
-                      setCalendarOpen(false);
-                    }}
-                  >
-                    <Typography variant='h4' element='span'>
-                      {text}
-                    </Typography>
-                  </Styled.CalendarCell>
-                ))}
-              </Styled.CalendarRow>
-            ))}
-          </Styled.Calendar>
-        </Styled.PopupCard>
+        <Calendar
+          calendarOpen={calendarOpen}
+          setCalendarOpen={setCalendarOpen}
+          selectedDate={selectedDate}
+          onChange={onChange}
+        />
       </Styled.Wrapper>
     </ClickAwayListener>
   );
