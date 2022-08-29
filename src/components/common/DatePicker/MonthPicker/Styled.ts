@@ -5,7 +5,15 @@ const MonthPicker = styled.div(({ theme }) => css`
   justify-content: space-between;
   align-items: center;
   color: ${theme.colors.formElements.text};
-  transition: color ${theme.transitionDuration} ease-in-out;
+  transition: 
+    color ${theme.transitionDuration} ease-in-out,
+    outline ${theme.transitionDuration} ease-in-out;
+
+  &:focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: -1px;
+    border-radius: 8px;
+  }
 `);
 
 const MonthPickerButton = styled.button(({ theme }) => css`
