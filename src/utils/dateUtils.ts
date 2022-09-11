@@ -1,4 +1,6 @@
 import dayjs, { Dayjs } from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
 
 export const changeDateMonth = (date: Dayjs, isNextMonth: boolean): Dayjs => {
   if (date.month() === 0 && !isNextMonth) {
@@ -70,4 +72,28 @@ export const checkIfCellDateIsSelected = (
   const selectedDateString = dayjs(selectedDate).local().format('DD-MM-YYYY');
   
   return cellDateString === selectedDateString;
+};
+
+export const datesAreInTheSameMonth = (date1: string | Dayjs, date2: string | Dayjs): boolean => {
+  return dayjs(date1).isSame(date2, 'month');
+};
+
+const isCalendarCell = (cell: any): cell is CalendarCell => {
+  return (cell as CalendarCell).text !== undefined 
+          &&
+         (cell as CalendarCell).inShownMonth !== undefined
+          &&
+         (cell as CalendarCell).value !== undefined;
+};
+
+export const getFirstDayOfTheMonth = (rows: CalendarCell[][]): Dayjs | undefined => {
+  const firstDayInMonthCell = rows[0].find(cell => cell.text === '1' && cell.inShownMonth);
+  
+  if(isCalendarCell(firstDayInMonthCell)) {
+    return firstDayInMonthCell.value;
+  }
+};
+
+export const checkIfDatesAreEqual = (date: Dayjs, focusedDate: Dayjs): boolean => {
+  return dayjs(date).isSame(focusedDate, 'day');
 };

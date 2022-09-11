@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, forwardRef } from 'react';
 import dayjs from 'dayjs';
 
 import { getCalendarRows } from '../../../../utils/dateUtils';
@@ -20,7 +20,7 @@ const Calendar: React.FC<Props> = ({
   setCalendarOpen,
   selectedDate,
   onChange
-}) => {
+}, ref) => {
   const [shownDate, setShownDate] = useState(dayjs(selectedDate));
 
   useEffect(() => {
@@ -45,6 +45,8 @@ const Calendar: React.FC<Props> = ({
       />
       <DaysGrid
         rows={rows}
+        shownDate={shownDate}
+        setShownDate={setShownDate}
         selectedDate={selectedDate}
         onChange={onChange}
         setCalendarOpen={setCalendarOpen}

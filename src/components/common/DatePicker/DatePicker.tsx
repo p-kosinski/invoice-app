@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import dayjs from 'dayjs';
 import ClickAwayListener from 'react-click-away-listener';
 
@@ -26,6 +26,8 @@ const DatePicker: React.FC<Props> = ({
 }) => {
   const [calendarOpen, setCalendarOpen] = useState(false);
 
+  const inputButtonRef = useRef<HTMLButtonElement>(null);
+
   const getSelectedDateString = useCallback(() => {
     return dayjs(selectedDate).format('DD MMM YYYY');
   }, [selectedDate]);
@@ -46,6 +48,7 @@ const DatePicker: React.FC<Props> = ({
           aria-expanded={calendarOpen}
           disabled={disabled}
           onClick={() => setCalendarOpen(!calendarOpen)}
+          ref={inputButtonRef}
         >
           <Styled.InputWrapper>
             <Styled.DateWrapper $disabled={disabled}>
