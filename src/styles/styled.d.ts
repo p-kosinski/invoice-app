@@ -7,11 +7,15 @@ interface DefaultColorVariants {
 
 interface ExtendedColorVariants extends DefaultColorVariants {
   lighter: string;
-}
+};
 
 interface OpaqueColorVariants {
   main: string;
   opaque: string;
+};
+
+interface LightGreyVariants extends ExtendedColorVariants {
+  lightOpaque: string;
 };
 
 interface NeutralColors {
@@ -36,11 +40,13 @@ interface TextColors {
 };
 
 interface FormColors {
-  outline: {
-    default: string;
-    active: string;
-  };
+  outline: string;
+  background: string;
+  text: string;
+  optionsText: string;
   labelsText: string;
+  dividers: string;
+  shadow: string;
 };
 
 interface TextButtonColorSettings {
@@ -67,7 +73,7 @@ interface ColorPalette {
   accent: DefaultColorVariants;
   black: OpaqueColorVariants;
   dark: DefaultColorVariants;
-  lightGrey: ExtendedColorVariants;
+  lightGrey: LightGreyVariants;
   grey: DefaultColorVariants;
   neutral: NeutralColors;
 };
@@ -77,7 +83,12 @@ interface ThemeColors {
   warning: OpaqueColorVariants;
   error: DefaultColorVariants;
   accent: DefaultColorVariants;
+  draft: OpaqueColorVariants;
   black: OpaqueColorVariants;
+  dark: DefaultColorVariants;
+  lightGrey: ExtendedColorVariants;
+  grey: DefaultColorVariants;
+  neutral: NeutralColors;
   backgrounds: BackgroundColors;
   text: TextColors;
   formElements: FormColors;
@@ -97,7 +108,7 @@ interface FontLineHeights {
 };
 
 interface FontLetterSpacings {
-  [level: number]: number;
+  [level: number]: string;
 };
 
 interface FontSettings {
@@ -115,11 +126,14 @@ interface Breakpoints {
   [key: string]: string;
 };
 
+type TransitionDuration = string;
+
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: ThemeColors,
     font: FontSettings;
     typography: TypographySettings;
     breakpoints: Breakpoints;
+    transitionDuration: TransitionDuration;
   }
 }

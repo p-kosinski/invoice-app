@@ -3,7 +3,8 @@ import {
   colorPalette,
   fontSettings,
   typographySettings,
-  breakpoints
+  breakpoints,
+  transitionDuration
 } from './variables';
 
 export const lightTheme: DefaultTheme = {
@@ -12,7 +13,15 @@ export const lightTheme: DefaultTheme = {
     warning: colorPalette.warning,
     error: colorPalette.error,
     accent: colorPalette.accent,
+    draft: {
+      main: colorPalette.black.main,
+      opaque: colorPalette.black.opaque,
+    },
     black: colorPalette.black,
+    dark: colorPalette.dark,
+    lightGrey: colorPalette.lightGrey,
+    grey: colorPalette.grey,
+    neutral: colorPalette.neutral,
     backgrounds: {
       page: colorPalette.neutral.light,
       banner: colorPalette.black.main,
@@ -27,11 +36,13 @@ export const lightTheme: DefaultTheme = {
       highlight: colorPalette.grey.light
     },
     formElements: {
-      outline: {
-        default: colorPalette.lightGrey.light,
-        active: colorPalette.accent.main
-      },
-      labelsText: colorPalette.grey.light
+      outline: colorPalette.lightGrey.light,
+      background: colorPalette.neutral.white,
+      text: colorPalette.grey.main,
+      optionsText: colorPalette.grey.main,
+      labelsText: colorPalette.grey.light,
+      dividers: colorPalette.lightGrey.light,
+      shadow: 'hsla(231, 38%, 45%, 0.25)'
     },
     buttons: {
       button3: {
@@ -52,7 +63,8 @@ export const lightTheme: DefaultTheme = {
   },
   font: fontSettings,
   typography: typographySettings,
-  breakpoints: breakpoints
+  breakpoints: breakpoints,
+  transitionDuration: transitionDuration
 };
 
 export const darkTheme: DefaultTheme = {
@@ -61,7 +73,15 @@ export const darkTheme: DefaultTheme = {
     warning: colorPalette.warning,
     error: colorPalette.error,
     accent: colorPalette.accent,
+    draft: {
+      main: colorPalette.lightGrey.light,
+      opaque: colorPalette.lightGrey.lightOpaque,
+    },
     black: colorPalette.black,
+    dark: colorPalette.dark,
+    lightGrey: colorPalette.lightGrey,
+    grey: colorPalette.grey,
+    neutral: colorPalette.neutral,
     backgrounds: {
       page: colorPalette.neutral.dark,
       banner: colorPalette.dark.main,
@@ -76,11 +96,13 @@ export const darkTheme: DefaultTheme = {
       highlight: colorPalette.lightGrey.light
     },
     formElements: {
-      outline: {
-        default: colorPalette.dark.light,
-        active: colorPalette.dark.light
-      },
+      outline: colorPalette.dark.light,
+      background: colorPalette.dark.light,
+      text: colorPalette.neutral.white,
+      optionsText: colorPalette.lightGrey.light,
       labelsText: colorPalette.lightGrey.light,
+      dividers: colorPalette.dark.main,
+      shadow: 'hsla(0, 0%, 0%, 0.25)'
     },
     buttons: {
       button3: {
@@ -101,5 +123,6 @@ export const darkTheme: DefaultTheme = {
   },
   font: fontSettings,
   typography: typographySettings,
-  breakpoints: breakpoints
+  breakpoints: breakpoints,
+  transitionDuration: transitionDuration
 };
