@@ -26,7 +26,7 @@ const DatePicker: React.FC<Props> = ({
 }) => {
   const [calendarOpen, setCalendarOpen] = useState(false);
 
-  const inputButtonRef = useRef<HTMLButtonElement>(null);
+  const inputButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const getSelectedDateString = useCallback(() => {
     return dayjs(selectedDate).format('DD MMM YYYY');
@@ -62,6 +62,7 @@ const DatePicker: React.FC<Props> = ({
           setCalendarOpen={setCalendarOpen}
           selectedDate={selectedDate}
           onChange={onChange}
+          ref={inputButtonRef}
         />
       </Styled.Wrapper>
     </ClickAwayListener>

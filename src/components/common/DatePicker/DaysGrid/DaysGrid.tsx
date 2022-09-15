@@ -22,6 +22,7 @@ type Props = {
   selectedDate: string;
   onChange: (value: string) => void;
   setCalendarOpen: (open: boolean) => void;
+  inputRef: React.ForwardedRef<HTMLButtonElement>;
 };
 
 const DaysGrid: React.FC<Props> = ({
@@ -30,7 +31,8 @@ const DaysGrid: React.FC<Props> = ({
   setShownDate,
   selectedDate,
   onChange,
-  setCalendarOpen
+  setCalendarOpen,
+  inputRef
 }) => {
   const [focusedDate, setFocusedDate] = useState(dayjs(selectedDate));
 
@@ -109,10 +111,13 @@ const DaysGrid: React.FC<Props> = ({
       case ' ':
       case 'SpaceBar':
       case 'Enter':
+        e.preventDefault();
         onChange(dayjs.utc(focusedDate).toISOString());
         setCalendarOpen(false);
 
-        // [TO DO] focus input button
+        if(inputRef !== null && 'current' in inputRef) {
+          inputRef.current && inputRef.current.focus();
+        }
         
         break;
       default:

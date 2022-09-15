@@ -15,7 +15,9 @@ type Props = {
   onChange: (value: string) => void;
 };
 
-const Calendar: React.FC<Props> = ({
+type Ref = HTMLButtonElement;
+
+const Calendar = forwardRef<Ref, Props>(({
   calendarOpen,
   setCalendarOpen,
   selectedDate,
@@ -50,9 +52,10 @@ const Calendar: React.FC<Props> = ({
         selectedDate={selectedDate}
         onChange={onChange}
         setCalendarOpen={setCalendarOpen}
+        inputRef={ref}
       />
     </Styled.Calendar>
   );
-};
+});
 
 export default Calendar;
