@@ -58,18 +58,18 @@ export const fontSettings: FontSettings = {
 
 export const typographySettings: TypographySettings = {
   fontSizes: {
-    xs: '0.688rem',
-    s: '0.75rem',
-    m: '1rem',
-    l: '1.25rem',
-    xl: '2rem'
+    xs: '11px',
+    s: '12px',
+    m: '16px',
+    l: '20px',
+    xl: '32px'
   },
   lineHeights: {
-    1: '0.938rem',
-    2: '1.125rem',
+    1: '15px',
+    2: '18px',
     3: '1.375rem',
-    4: '1.5rem',
-    5: '2.25rem'
+    4: '24px',
+    5: '36px'
   },
   letterSpacings: {
     1: '-1px',
