@@ -38,6 +38,16 @@ const Button1 = styled.button(({ theme }) => css`
   }
 `);
 
+const Button1Text = styled.span(({ theme }) => css`
+  &::after {
+    content: 'New';
+
+    @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+      content: 'New Invoice';
+    }
+  }
+`);
+
 const Button2 = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
@@ -151,6 +161,7 @@ const Styled = {
   TextWrapper: TextWrapper,
   AddIcon: AddIcon,
   Button1: Button1,
+  Button1Text: Button1Text,
   Button2: Button2,
   Button3: Button3,
   Button4: Button4,

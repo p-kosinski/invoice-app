@@ -6,7 +6,7 @@ import Styled from './Styled';
 
 type Props = {
   variant: 'button1' | 'button2' | 'button3' | 'button4' | 'button5' | 'button6';
-  children: string;
+  children?: string;
   onClick: () => any;
   ariaLabel?: string;
 };
@@ -24,7 +24,7 @@ const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
           </Styled.AddIcon>
           <Styled.TextWrapper>
             <Typography variant='h3' element='span'>
-              {children}
+              <Styled.Button1Text />
             </Typography>
           </Styled.TextWrapper>
         </Styled.Button1>
