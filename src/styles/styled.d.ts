@@ -47,6 +47,7 @@ interface FormColors {
   labelsText: string;
   dividers: string;
   shadow: string;
+  statusFiltersBg: string;
 };
 
 interface TextButtonColorSettings {

@@ -42,7 +42,8 @@ export const lightTheme: DefaultTheme = {
       optionsText: colorPalette.grey.main,
       labelsText: colorPalette.grey.light,
       dividers: colorPalette.lightGrey.light,
-      shadow: 'hsla(231, 38%, 45%, 0.25)'
+      shadow: 'hsla(231, 38%, 45%, 0.25)',
+      statusFiltersBg: colorPalette.neutral.white
     },
     buttons: {
       button3: {
@@ -102,7 +103,8 @@ export const darkTheme: DefaultTheme = {
       optionsText: colorPalette.lightGrey.light,
       labelsText: colorPalette.lightGrey.light,
       dividers: colorPalette.dark.main,
-      shadow: 'hsla(0, 0%, 0%, 0.25)'
+      shadow: 'hsla(0, 0%, 0%, 0.25)',
+      statusFiltersBg: colorPalette.dark.light
     },
     buttons: {
       button3: {
