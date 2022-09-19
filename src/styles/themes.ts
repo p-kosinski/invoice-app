@@ -33,7 +33,11 @@ export const lightTheme: DefaultTheme = {
     text: {
       main: colorPalette.grey.main,
       secondary: colorPalette.lightGrey.main,
-      highlight: colorPalette.grey.light
+      highlight: colorPalette.grey.light,
+      invoiceTile: {
+        dueDate: colorPalette.grey.light,
+        clientName: colorPalette.lightGrey.main
+      }
     },
     formElements: {
       outline: colorPalette.lightGrey.light,
@@ -94,7 +98,11 @@ export const darkTheme: DefaultTheme = {
     text: {
       main: colorPalette.neutral.white,
       secondary: colorPalette.lightGrey.light,
-      highlight: colorPalette.lightGrey.light
+      highlight: colorPalette.lightGrey.light,
+      invoiceTile: {
+        dueDate: colorPalette.lightGrey.light,
+        clientName: colorPalette.neutral.light
+      }
     },
     formElements: {
       outline: colorPalette.dark.light,

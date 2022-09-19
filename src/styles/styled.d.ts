@@ -37,6 +37,10 @@ interface TextColors {
   main: string;
   secondary: string;
   highlight: string;
+  invoiceTile: {
+    dueDate: string;
+    clientName: string;
+  }
 };
 
 interface FormColors {
