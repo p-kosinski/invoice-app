@@ -1,6 +1,7 @@
-import { useCallback, useState, useRef, useEffect } from 'react';
-import dayjs from 'dayjs';
+import { useCallback, useState, useRef } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
+
+import { parseDateToLocaleString } from '../../../utils/dateUtils';
 
 import Typography from '../Typography/Typography';
 import Calendar from './Calendar/Calendar';
@@ -29,7 +30,7 @@ const DatePicker: React.FC<Props> = ({
   const inputButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const getSelectedDateString = useCallback(() => {
-    return dayjs(selectedDate).format('DD MMM YYYY');
+    return parseDateToLocaleString(selectedDate);
   }, [selectedDate]);
 
   return (
