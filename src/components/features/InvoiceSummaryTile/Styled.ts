@@ -1,4 +1,23 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const RouterLink = styled(Link)(({ theme }) => css`
+  color: unset;
+  text-decoration: none;
+
+  article {
+    outline: 1px solid transparent;
+    transition:
+      outline ${theme.transitionDuration} ease-in-out,
+      background-color ${theme.transitionDuration} ease-in-out;
+  }
+
+  &:hover {
+    article {
+      outline: 1px solid ${theme.colors.accent.main};
+    }
+  }
+`);
 
 const Wrapper = styled.div(({ theme }) => css`
   padding: 24px;
@@ -116,6 +135,7 @@ const StatusChipWrapper = styled.div(({ theme }) => css`
 `);
 
 const Styled = {
+  RouterLink: RouterLink,
   Wrapper: Wrapper,
   GridWrapper: GridWrapper,
   IdWrapper: IdWrapper,

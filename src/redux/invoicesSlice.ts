@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 
 import { api } from '../settings';
+import { assertNotUndefined } from '../utils/typeUtils';
 
 export type Status = 'draft' | 'pending' | 'paid';
 
@@ -86,5 +87,33 @@ export const invoicesSlice = createSlice({
 
 export const selectInvoicesData = (state: RootState) => state.invoices.data;
 export const selectInvoicesLoadingState = (state: RootState) => state.invoices.loading;
+
+export const selectInvoiceClientNameById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.clientName;
+};
+
+export const selectInvoicePaymentDueById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.paymentDue;
+};
+
+export const selectInvoiceTotalById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.total;
+};
+
+export const selectInvoiceStatusById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.status;
+};
 
 export default invoicesSlice.reducer;
