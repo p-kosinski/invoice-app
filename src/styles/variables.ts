@@ -67,14 +67,14 @@ export const typographySettings: TypographySettings = {
   lineHeights: {
     1: '15px',
     2: '18px',
-    3: '1.375rem',
+    3: '22px',
     4: '24px',
     5: '36px'
   },
   letterSpacings: {
     1: '-1px',
     2: '-0.8px',
-    3: '-0.63px',
+    3: '-0.625px',
     4: '-0.25px',
     5: '-0.23px'
   }
@@ -83,6 +83,7 @@ export const typographySettings: TypographySettings = {
 export const breakpoints: Breakpoints = {
   desktop: '1024px',
   tablet: '768px',
+  mobileMax: '600px',
   mobile: '375px'
 };
 
