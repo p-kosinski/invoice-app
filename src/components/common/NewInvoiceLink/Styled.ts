@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const TextWrapper = styled.div`
   display: inline-block;
@@ -17,10 +18,11 @@ const AddIcon = styled.div(({ theme }) => css`
   }
 `);
 
-const LinkButton = styled.button(({ theme }) => css`
-  border: none;
-  margin: 0;
-  padding: 8px;
+const LinkButton = styled(Link)(({ theme }) => css`
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 8px;
   border-radius: 24px;
   background-color: ${theme.colors.accent.main};
   color: ${theme.colors.neutral.white};
