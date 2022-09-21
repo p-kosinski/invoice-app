@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { RootState } from './store';
+import type { StatusFiltersArray } from './invoicesViewSlice';
 
 import { api } from '../settings';
 import { assertNotUndefined } from '../utils/typeUtils';
@@ -114,6 +115,24 @@ export const selectInvoiceStatusById = (state: RootState, id: string) => {
   
   assertNotUndefined(invoiceWithMatchingId);
   return invoiceWithMatchingId.status;
+};
+
+export const selectInvoicesFilteredByStatus = (state: RootState, statusFilters: StatusFiltersArray) => {
+  if(!statusFilters.length) {
+    return state.invoices.data;
+  } else {
+    let emptyArray: any[] = [];
+    let filteredInvoices: InvoicesData = [];
+
+    statusFilters.forEach((statusFilter, i) => {
+      const invoicesWithSelectedStatus = state.invoices.data.filter(invoice => invoice.status === statusFilter);
+  
+      i === 0 ? filteredInvoices = emptyArray.concat(invoicesWithSelectedStatus)
+              : filteredInvoices = filteredInvoices.concat(invoicesWithSelectedStatus)
+    });
+  
+    return filteredInvoices;
+  }
 };
 
 export default invoicesSlice.reducer;
