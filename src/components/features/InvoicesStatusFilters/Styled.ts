@@ -10,10 +10,17 @@ const FiltersButton = styled.button(({ theme }) => css`
   background-color: transparent;
   padding: 12px 24px;
   cursor: pointer;
+  transition: text-decoration ${theme.transitionDuration} ease-in-out;
 
   svg {
     margin-left: 16px;
     transition: transform ${theme.transitionDuration} ease-in-out;
+  }
+
+  &:hover {
+    text-decoration-color: ${theme.colors.text.main};
+    text-decoration-line: underline;
+    text-decoration-style: solid;
   }
 
   &[aria-expanded='true'] {
