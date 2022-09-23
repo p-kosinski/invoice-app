@@ -44,7 +44,7 @@ const TextContent = styled.span(({ theme }) => css`
   &::after {
     content: 'New';
 
-    @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+    @media only screen and (min-width: ${theme.breakpoints.sm}) {
       content: 'New Invoice';
     }
   }

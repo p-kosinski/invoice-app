@@ -22,7 +22,7 @@ const RouterLink = styled(Link)(({ theme }) => css`
 const Wrapper = styled.div(({ theme }) => css`
   padding: 24px;
 
-  @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     padding: 16px 24px;
   }
 `);
@@ -39,7 +39,7 @@ const GridWrapper = styled.div(({ theme }) => css`
     'total status'
     'total status';
 
-  @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     display: grid; 
     grid-template-columns: max-content max-content 1fr 1fr max-content;
     grid-template-rows: 1fr;
@@ -57,7 +57,7 @@ const IdWrapper = styled.div(({ theme }) => css`
     line-height: inherit;
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     align-items: center;
   }
 `);
@@ -83,7 +83,7 @@ const ClientNameWrapper = styled.div(({ theme }) => css`
     line-height: inherit;
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     justify-content: start;
     align-items: center;
   }
@@ -108,7 +108,7 @@ const TotalPriceWrapper = styled.div(({ theme }) => css`
   color: ${theme.colors.text.main};
   transition: color ${theme.transitionDuration} ease-in-out;
 
-  @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     justify-content: end;
     align-items: center;
   }
@@ -123,7 +123,7 @@ const StatusChipWrapper = styled.div(({ theme }) => css`
     display: none;
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     justify-content: center;
     align-items: center;
 

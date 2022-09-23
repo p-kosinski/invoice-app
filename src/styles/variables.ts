@@ -81,10 +81,11 @@ export const typographySettings: TypographySettings = {
 };
 
 export const breakpoints: Breakpoints = {
-  desktop: '1024px',
-  tablet: '768px',
-  mobileMax: '600px',
-  mobile: '375px'
+  xl: '1200px',
+  lg: '1024px',
+  md: '768px',
+  sm: '600px',
+  xs: '375px'
 };
 
 export const transitionDuration: TransitionDuration = '0.15s';

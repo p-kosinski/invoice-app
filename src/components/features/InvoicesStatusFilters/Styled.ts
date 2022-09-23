@@ -7,8 +7,10 @@ const Wrapper = styled.div`
 
 const FiltersButton = styled.button(({ theme }) => css`
   border: none;
+  display: inline-flex;
+  align-items: center;
   background-color: transparent;
-  padding: 12px 24px;
+  padding: 8px 16px;
   cursor: pointer;
   transition: text-decoration ${theme.transitionDuration} ease-in-out;
 
@@ -37,7 +39,7 @@ const ButtonText = styled.span(({ theme }) => css`
   &::after {
     content: 'Filter';
 
-    @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+    @media only screen and (min-width: ${theme.breakpoints.sm}) {
       content: 'Filter by status';
     }
   }
@@ -67,7 +69,7 @@ const Filters = styled.div<FiltersProps>(({ theme, $visible }) => css`
     transform ${theme.transitionDuration} ease-in-out,
     visibility ${theme.transitionDuration} ease-in-out;
 
-  @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     left: -20px;
     width: 150px;
   }

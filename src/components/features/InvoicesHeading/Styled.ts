@@ -7,7 +7,7 @@ const Wrapper = styled.div(({ theme }) => css`
     color: ${theme.colors.text.main};
     transition: color ${theme.transitionDuration} ease-in-out;
 
-    @media only screen and (max-width: ${theme.breakpoints.mobileMax}) {
+    @media only screen and (max-width: ${theme.breakpoints.sm}) {
       margin-bottom: 8px;
       font-size: ${theme.typography.fontSizes.l};
       line-height: ${theme.typography.lineHeights[3]};
@@ -25,7 +25,7 @@ const Wrapper = styled.div(({ theme }) => css`
 const SpanHiddenOnMobile = styled.span(({ theme }) => css`
   display: none;
 
-  @media only screen and (min-width: ${theme.breakpoints.mobileMax}) {
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
     display: initial;
   }
 `);

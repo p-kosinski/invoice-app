@@ -14,7 +14,7 @@ const UserAvatarButton = styled.button(({ theme }) => css`
     width: 100%;
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.desktop}) {
+  @media only screen and (min-width: ${theme.breakpoints.lg}) {
     margin-right: 0;
   }
 `);
