@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const Main = styled.main(({ theme }) => css`
   padding-top: 72px;
 
-  @media only screen and (min-width: ${theme.breakpoints.lg}) {
+  @media only screen and (min-width: ${theme.breakpoints.xl}) {
     padding-top: 0;
   }
 `);

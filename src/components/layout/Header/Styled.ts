@@ -11,7 +11,7 @@ const Header = styled.header(({ theme }) => css`
   transition: background-color ${theme.transitionDuration} ease-in-out;
   z-index: 999;
 
-  @media only screen and (min-width: ${theme.breakpoints.lg}) {
+  @media only screen and (min-width: ${theme.breakpoints.xl}) {
     width: 103px;
     height: 100%;
     left: 0;
@@ -26,7 +26,7 @@ const ButtonsWrapper = styled.div(({ theme }) => css`
   gap: 24px;
   margin-right: 24px;
 
-  @media only screen and (min-width: ${theme.breakpoints.lg}) {
+  @media only screen and (min-width: ${theme.breakpoints.xl}) {
     flex-direction: column;
     margin-right: 0;
     margin-bottom: 24px;
@@ -40,7 +40,7 @@ const Divider = styled.hr(({ theme }) => css`
   height: 100%;
   border-left: 1px solid hsla(231, 20%, 36%, 1);
 
-  @media only screen and (min-width: ${theme.breakpoints.lg}) {
+  @media only screen and (min-width: ${theme.breakpoints.xl}) {
     border-left: none;
     border-top: 1px solid hsla(231, 20%, 36%, 1);
     height: auto;
