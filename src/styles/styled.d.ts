@@ -31,6 +31,7 @@ interface BackgroundColors {
   cardInner: string;
   invoiceTotal: string;
   form: string;
+  skeleton: string;
 };
 
 interface TextColors {

@@ -28,7 +28,8 @@ export const lightTheme: DefaultTheme = {
       card: colorPalette.neutral.white,
       cardInner: colorPalette.lightGrey.lighter,
       invoiceTotal: colorPalette.black.main,
-      form: colorPalette.neutral.white
+      form: colorPalette.neutral.white,
+      skeleton: colorPalette.lightGrey.main
     },
     text: {
       main: colorPalette.grey.main,
@@ -93,7 +94,8 @@ export const darkTheme: DefaultTheme = {
       card: colorPalette.dark.main,
       cardInner: colorPalette.dark.light,
       invoiceTotal: colorPalette.grey.main,
-      form: colorPalette.neutral.dark
+      form: colorPalette.neutral.dark,
+      skeleton: colorPalette.grey.light
     },
     text: {
       main: colorPalette.neutral.white,
