@@ -11,10 +11,13 @@ const AddIcon = styled.div(({ theme }) => css`
   width: 32px;
   border-radius: 16px;
   background-color: ${theme.colors.neutral.white};
-  display: inline-grid;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   svg {
-    place-self: center;
+    height: 10px;
+    width: 10px;
   }
 `);
 
