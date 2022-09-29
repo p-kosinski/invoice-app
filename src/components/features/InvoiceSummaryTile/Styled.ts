@@ -12,9 +12,11 @@ const RouterLink = styled(Link)(({ theme }) => css`
       background-color ${theme.transitionDuration} ease-in-out;
   }
 
-  &:hover {
-    article {
-      outline: 1px solid ${theme.colors.accent.main};
+  @media (hover: hover) {
+    &:hover {
+      article {
+        outline: 1px solid ${theme.colors.accent.main};
+      }
     }
   }
 `);
