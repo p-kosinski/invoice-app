@@ -5,11 +5,22 @@ const RouterLink = styled(Link)(({ theme }) => css`
   color: unset;
   text-decoration: none;
 
+  &:focus, :focus-visible {
+    outline: none;
+  }
+
   article {
     outline: 1px solid transparent;
     transition:
       outline ${theme.transitionDuration} ease-in-out,
       background-color ${theme.transitionDuration} ease-in-out;
+  }
+
+  &:focus, :focus-visible {
+    article {
+      outline: 1px solid ${theme.colors.accent.main};
+      outline-offset: 2px;
+    }
   }
 
   @media (hover: hover) {
