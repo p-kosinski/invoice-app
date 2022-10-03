@@ -13,17 +13,28 @@ const FiltersButton = styled.button(({ theme }) => css`
   padding: 8px 8px;
   margin-inline: 8px;
   cursor: pointer;
-  transition: text-decoration ${theme.transitionDuration} ease-in-out;
+  outline-width: 0;
+  border-radius: 24px;
+  transition:
+    text-decoration ${theme.transitionDuration} ease-in-out,
+    outline ${theme.transitionDuration} ease-in-out;
 
   svg {
     margin-left: 16px;
     transition: transform ${theme.transitionDuration} ease-in-out;
   }
 
-  &:hover {
-    text-decoration-color: ${theme.colors.text.main};
-    text-decoration-line: underline;
-    text-decoration-style: solid;
+  &:focus, :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration-color: ${theme.colors.text.main};
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+    }
   }
 
   &[aria-expanded='true'] {
@@ -94,9 +105,11 @@ const Label = styled.label(({ theme }) => css`
     color ${theme.transitionDuration} ease-in-out,
     border ${theme.transitionDuration} ease-in-out;
 
-  &:hover {
-    input[type='checkbox'] {
-      border: 1px solid ${theme.colors.accent.main};
+  @media (hover: hover) {
+    &:hover {
+      input[type='checkbox'] {
+        border: 1px solid ${theme.colors.accent.main};
+      }
     }
   }
 `);
@@ -124,7 +137,13 @@ const Input = styled.input(({ theme }) => css`
       transform: scale(0);
       transition:
         opacity ${theme.transitionDuration} ease-in-out,
-        transform ${theme.transitionDuration} ease-in-out;
+        transform ${theme.transitionDuration} ease-in-out,
+        outline ${theme.transitionDuration} ease-in-out;
+    }
+
+    &:focus, :focus-visible {
+      outline: 1px solid ${theme.colors.accent.main};
+      outline-offset: 2px;
     }
 
     &:checked {

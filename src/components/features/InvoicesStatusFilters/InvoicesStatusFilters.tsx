@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
 import { useAppDispatch } from '../../../hooks/reduxHooks';
@@ -24,19 +24,39 @@ const InvoicesStatusFilters: React.FC = () => {
 
   const [filtersOpened, setFiltersOpened] = useState(false);
 
+  const FILTERS = ['draft', 'pending', 'paid'] as const;
+  type Filter = typeof FILTERS[number];
+
+  const isStatusFilter = (value: string): value is Filter => {
+    return FILTERS.includes(value as Filter);
+  };
+
   const handleCheckboxChange = () => (e: ChangeEvent<HTMLInputElement>) => {
-    const FILTERS = ['draft', 'pending', 'paid'] as const;
-    type Filter = typeof FILTERS[number];
-
-    const isStatusFilter = (value: string): value is Filter => {
-      return FILTERS.includes(value as Filter);
-    };
-
     if(isStatusFilter(e.target.value)) {
       e.target.checked ? addInvoiceStatusFilter(e.target.value)
                        : removeInvoiceStatusFilter(e.target.value)
     }
   };
+
+  const handleCheckboxKeyDown =
+    (value: StatusFilter) => (e: KeyboardEvent<HTMLInputElement>) => {
+      switch (e.key) {
+        case ' ':
+        case 'SpaceBar':
+        case 'Enter':
+          if (!e.target.checked) {
+            e.target.checked = true;
+            addInvoiceStatusFilter(value);
+          } else {
+            e.target.checked = false;
+            removeInvoiceStatusFilter(value);
+          }
+
+          break;
+        default:
+          break;
+      }
+    };
 
   return (
     <ClickAwayListener onClickAway={() => setFiltersOpened(false)}>
@@ -62,6 +82,8 @@ const InvoicesStatusFilters: React.FC = () => {
                 id='draft'
                 name='draft'
                 value='draft'
+                tabIndex={0}
+                onKeyDown={handleCheckboxKeyDown('draft')}
                 onChange={handleCheckboxChange()}
               />
               <Typography variant='h4' element='span'>
@@ -76,6 +98,8 @@ const InvoicesStatusFilters: React.FC = () => {
                 id='pending'
                 name='pending'
                 value='pending'
+                tabIndex={0}
+                onKeyDown={handleCheckboxKeyDown('pending')}
                 onChange={handleCheckboxChange()}
               />
               <Typography variant='h4' element='span'>
@@ -90,6 +114,8 @@ const InvoicesStatusFilters: React.FC = () => {
                 id='paid'
                 name='paid'
                 value='paid'
+                tabIndex={0}
+                onKeyDown={handleCheckboxKeyDown('paid')}
                 onChange={handleCheckboxChange()}
               />
               <Typography variant='h4' element='span'>
