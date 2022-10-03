@@ -30,10 +30,17 @@ const LinkButton = styled(Link)(({ theme }) => css`
   background-color: ${theme.colors.accent.main};
   color: ${theme.colors.neutral.white};
   cursor: pointer;
-  transition: background-color ${theme.transitionDuration} ease-in-out;
+  transition:
+    background-color ${theme.transitionDuration} ease-in-out,
+    outline ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.accent.light};
+  }
+
+  &:focus, :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: 4px;
   }
 
   @media (hover: hover) {
