@@ -10,7 +10,8 @@ const FiltersButton = styled.button(({ theme }) => css`
   display: inline-flex;
   align-items: center;
   background-color: transparent;
-  padding: 8px 16px;
+  padding: 8px 8px;
+  margin-inline: 8px;
   cursor: pointer;
   transition: text-decoration ${theme.transitionDuration} ease-in-out;
 
@@ -53,7 +54,7 @@ type FiltersProps = {
 const Filters = styled.div<FiltersProps>(({ theme, $visible }) => css`
   position: absolute;
   top: 54px;
-  left: -32px;
+  left: -38px;
   padding: 18px 24px;
   width: 120px;
   background-color: ${theme.colors.formElements.statusFiltersBg};
@@ -69,8 +70,8 @@ const Filters = styled.div<FiltersProps>(({ theme, $visible }) => css`
     transform ${theme.transitionDuration} ease-in-out,
     visibility ${theme.transitionDuration} ease-in-out;
 
-  @media only screen and (min-width: ${theme.breakpoints.md}) {
-    left: -20px;
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    left: -28px;
     width: 150px;
   }
 `);
