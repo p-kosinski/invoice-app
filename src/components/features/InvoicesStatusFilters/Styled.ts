@@ -15,6 +15,8 @@ const FiltersButton = styled.button(({ theme }) => css`
   cursor: pointer;
   outline-width: 0;
   border-radius: 24px;
+  outline: 1px solid transparent;
+  outline-offset: 2px;
   transition:
     text-decoration ${theme.transitionDuration} ease-in-out,
     outline ${theme.transitionDuration} ease-in-out;
@@ -26,7 +28,6 @@ const FiltersButton = styled.button(({ theme }) => css`
 
   &:focus, :focus-visible {
     outline: 1px solid ${theme.colors.accent.main};
-    outline-offset: 2px;
   }
 
   @media (hover: hover) {
@@ -126,9 +127,12 @@ const Input = styled.input(({ theme }) => css`
     display: flex;
     justify-content: center;
     align-items: center;
+    outline: 1px solid transparent;
+    outline-offset: 2px;
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
-      border ${theme.transitionDuration} ease-in-out;
+      border ${theme.transitionDuration} ease-in-out,
+      outline ${theme.transitionDuration} ease-in-out;
 
     &::before {
       content: url("data:image/svg+xml,%3Csvg width='10' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 4.5l2.124 2.124L8.97 1.28' stroke='%23FFF' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
@@ -137,13 +141,11 @@ const Input = styled.input(({ theme }) => css`
       transform: scale(0);
       transition:
         opacity ${theme.transitionDuration} ease-in-out,
-        transform ${theme.transitionDuration} ease-in-out,
-        outline ${theme.transitionDuration} ease-in-out;
+        transform ${theme.transitionDuration} ease-in-out;
     }
 
     &:focus, :focus-visible {
       outline: 1px solid ${theme.colors.accent.main};
-      outline-offset: 2px;
     }
 
     &:checked {
