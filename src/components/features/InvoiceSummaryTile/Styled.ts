@@ -119,6 +119,7 @@ const TotalPriceWrapper = styled.div(({ theme }) => css`
   display: flex;
   align-items: center;
   color: ${theme.colors.text.main};
+  white-space: nowrap;
   transition: color ${theme.transitionDuration} ease-in-out;
 
   @media only screen and (min-width: ${theme.breakpoints.md}) {
