@@ -2,7 +2,10 @@ import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
 import { useAppDispatch } from '../../../hooks/reduxHooks';
-import { addStatusFilter, removeStatusFilter } from '../../../redux/invoicesViewSlice';
+import {
+  addStatusFilter,
+  removeStatusFilter,
+} from '../../../redux/invoicesViewSlice';
 import type { StatusFilter } from '../../../redux/invoicesViewSlice';
 
 import Typography from '../../common/Typography/Typography';
@@ -32,9 +35,9 @@ const InvoicesStatusFilters: React.FC = () => {
   };
 
   const handleCheckboxChange = () => (e: ChangeEvent<HTMLInputElement>) => {
-    if(isStatusFilter(e.target.value)) {
+    if (isStatusFilter(e.target.value)) {
       e.target.checked ? addInvoiceStatusFilter(e.target.value)
-                       : removeInvoiceStatusFilter(e.target.value)
+                       : removeInvoiceStatusFilter(e.target.value);
     }
   };
 
@@ -71,10 +74,7 @@ const InvoicesStatusFilters: React.FC = () => {
           </Typography>
           <ArrowDownIcon />
         </Styled.FiltersButton>
-        <Styled.Filters
-          aria-hidden={!filtersOpened}
-          $visible={filtersOpened}
-        >
+        <Styled.Filters aria-hidden={!filtersOpened} $visible={filtersOpened}>
           <Styled.InputWrapper>
             <Styled.Label>
               <Styled.Input

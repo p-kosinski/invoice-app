@@ -6,7 +6,11 @@ import {
   selectInvoicesFilteredByStatus
 } from '../../../redux/invoicesSlice';
 import type { StatusFiltersArray } from '../../../redux/invoicesViewSlice';
-import type { InvoicesData, LoadingState, Status } from '../../../redux/invoicesSlice';
+import type {
+  InvoicesData,
+  LoadingState,
+  Status,
+} from '../../../redux/invoicesSlice';
 
 import Typography from '../../common/Typography/Typography';
 import Skeleton from '../../common/Skeleton/Skeleton';
@@ -16,7 +20,9 @@ import Styled from './Styled';
 const InvoicesHeading: React.FC = () => {
   const statusFilters: StatusFiltersArray = useAppSelector(selectStatusFilters);
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
-  const invoicesLoading: LoadingState = useAppSelector(selectInvoicesLoadingState);
+  const invoicesLoading: LoadingState = useAppSelector(
+    selectInvoicesLoadingState
+  );
   const filteredInvoices: InvoicesData = useAppSelector((state) =>
     selectInvoicesFilteredByStatus(state, statusFilters)
   );
@@ -27,7 +33,7 @@ const InvoicesHeading: React.FC = () => {
     filtersArray: StatusFiltersArray,
     invoices: InvoicesData
   ): TextContentAdjective => {
-    switch(true) {
+    switch (true) {
       case !invoices.length:
         return '';
       case filtersArray.length === 1:

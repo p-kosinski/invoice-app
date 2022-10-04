@@ -9,9 +9,7 @@ const NoInvoicesInfo: React.FC = () => (
     <Styled.FlexWrapper>
       <IllustrationEmpty />
       <Styled.TextWrapper>
-        <Typography variant='h2'>
-          There is nothing here
-        </Typography>
+        <Typography variant='h2'>There is nothing here</Typography>
         <Typography variant='body1' element='p'>
           Create an invoice by clicking the <br />
           <Styled.ButtonText /> button and get started

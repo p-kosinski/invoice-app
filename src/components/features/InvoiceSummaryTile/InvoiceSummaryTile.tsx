@@ -3,7 +3,7 @@ import {
   selectInvoiceClientNameById,
   selectInvoicePaymentDueById,
   selectInvoiceTotalById,
-  selectInvoiceStatusById
+  selectInvoiceStatusById,
 } from '../../../redux/invoicesSlice';
 import type { Status } from '../../../redux/invoicesSlice';
 
@@ -24,10 +24,18 @@ type Props = {
 };
 
 const InvoiceSummaryTile: React.FC<Props> = ({ id }) => {
-  const clientName: string = useAppSelector(state => selectInvoiceClientNameById(state, id));
-  const paymentDue: string = useAppSelector(state => selectInvoicePaymentDueById(state, id));
-  const total: number = useAppSelector(state => selectInvoiceTotalById(state, id));
-  const status: Status = useAppSelector(state => selectInvoiceStatusById(state, id));
+  const clientName: string = useAppSelector((state) =>
+    selectInvoiceClientNameById(state, id)
+  );
+  const paymentDue: string = useAppSelector((state) =>
+    selectInvoicePaymentDueById(state, id)
+  );
+  const total: number = useAppSelector((state) =>
+    selectInvoiceTotalById(state, id)
+  );
+  const status: Status = useAppSelector((state) =>
+    selectInvoiceStatusById(state, id)
+  );
 
   return (
     <Styled.RouterLink to={`/${id}`}>
@@ -36,12 +44,8 @@ const InvoiceSummaryTile: React.FC<Props> = ({ id }) => {
           <Styled.GridWrapper>
             <Styled.IdWrapper>
               <Typography variant='h4' element='span'>
-                <Styled.IdHash>
-                  #
-                </Styled.IdHash>
-                <Styled.Id>
-                  {id}
-                </Styled.Id>
+                <Styled.IdHash>#</Styled.IdHash>
+                <Styled.Id>{id}</Styled.Id>
               </Typography>
             </Styled.IdWrapper>
             <Styled.ClientNameWrapper>

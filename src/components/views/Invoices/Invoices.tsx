@@ -45,11 +45,7 @@ const Invoices: React.FC = () => {
           </>
           :
           <>
-            {!invoices.length ?
-              <NoInvoicesInfo />
-              :
-              <InvoicesList />
-            }
+            {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
           </>
         }
       </Styled.InvoicesWrapper>
