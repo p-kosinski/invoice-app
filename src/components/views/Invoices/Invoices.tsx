@@ -6,17 +6,14 @@ import {
   selectInvoicesData,
   selectInvoicesLoadingState
 } from '../../../redux/invoicesSlice';
-import { selectStatusFilters } from '../../../redux/invoicesViewSlice';
-import { selectInvoicesFilteredByStatus } from '../../../redux/invoicesSlice';
-import type { StatusFiltersArray } from '../../../redux/invoicesViewSlice';
 import type { InvoicesData, LoadingState } from '../../../redux/invoicesSlice';
 
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
 import InvoicesStatusFilters from '../../features/InvoicesStatusFilters/InvoicesStatusFilters';
 import NewInvoiceLink from '../../common/NewInvoiceLink/NewInvoiceLink';
-import InvoiceSummaryTile from '../../features/InvoiceSummaryTile/InvoiceSummaryTile';
-import NoInvoicesInfo from '../../features/NoInvoicesInfo/NoInvoicesInfo';
 import Skeleton from '../../common/Skeleton/Skeleton';
+import NoInvoicesInfo from '../../features/NoInvoicesInfo/NoInvoicesInfo';
+import InvoicesList from '../../features/InvoicesList/InvoicesList';
 
 import Styled from './Styled';
 
@@ -25,10 +22,6 @@ const Invoices: React.FC = () => {
 
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
   const invoicesLoading: LoadingState = useAppSelector(selectInvoicesLoadingState);
-  const statusFilters: StatusFiltersArray = useAppSelector(selectStatusFilters);
-  const filteredInvoices: InvoicesData = useAppSelector((state) =>
-    selectInvoicesFilteredByStatus(state, statusFilters)
-  );
 
   useEffect(() => {
     !invoices.length && dispatch(fetchInvoicesData());
@@ -55,9 +48,7 @@ const Invoices: React.FC = () => {
             {!invoices.length ?
               <NoInvoicesInfo />
               :
-              filteredInvoices.map((invoice, i) => (
-                <InvoiceSummaryTile key={i} id={invoice.id} />
-              ))
+              <InvoicesList />
             }
           </>
         }
