@@ -34,8 +34,6 @@ const Invoices: React.FC = () => {
     !invoices.length && dispatch(fetchInvoicesData());
   }, [invoices.length]);
 
-  const { active } = invoicesLoading;
-
   return (
     <section>
       <Styled.HeadingWrapper>
@@ -46,19 +44,22 @@ const Invoices: React.FC = () => {
         </Styled.ButtonsWrapper>
       </Styled.HeadingWrapper>
       <Styled.InvoicesWrapper>
-        {active &&
+        {invoicesLoading.active ?
           <>
             <Skeleton variant='invoiceTile' />
             <Skeleton variant='invoiceTile' />
             <Skeleton variant='invoiceTile' />
           </>
-        }
-        {!active && !invoices.length ?
-          <NoInvoicesInfo />
           :
-          filteredInvoices.map((invoice, i) => (
-            <InvoiceSummaryTile key={i} id={invoice.id} />
-          ))
+          <>
+            {!invoices.length ?
+              <NoInvoicesInfo />
+              :
+              filteredInvoices.map((invoice, i) => (
+                <InvoiceSummaryTile key={i} id={invoice.id} />
+              ))
+            }
+          </>
         }
       </Styled.InvoicesWrapper>
     </section>
