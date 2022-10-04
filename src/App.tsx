@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, createGlobalStyle, css } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
 import { useAppSelector } from './hooks/reduxHooks';
@@ -13,6 +13,13 @@ import Invoice from './components/views/Invoice/Invoice';
 
 import { lightTheme, darkTheme } from './styles/themes';
 
+const GlobalStyle = createGlobalStyle(({ theme }) => css`
+  body {
+    background-color: ${theme.colors.backgrounds.page};
+    transition: background-color ${theme.transitionDuration} ease-in-out;
+  }
+`);
+
 const App: React.FC = () => {
   const themeMode: ThemeMode = useAppSelector(selectThemeMode);
 
@@ -24,6 +31,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={themes[themeMode]}>
       <Normalize />
+      <GlobalStyle />
       <BrowserRouter>
         <MainLayout>
           <Routes>

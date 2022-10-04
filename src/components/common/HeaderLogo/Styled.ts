@@ -25,13 +25,13 @@ const HeaderLogo = styled.div(({ theme }) => css`
     place-self: center;
     z-index: 2;
 
-    @media only screen and (min-width: ${theme.breakpoints.desktop}) {
+    @media only screen and (min-width: ${theme.breakpoints.xl}) {
       width: 40px;
       height: 37.71px;
     }
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.desktop}) {
+  @media only screen and (min-width: ${theme.breakpoints.xl}) {
     width: 103px;
     height: 103px;
   }

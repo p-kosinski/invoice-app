@@ -1,12 +1,10 @@
 import Typography from '../Typography/Typography';
 
-import { ReactComponent as PlusIcon } from '../../../assets/icon-plus.svg';
-
 import Styled from './Styled';
 
 type Props = {
   variant: 'button1' | 'button2' | 'button3' | 'button4' | 'button5' | 'button6';
-  children: string;
+  children?: string;
   onClick: () => any;
   ariaLabel?: string;
 };
@@ -19,14 +17,9 @@ const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
           aria-label={ariaLabel}
           onClick={() => onClick()}
         >
-          <Styled.AddIcon>
-            <PlusIcon />
-          </Styled.AddIcon>
-          <Styled.TextWrapper>
-            <Typography variant='h3' element='span'>
-              {children}
-            </Typography>
-          </Styled.TextWrapper>
+          <Typography variant='h3' element='span'>
+            {children}
+          </Typography>
         </Styled.Button1>
       );
     case 'button2':
@@ -69,20 +62,9 @@ const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
           onClick={() => onClick()}
         >
           <Typography variant='h3' element='span'>
-            {children}
-          </Typography>
-        </Styled.Button5>
-      );
-    case 'button6':
-      return (
-        <Styled.Button6
-          aria-label={ariaLabel}
-          onClick={() => onClick()}
-        >
-          <Typography variant='h3' element='span'>
             {`+ ${children}`}
           </Typography>
-        </Styled.Button6>
+        </Styled.Button5>
       );
     default:
       console.error('you need to specify correct \'variant\' prop');

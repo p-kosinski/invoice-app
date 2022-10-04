@@ -31,12 +31,17 @@ interface BackgroundColors {
   cardInner: string;
   invoiceTotal: string;
   form: string;
+  skeleton: string;
 };
 
 interface TextColors {
   main: string;
   secondary: string;
   highlight: string;
+  invoiceTile: {
+    dueDate: string;
+    clientName: string;
+  }
 };
 
 interface FormColors {
@@ -47,6 +52,7 @@ interface FormColors {
   labelsText: string;
   dividers: string;
   shadow: string;
+  statusFiltersBg: string;
 };
 
 interface TextButtonColorSettings {

@@ -3,7 +3,7 @@ import Styled from './Styled';
 type Props = {
   variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body1' | 'body2';
   children: string | React.ReactNode;
-  element?: string;
+  element?: 'span' | 'p' | undefined;
 };
 
 const Typography: React.FC<Props> = ({ variant, children, element }) => {

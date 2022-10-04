@@ -1,26 +1,9 @@
 import styled, { css } from 'styled-components';
 
-const TextWrapper = styled.div`
-  display: inline-block;
-  margin: 0 8px 0 16px;
-`;
-
-const AddIcon = styled.div(({ theme }) => css`
-  height: 32px;
-  width: 32px;
-  border-radius: 16px;
-  background-color: ${theme.colors.neutral.white};
-  display: inline-grid;
-
-  svg {
-    place-self: center;
-  }
-`);
-
 const Button1 = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
-  padding: 8px;
+  padding: 12px 24px;
   border-radius: 24px;
   background-color: ${theme.colors.accent.main};
   color: ${theme.colors.neutral.white};
@@ -43,27 +26,6 @@ const Button2 = styled.button(({ theme }) => css`
   margin: 0;
   padding: 12px 24px;
   border-radius: 24px;
-  background-color: ${theme.colors.accent.main};
-  color: ${theme.colors.neutral.white};
-  cursor: pointer;
-  transition: background-color ${theme.transitionDuration} ease-in-out;
-
-  &:active {
-    background-color: ${theme.colors.accent.light};
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: ${theme.colors.accent.light};
-    }
-  }
-`);
-
-const Button3 = styled.button(({ theme }) => css`
-  border: none;
-  margin: 0;
-  padding: 12px 24px;
-  border-radius: 24px;
   background-color: ${theme.colors.buttons.button3.bg};
   color: ${theme.colors.buttons.button3.text};
   cursor: pointer;
@@ -82,7 +44,7 @@ const Button3 = styled.button(({ theme }) => css`
   }
 `);
 
-const Button4 = styled.button(({ theme }) => css`
+const Button3 = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
@@ -105,7 +67,7 @@ const Button4 = styled.button(({ theme }) => css`
   }
 `);
 
-const Button5 = styled.button(({ theme }) => css`
+const Button4 = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
@@ -126,7 +88,7 @@ const Button5 = styled.button(({ theme }) => css`
   }
 `);
 
-const Button6 = styled.button(({ theme }) => css`
+const Button5 = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
@@ -148,14 +110,11 @@ const Button6 = styled.button(({ theme }) => css`
 `);
 
 const Styled = {
-  TextWrapper: TextWrapper,
-  AddIcon: AddIcon,
   Button1: Button1,
   Button2: Button2,
   Button3: Button3,
   Button4: Button4,
-  Button5: Button5,
-  Button6: Button6
+  Button5: Button5
 };
 
 export default Styled;

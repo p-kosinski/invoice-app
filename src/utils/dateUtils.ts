@@ -97,3 +97,7 @@ export const getFirstDayOfTheMonth = (rows: CalendarCell[][]): Dayjs | undefined
 export const checkIfDatesAreEqual = (date: Dayjs, focusedDate: Dayjs): boolean => {
   return dayjs(date).isSame(focusedDate, 'day');
 };
+
+export const parseDateToLocaleString = (date: Dayjs | string): string => {
+  return dayjs(date).format('DD MMM YYYY');
+};

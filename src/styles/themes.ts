@@ -28,12 +28,17 @@ export const lightTheme: DefaultTheme = {
       card: colorPalette.neutral.white,
       cardInner: colorPalette.lightGrey.lighter,
       invoiceTotal: colorPalette.black.main,
-      form: colorPalette.neutral.white
+      form: colorPalette.neutral.white,
+      skeleton: colorPalette.lightGrey.main
     },
     text: {
       main: colorPalette.grey.main,
       secondary: colorPalette.lightGrey.main,
-      highlight: colorPalette.grey.light
+      highlight: colorPalette.grey.light,
+      invoiceTile: {
+        dueDate: colorPalette.grey.light,
+        clientName: colorPalette.lightGrey.main
+      }
     },
     formElements: {
       outline: colorPalette.lightGrey.light,
@@ -42,7 +47,8 @@ export const lightTheme: DefaultTheme = {
       optionsText: colorPalette.grey.main,
       labelsText: colorPalette.grey.light,
       dividers: colorPalette.lightGrey.light,
-      shadow: 'hsla(231, 38%, 45%, 0.25)'
+      shadow: 'hsla(231, 38%, 45%, 0.25)',
+      statusFiltersBg: colorPalette.neutral.white
     },
     buttons: {
       button3: {
@@ -88,12 +94,17 @@ export const darkTheme: DefaultTheme = {
       card: colorPalette.dark.main,
       cardInner: colorPalette.dark.light,
       invoiceTotal: colorPalette.grey.main,
-      form: colorPalette.neutral.dark
+      form: colorPalette.neutral.dark,
+      skeleton: colorPalette.grey.light
     },
     text: {
       main: colorPalette.neutral.white,
       secondary: colorPalette.lightGrey.light,
-      highlight: colorPalette.lightGrey.light
+      highlight: colorPalette.lightGrey.light,
+      invoiceTile: {
+        dueDate: colorPalette.lightGrey.light,
+        clientName: colorPalette.neutral.light
+      }
     },
     formElements: {
       outline: colorPalette.dark.light,
@@ -102,7 +113,8 @@ export const darkTheme: DefaultTheme = {
       optionsText: colorPalette.lightGrey.light,
       labelsText: colorPalette.lightGrey.light,
       dividers: colorPalette.dark.main,
-      shadow: 'hsla(0, 0%, 0%, 0.25)'
+      shadow: 'hsla(0, 0%, 0%, 0.25)',
+      statusFiltersBg: colorPalette.dark.light
     },
     buttons: {
       button3: {
