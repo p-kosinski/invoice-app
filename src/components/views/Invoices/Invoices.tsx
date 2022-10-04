@@ -15,7 +15,7 @@ import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
 import InvoicesStatusFilters from '../../features/InvoicesStatusFilters/InvoicesStatusFilters';
 import NewInvoiceLink from '../../common/NewInvoiceLink/NewInvoiceLink';
 import InvoiceSummaryTile from '../../features/InvoiceSummaryTile/InvoiceSummaryTile';
-import NoInvoicesInfo from './NoInvoicesInfo/NoInvoicesInfo';
+import NoInvoicesInfo from '../../features/NoInvoicesInfo/NoInvoicesInfo';
 import Skeleton from '../../common/Skeleton/Skeleton';
 
 import Styled from './Styled';
