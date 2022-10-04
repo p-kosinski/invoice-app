@@ -40,7 +40,7 @@ const LinkButton = styled(Link)(({ theme }) => css`
     background-color: ${theme.colors.accent.light};
   }
 
-  &:focus, :focus-visible {
+  :focus-visible {
     outline: 1px solid ${theme.colors.accent.main};
   }
 

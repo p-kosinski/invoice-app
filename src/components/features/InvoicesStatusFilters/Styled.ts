@@ -26,7 +26,7 @@ const FiltersButton = styled.button(({ theme }) => css`
     transition: transform ${theme.transitionDuration} ease-in-out;
   }
 
-  &:focus, :focus-visible {
+  :focus-visible {
     outline: 1px solid ${theme.colors.accent.main};
   }
 
@@ -144,11 +144,11 @@ const Input = styled.input(({ theme }) => css`
         transform ${theme.transitionDuration} ease-in-out;
     }
 
-    &:focus, :focus-visible {
+    :focus-visible {
       outline: 1px solid ${theme.colors.accent.main};
     }
 
-    &:checked {
+    :checked {
       background-color: ${theme.colors.accent.main};
 
       &::before {
