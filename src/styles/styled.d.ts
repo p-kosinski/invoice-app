@@ -41,7 +41,8 @@ interface TextColors {
   invoiceTile: {
     dueDate: string;
     clientName: string;
-  }
+  },
+  goBackBtnHover: string;
 };
 
 interface FormColors {
