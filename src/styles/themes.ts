@@ -52,15 +52,20 @@ export const lightTheme: DefaultTheme = {
       statusFiltersBg: colorPalette.neutral.white
     },
     buttons: {
-      button3: {
+      edit: {
         bg: colorPalette.lightGrey.lighter,
         text: colorPalette.grey.light,
         hoverBg: colorPalette.lightGrey.light
       },
-      button4: {
+      draft: {
         bg: colorPalette.black.main,
         text: colorPalette.lightGrey.main,
         hoverBg: colorPalette.grey.main
+      },
+      add: {
+        bg: colorPalette.lightGrey.lighter,
+        text: colorPalette.grey.light,
+        hoverBg: colorPalette.lightGrey.light
       },
       themeToggler: {
         default: colorPalette.grey.light,
@@ -119,13 +124,18 @@ export const darkTheme: DefaultTheme = {
       statusFiltersBg: colorPalette.dark.light
     },
     buttons: {
-      button3: {
+      edit: {
         bg: colorPalette.dark.light,
         text: colorPalette.lightGrey.light,
         hoverBg: colorPalette.neutral.white
       },
-      button4: {
+      draft: {
         bg: colorPalette.black.main,
+        text: colorPalette.lightGrey.light,
+        hoverBg: colorPalette.dark.main
+      },
+      add: {
+        bg: colorPalette.dark.light,
         text: colorPalette.lightGrey.light,
         hoverBg: colorPalette.dark.main
       },

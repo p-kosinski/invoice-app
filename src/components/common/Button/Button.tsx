@@ -3,7 +3,7 @@ import Typography from '../Typography/Typography';
 import Styled from './Styled';
 
 type Props = {
-  variant: 'button1' | 'button2' | 'button3' | 'button4' | 'button5' | 'button6';
+  variant: 'primary' | 'edit' | 'draft' | 'delete' | 'add';
   children?: string;
   onClick: () => any;
   ariaLabel?: string;
@@ -11,60 +11,60 @@ type Props = {
 
 const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
   switch(variant) {
-    case 'button1':
+    case 'primary':
       return (
-        <Styled.Button1
+        <Styled.ButtonPrimary
           aria-label={ariaLabel}
           onClick={() => onClick()}
         >
-          <Typography variant='h3' element='span'>
+          <Typography variant='h4' element='span'>
             {children}
           </Typography>
-        </Styled.Button1>
+        </Styled.ButtonPrimary>
       );
-    case 'button2':
+    case 'edit':
       return (
-        <Styled.Button2
+        <Styled.EditButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
         >
-          <Typography variant='h3' element='span'>
+          <Typography variant='h4' element='span'>
             {children}
           </Typography>
-        </Styled.Button2>
+        </Styled.EditButton>
       );
-    case 'button3':
+    case 'draft':
       return (
-        <Styled.Button3
+        <Styled.DraftButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
         >
-          <Typography variant='h3' element='span'>
+          <Typography variant='h4' element='span'>
             {children}
           </Typography>
-        </Styled.Button3>
+        </Styled.DraftButton>
       );
-    case 'button4':
+    case 'delete':
       return (
-        <Styled.Button4
+        <Styled.DeleteButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
         >
-          <Typography variant='h3' element='span'>
+          <Typography variant='h4' element='span'>
             {children}
           </Typography>
-        </Styled.Button4>
+        </Styled.DeleteButton>
       );
-    case 'button5':
+    case 'add':
       return (
-        <Styled.Button5
+        <Styled.AddButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
         >
-          <Typography variant='h3' element='span'>
+          <Typography variant='h4' element='span'>
             {`+ ${children}`}
           </Typography>
-        </Styled.Button5>
+        </Styled.AddButton>
       );
     default:
       console.error('you need to specify correct \'variant\' prop');

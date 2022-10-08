@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Button1 = styled.button(({ theme }) => css`
+const ButtonPrimary = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
@@ -21,53 +21,53 @@ const Button1 = styled.button(({ theme }) => css`
   }
 `);
 
-const Button2 = styled.button(({ theme }) => css`
+const EditButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
   border-radius: 24px;
-  background-color: ${theme.colors.buttons.button3.bg};
-  color: ${theme.colors.buttons.button3.text};
+  background-color: ${theme.colors.buttons.edit.bg};
+  color: ${theme.colors.buttons.edit.text};
   cursor: pointer;
   transition:
     background-color ${theme.transitionDuration} ease-in-out,
     color ${theme.transitionDuration} ease-in-out;
 
   &:active {
-    background-color: ${theme.colors.buttons.button3.hoverBg};
+    background-color: ${theme.colors.buttons.edit.hoverBg};
   }
 
   @media (hover: hover) {
     &:hover {
-      background-color: ${theme.colors.buttons.button3.hoverBg};
+      background-color: ${theme.colors.buttons.edit.hoverBg};
     }
   }
 `);
 
-const Button3 = styled.button(({ theme }) => css`
+const DraftButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
   border-radius: 24px;
-  background-color: ${theme.colors.buttons.button4.bg};
-  color: ${theme.colors.buttons.button4.text};
+  background-color: ${theme.colors.buttons.draft.bg};
+  color: ${theme.colors.buttons.draft.text};
   cursor: pointer;
   transition:
     background-color ${theme.transitionDuration} ease-in-out,
     color ${theme.transitionDuration} ease-in-out;
 
   &:active {
-    background-color: ${theme.colors.buttons.button4.hoverBg};
+    background-color: ${theme.colors.buttons.draft.hoverBg};
   }
 
   @media (hover: hover) {
     &:hover {
-      background-color: ${theme.colors.buttons.button4.hoverBg};
+      background-color: ${theme.colors.buttons.draft.hoverBg};
     }
   }
 `);
 
-const Button4 = styled.button(({ theme }) => css`
+const DeleteButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
@@ -88,33 +88,35 @@ const Button4 = styled.button(({ theme }) => css`
   }
 `);
 
-const Button5 = styled.button(({ theme }) => css`
+const AddButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
   border-radius: 24px;
-  background-color: ${theme.colors.lightGrey.lighter};
-  color: ${theme.colors.grey.light};
+  background-color: ${theme.colors.buttons.add.bg};
+  color: ${theme.colors.buttons.add.text};
   cursor: pointer;
-  transition: background-color ${theme.transitionDuration} ease-in-out;
+  transition:
+    background-color ${theme.transitionDuration} ease-in-out,
+    color ${theme.transitionDuration} ease-in-out;
 
   &:active {
-    background-color: ${theme.colors.lightGrey.light};
+    background-color: ${theme.colors.buttons.add.hoverBg};
   }
 
   @media (hover: hover) {
     &:hover {
-      background-color: ${theme.colors.lightGrey.light};
+      background-color: ${theme.colors.buttons.add.hoverBg};
     }
   }
 `);
 
 const Styled = {
-  Button1: Button1,
-  Button2: Button2,
-  Button3: Button3,
-  Button4: Button4,
-  Button5: Button5
+  ButtonPrimary: ButtonPrimary,
+  EditButton: EditButton,
+  DraftButton: DraftButton,
+  DeleteButton: DeleteButton,
+  AddButton: AddButton
 };
 
 export default Styled;

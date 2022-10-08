@@ -68,8 +68,9 @@ interface ButtonColorSettings {
 };
 
 interface ButtonColors {
-  button3: TextButtonColorSettings;
-  button4: TextButtonColorSettings;
+  edit: TextButtonColorSettings;
+  draft: TextButtonColorSettings;
+  add: TextButtonColorSettings;
   themeToggler: ButtonColorSettings;
 };
 
