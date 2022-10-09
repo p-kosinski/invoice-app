@@ -43,6 +43,7 @@ interface TextColors {
     clientName: string;
   },
   goBackBtnHover: string;
+  invoiceItemAmount: string;
 };
 
 interface FormColors {

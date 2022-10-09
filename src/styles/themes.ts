@@ -39,7 +39,8 @@ export const lightTheme: DefaultTheme = {
         dueDate: colorPalette.grey.light,
         clientName: colorPalette.lightGrey.main
       },
-      goBackBtnHover: colorPalette.grey.light
+      goBackBtnHover: colorPalette.grey.light,
+      invoiceItemAmount: colorPalette.grey.light
     },
     formElements: {
       outline: colorPalette.lightGrey.light,
@@ -111,7 +112,8 @@ export const darkTheme: DefaultTheme = {
         dueDate: colorPalette.lightGrey.light,
         clientName: colorPalette.neutral.light
       },
-      goBackBtnHover: colorPalette.lightGrey.main
+      goBackBtnHover: colorPalette.lightGrey.main,
+      invoiceItemAmount: colorPalette.lightGrey.main
     },
     formElements: {
       outline: colorPalette.dark.light,
