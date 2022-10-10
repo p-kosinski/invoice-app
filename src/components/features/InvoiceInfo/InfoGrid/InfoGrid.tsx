@@ -14,10 +14,12 @@ const InfoGrid: React.FC = () => (
     </Styled.IdWrapper>
     <Styled.SenderAddressWrapper>
       <Typography variant='body2' element='p'>
-        19 Union Terrace<br />
-        London<br />
-        E1 3EZ<br />
-        United Kingdom
+        <address>
+          19 Union Terrace
+          <br />London
+          <br />E1 3EZ
+          <br />United Kingdom
+        </address>
       </Typography>
     </Styled.SenderAddressWrapper>
     <Styled.InvoiceDateWrapper>
@@ -45,10 +47,12 @@ const InfoGrid: React.FC = () => (
           <strong>Alex Grim</strong>
         </Styled.ImportantText>
         <Typography variant='body2' element='p'>
-          84 Church Way<br />
-          Bradford<br />
-          BD1 9PB<br />
-          United Kingdom
+          <address>
+            84 Church Way
+            <br />Bradford
+            <br />BD1 9PB
+            <br />United Kingdom
+          </address>
         </Typography>
       </Styled.ClientAddress>
     </Styled.ClientAddressWrapper>

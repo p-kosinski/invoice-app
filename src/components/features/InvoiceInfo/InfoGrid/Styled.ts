@@ -60,6 +60,10 @@ const SenderAddressWrapper = styled.div(({ theme }) => css`
     transition: color ${theme.transitionDuration} ease-in-out;
   }
 
+  address {
+    font-style: normal;
+  }
+
   @media only screen and (min-width: ${theme.breakpoints.sm}) {
     align-items: start;
     justify-content: end;
@@ -116,11 +120,15 @@ const PaymentDueWrapper = styled.div(({ theme }) => css`
   }
 `);
 
-const ClientAddressWrapper = styled.div(({ theme }) => css`
+const ClientAddressWrapper = styled.div`
   grid-area: clientAddress;
   display: flex;
   align-items: start;
-`);
+
+  address {
+    font-style: normal;
+  }
+`;
 
 const ClientAddress = styled.div(({ theme }) => css`
   color: ${theme.colors.text.secondary};
