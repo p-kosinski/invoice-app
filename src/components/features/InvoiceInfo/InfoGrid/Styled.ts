@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const InfoGrid = styled.div(({ theme }) => css`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
     'id id'
     'senderAddress senderAddress'
@@ -12,7 +12,6 @@ const InfoGrid = styled.div(({ theme }) => css`
     'date clientAddress'
     'paymentDue clientAddress'
     'paymentDue clientAddress'
-    'email email'
     'email email';
 
   @media only screen and (min-width: ${theme.breakpoints.sm}) {
