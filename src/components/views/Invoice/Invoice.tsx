@@ -1,11 +1,24 @@
-import { Link, Outlet } from 'react-router-dom';
+import Container from '../../layout/Container/Container';
+import GoBackLink from '../../common/GoBackLink/GoBackLink';
+import InvoiceInfo from '../../features/InvoiceInfo/InvoiceInfo';
+import InvoiceStatusCard from '../../features/InvoiceStatusCard/InvoiceStatusCard';
+import InvoiceActionButtons from '../../features/InvoiceActionButtons/InvoiceActionButtons';
+
+import Styled from './Styled';
 
 const Invoice: React.FC = () => (
-  <div>
-    <h2>Invoice 123 view</h2>
-    <Link to='/123/edit'>Edit Invoice</Link>
-    <Outlet />
-  </div>
+  <>
+    <Container>
+      <Styled.GoBackLinkWrapper>
+        <GoBackLink />
+      </Styled.GoBackLinkWrapper>
+      <InvoiceStatusCard />
+      <Styled.InvoiceInfoWrapper>
+        <InvoiceInfo />
+      </Styled.InvoiceInfoWrapper>
+    </Container>
+    <InvoiceActionButtons />
+  </>
 );
 
 export default Invoice;
