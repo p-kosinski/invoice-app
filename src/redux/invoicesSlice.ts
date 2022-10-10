@@ -21,6 +21,8 @@ export type Item = {
   total: number;
 };
 
+export type ItemsArray = Item[];
+
 export interface Invoice {
   id: string;
   createdAt: string;
@@ -32,7 +34,7 @@ export interface Invoice {
   status: Status;
   senderAddress: Address,
   clientAddress: Address,
-  items: Item[],
+  items: ItemsArray,
   total: number;
 };
 

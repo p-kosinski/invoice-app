@@ -1,37 +1,60 @@
+import { useParams } from 'react-router-dom';
+
+import { useAppSelector } from '../../../../hooks/reduxHooks';
+import {
+  selectInvoiceItemsById,
+  selectInvoiceTotalById
+} from '../../../../redux/invoicesSlice';
+import type { ItemsArray } from '../../../../redux/invoicesSlice';
+
+import { assertNotUndefined } from '../../../../utils/typeUtils';
+import { parsePriceToGBP } from '../../../../utils/priceUtils';
+
 import Typography from '../../../common/Typography/Typography';
 import TableHeadings from '../TableHeadings/TableHeadings';
 import InvoiceItem from '../InvoiceItem/InvoiceItem';
 
 import Styled from './Styled';
 
-const InvoiceItems: React.FC = () => (
-  <Styled.InvoiceItems>
-    <Styled.ItemsList>
-      <TableHeadings />
-      <InvoiceItem
-        name='Banner Design'
-        quantity={1}
-        price={156.00}
-        total={156.00}
-      />
-      <InvoiceItem
-        name='Email Design'
-        quantity={2}
-        price={200.00}
-        total={400.00}
-      />
-    </Styled.ItemsList>
-    <Styled.InvoiceTotal>
-      <Styled.InvoiceTotalWrapper>
-        <Typography variant='body2' element='span'>
-          Amount Due
-        </Typography>
-        <Styled.AmountDue>
-          £ 556.00
-        </Styled.AmountDue>
-      </Styled.InvoiceTotalWrapper>
-    </Styled.InvoiceTotal>
-  </Styled.InvoiceItems>
-);
+const InvoiceItems: React.FC = () => {
+  const { id } = useParams<{ id?: string }>();
+
+  assertNotUndefined(id);
+
+  const items: ItemsArray = useAppSelector((state) => 
+    selectInvoiceItemsById(state, id)
+  );
+
+  const total: number = useAppSelector((state) => 
+    selectInvoiceTotalById(state, id)
+  );
+
+  return (
+    <Styled.InvoiceItems>
+      <Styled.ItemsList>
+        <TableHeadings />
+        {items.map((item, i) => (
+          <InvoiceItem
+            key={i}
+            name={item.name}
+            quantity={item.quantity}
+            price={item.price}
+            total={item.total}
+          />
+        ))}
+      </Styled.ItemsList>
+      <Styled.InvoiceTotal>
+        <Styled.InvoiceTotalWrapper>
+          <Typography variant='body2' element='span'>
+            Amount Due
+          </Typography>
+          <Styled.AmountDue>
+            {parsePriceToGBP(total)}
+          </Styled.AmountDue>
+        </Styled.InvoiceTotalWrapper>
+      </Styled.InvoiceTotal>
+    </Styled.InvoiceItems>
+  );
+};
 
 export default InvoiceItems;
