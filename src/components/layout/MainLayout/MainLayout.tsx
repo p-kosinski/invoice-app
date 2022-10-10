@@ -1,5 +1,4 @@
 import Header from '../Header/Header';
-import Container from '../Container/Container';
 
 import Styled from './Styled';
 
@@ -11,9 +10,7 @@ const MainLayout: React.FC<Props> = ({ children }) => (
   <>
     <Header />
     <Styled.Main>
-      <Container>
-        {children}
-      </Container>
+      {children}
     </Styled.Main>
   </>
 );

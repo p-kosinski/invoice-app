@@ -8,6 +8,7 @@ import {
 } from '../../../redux/invoicesSlice';
 import type { InvoicesData, LoadingState } from '../../../redux/invoicesSlice';
 
+import Container from '../../layout/Container/Container';
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
 import InvoicesStatusFilters from '../../features/InvoicesStatusFilters/InvoicesStatusFilters';
 import NewInvoiceLink from '../../common/NewInvoiceLink/NewInvoiceLink';
@@ -28,28 +29,30 @@ const Invoices: React.FC = () => {
   }, [invoices.length]);
 
   return (
-    <section>
-      <Styled.HeadingWrapper>
-        <InvoicesHeading />
-        <Styled.ButtonsWrapper>
-          <InvoicesStatusFilters />
-          <NewInvoiceLink />
-        </Styled.ButtonsWrapper>
-      </Styled.HeadingWrapper>
-      <Styled.InvoicesWrapper>
-        {invoicesLoading.active ?
-          <>
-            <Skeleton variant='invoiceTile' />
-            <Skeleton variant='invoiceTile' />
-            <Skeleton variant='invoiceTile' />
-          </>
-          :
-          <>
-            {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
-          </>
-        }
-      </Styled.InvoicesWrapper>
-    </section>
+    <Container>
+      <section>
+        <Styled.HeadingWrapper>
+          <InvoicesHeading />
+          <Styled.ButtonsWrapper>
+            <InvoicesStatusFilters />
+            <NewInvoiceLink />
+          </Styled.ButtonsWrapper>
+        </Styled.HeadingWrapper>
+        <Styled.InvoicesWrapper>
+          {invoicesLoading.active ?
+            <>
+              <Skeleton variant='invoiceTile' />
+              <Skeleton variant='invoiceTile' />
+              <Skeleton variant='invoiceTile' />
+            </>
+            :
+            <>
+              {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
+            </>
+          }
+        </Styled.InvoicesWrapper>
+      </section>
+    </Container>
   );
 };
 
