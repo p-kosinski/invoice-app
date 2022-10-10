@@ -54,14 +54,14 @@ const SenderAddressWrapper = styled.div(({ theme }) => css`
   display: flex;
   align-items: center;
 
+  address {
+    font-style: normal;
+  }
+
   p {
     margin: 0;
     color: ${theme.colors.text.secondary};
     transition: color ${theme.transitionDuration} ease-in-out;
-  }
-
-  address {
-    font-style: normal;
   }
 
   @media only screen and (min-width: ${theme.breakpoints.sm}) {
@@ -124,15 +124,15 @@ const ClientAddressWrapper = styled.div`
   grid-area: clientAddress;
   display: flex;
   align-items: start;
-
-  address {
-    font-style: normal;
-  }
 `;
 
 const ClientAddress = styled.div(({ theme }) => css`
   color: ${theme.colors.text.secondary};
   transition: color ${theme.transitionDuration} ease-in-out;
+
+  address {
+    font-style: normal;
+  }
 
   p {
     margin: 0;
