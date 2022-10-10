@@ -89,11 +89,11 @@ export const invoicesSlice = createSlice({
 export const selectInvoicesData = (state: RootState) => state.invoices.data;
 export const selectInvoicesLoadingState = (state: RootState) => state.invoices.loading;
 
-export const selectInvoiceClientNameById = (state: RootState, id: string) => {
+export const selectInvoiceCreationDateById = (state: RootState, id: string) => {
   const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
   
   assertNotUndefined(invoiceWithMatchingId);
-  return invoiceWithMatchingId.clientName;
+  return invoiceWithMatchingId.createdAt;
 };
 
 export const selectInvoicePaymentDueById = (state: RootState, id: string) => {
@@ -103,11 +103,25 @@ export const selectInvoicePaymentDueById = (state: RootState, id: string) => {
   return invoiceWithMatchingId.paymentDue;
 };
 
-export const selectInvoiceTotalById = (state: RootState, id: string) => {
+export const selectInvoiceDescriptionById = (state: RootState, id: string) => {
   const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
   
   assertNotUndefined(invoiceWithMatchingId);
-  return invoiceWithMatchingId.total;
+  return invoiceWithMatchingId.description;
+};
+
+export const selectInvoiceClientNameById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.clientName;
+};
+
+export const selectInvoiceClientEmailById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.clientEmail;
 };
 
 export const selectInvoiceStatusById = (state: RootState, id: string) => {
@@ -115,6 +129,34 @@ export const selectInvoiceStatusById = (state: RootState, id: string) => {
   
   assertNotUndefined(invoiceWithMatchingId);
   return invoiceWithMatchingId.status;
+};
+
+export const selectInvoiceSenderAddressById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.senderAddress;
+};
+
+export const selectInvoiceClientAddressById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.clientAddress;
+};
+
+export const selectInvoiceItemsById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.items;
+};
+
+export const selectInvoiceTotalById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.total;
 };
 
 export const selectInvoicesFilteredByStatus = (state: RootState, statusFilters: StatusFiltersArray) => {
