@@ -20,7 +20,7 @@ const InvoiceItem: React.FC<Props> = ({ name, quantity, price, total }) => (
         </Typography>
         <Styled.QuantityAndPrice>
           <Typography variant='h4' element='span'>
-            ${`${quantity} x ${parsePriceToGBP(price)}`}
+            {`${quantity} x ${parsePriceToGBP(price)}`}
           </Typography>
         </Styled.QuantityAndPrice>
       </Styled.ItemName>
