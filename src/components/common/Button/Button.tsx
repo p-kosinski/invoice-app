@@ -3,7 +3,7 @@ import Typography from '../Typography/Typography';
 import Styled from './Styled';
 
 type Props = {
-  variant: 'primary' | 'edit' | 'draft' | 'delete' | 'add';
+  variant: 'primary' | 'draft' | 'delete' | 'add';
   children?: string;
   onClick: () => any;
   ariaLabel?: string;
@@ -21,17 +21,6 @@ const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
             {children}
           </Typography>
         </Styled.ButtonPrimary>
-      );
-    case 'edit':
-      return (
-        <Styled.EditButton
-          aria-label={ariaLabel}
-          onClick={() => onClick()}
-        >
-          <Typography variant='h4' element='span'>
-            {children}
-          </Typography>
-        </Styled.EditButton>
       );
     case 'draft':
       return (

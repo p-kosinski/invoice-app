@@ -21,29 +21,6 @@ const ButtonPrimary = styled.button(({ theme }) => css`
   }
 `);
 
-const EditButton = styled.button(({ theme }) => css`
-  border: none;
-  margin: 0;
-  padding: 12px 24px;
-  border-radius: 24px;
-  background-color: ${theme.colors.buttons.edit.bg};
-  color: ${theme.colors.buttons.edit.text};
-  cursor: pointer;
-  transition:
-    background-color ${theme.transitionDuration} ease-in-out,
-    color ${theme.transitionDuration} ease-in-out;
-
-  &:active {
-    background-color: ${theme.colors.buttons.edit.hoverBg};
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: ${theme.colors.buttons.edit.hoverBg};
-    }
-  }
-`);
-
 const DraftButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
@@ -113,7 +90,6 @@ const AddButton = styled.button(({ theme }) => css`
 
 const Styled = {
   ButtonPrimary: ButtonPrimary,
-  EditButton: EditButton,
   DraftButton: DraftButton,
   DeleteButton: DeleteButton,
   AddButton: AddButton
