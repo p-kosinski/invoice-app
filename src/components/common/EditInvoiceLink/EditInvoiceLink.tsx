@@ -7,6 +7,7 @@ const StyledEditInvoiceLink = styled(Link)(({ theme }) => css`
   border: none;
   margin: 0;
   text-decoration: none;
+  display: inline-block;
   padding: 12px 24px;
   border-radius: 24px;
   background-color: ${theme.colors.buttons.edit.bg};
