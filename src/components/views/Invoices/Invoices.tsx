@@ -6,7 +6,7 @@ import {
   selectInvoicesData,
   selectInvoicesLoadingState
 } from '../../../redux/invoicesSlice';
-import type { InvoicesData, LoadingState } from '../../../redux/invoicesSlice';
+import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlice';
 
 import Container from '../../layout/Container/Container';
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
@@ -22,7 +22,7 @@ const Invoices: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
-  const invoicesLoading: LoadingState = useAppSelector(selectInvoicesLoadingState);
+  const invoicesLoading: ThunkStatusState = useAppSelector(selectInvoicesLoadingState);
 
   useEffect(() => {
     !invoices.length && dispatch(fetchInvoicesData());

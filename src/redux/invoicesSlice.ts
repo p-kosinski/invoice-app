@@ -3,6 +3,7 @@ import type { RootState } from './store';
 import type { StatusFiltersArray } from './invoicesViewSlice';
 
 import { api } from '../settings';
+
 import { assertNotUndefined } from '../utils/typeUtils';
 
 export type Status = 'draft' | 'pending' | 'paid';
@@ -40,18 +41,23 @@ export interface Invoice {
 
 export type InvoicesData = Invoice[];
 
-export interface LoadingState {
+export interface ThunkStatusState {
   active: boolean;
   error: boolean;
 };
 
 interface InvoicesState {
-  loading: LoadingState;
+  loading: ThunkStatusState;
+  statusChanging: ThunkStatusState;
   data: InvoicesData;
 };
 
 const initialState: InvoicesState = {
   loading: {
+    active: false,
+    error: false,
+  },
+  statusChanging: {
     active: false,
     error: false,
   },
@@ -64,6 +70,28 @@ export const fetchInvoicesData = createAsyncThunk(
     return fetch(`${api.url}/${api.endpoints.invoices}`).then((res) =>
       res.json()
     )
+  }
+);
+
+export type ChangeInvoiceStatusArgs = {
+  id: string;
+  newStatus: Status;
+};
+
+export const changeInvoiceStatus = createAsyncThunk(
+  'invoices/changeInvoiceStatus',
+  async (args: ChangeInvoiceStatusArgs) => {
+    const { id, newStatus } = args;
+
+    return fetch(`${api.url}/${api.endpoints.invoices}/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        status: newStatus,
+      }),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    }).then((res) => res.json());
   }
 );
 
@@ -84,6 +112,28 @@ export const invoicesSlice = createSlice({
     builder.addCase(fetchInvoicesData.rejected, (state, action) => {
       state.loading.active = false;
       state.loading.error = true;
+    }),
+    builder.addCase(changeInvoiceStatus.pending, (state, action) => {
+      state.statusChanging.active = true;
+      state.statusChanging.error = false;
+    }),
+    builder.addCase(changeInvoiceStatus.fulfilled, (state, action) => {
+      const changedInvoiceId = action.meta.arg.id;
+      const newInvoiceStatus = action.meta.arg.newStatus;
+
+      const changedInvoice = state.data.find(invoice => invoice.id === changedInvoiceId);
+      
+      assertNotUndefined(changedInvoice);
+      
+      const changedInvoiceIndex = state.data.indexOf(changedInvoice);
+
+      state.data[changedInvoiceIndex].status = newInvoiceStatus;
+      state.statusChanging.active = false;
+      state.statusChanging.error = false;
+    }),
+    builder.addCase(changeInvoiceStatus.rejected, (state, action) => {
+      state.statusChanging.active = false;
+      state.statusChanging.error = true;
     })
   }
 });
