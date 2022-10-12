@@ -1,7 +1,10 @@
 import { useParams } from 'react-router-dom';
 
-import { useAppSelector } from '../../../hooks/reduxHooks';
-import { selectInvoiceStatusById } from '../../../redux/invoicesSlice';
+import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
+import {
+  selectInvoiceStatusById,
+  changeInvoiceStatus
+} from '../../../redux/invoicesSlice';
 import type { Status } from '../../../redux/invoicesSlice';
 
 import { assertNotUndefined } from '../../../utils/typeUtils';
@@ -9,11 +12,14 @@ import { assertNotUndefined } from '../../../utils/typeUtils';
 import Card from '../../common/Card/Card';
 import Typography from '../../common/Typography/Typography';
 import StatusChip from '../../common/StatusChip/StatusChip';
+import EditInvoiceLink from '../../common/EditInvoiceLink/EditInvoiceLink';
 import Button from '../../common/Button/Button';
 
 import Styled from './Styled';
 
 const InvoiceStatusCard: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const { id } = useParams<{ id?: string }>();
 
   assertNotUndefined(id);
@@ -21,6 +27,10 @@ const InvoiceStatusCard: React.FC = () => {
   const status: Status = useAppSelector((state) =>
     selectInvoiceStatusById(state, id)
   );
+
+  const changeInvoiceStatusToPaid = () => {
+    dispatch(changeInvoiceStatus({ id: id, newStatus: 'paid' }))
+  };
 
   return (
     <Card element='div'>
@@ -32,24 +42,21 @@ const InvoiceStatusCard: React.FC = () => {
           <StatusChip status={status} />
         </Styled.StatusWrapper>
         <Styled.ButtonsWrapper>
-          <Button
-            variant='edit'
-            onClick={() => console.log('"Edit" button was clicked')}
-          >
-            Edit
-          </Button>
+          <EditInvoiceLink />
           <Button
             variant='delete'
             onClick={() => console.log('"Delete" button was clicked')}
           >
             Delete
           </Button>
-          <Button
-            variant='primary'
-            onClick={() => console.log('"Mark as paid" button was clicked')}
-          >
-            Mark as paid
-          </Button>
+          {status === 'pending' &&
+            <Button
+              variant='primary'
+              onClick={() => changeInvoiceStatusToPaid()}
+            >
+              Mark as paid
+            </Button>
+          }
         </Styled.ButtonsWrapper>
       </Styled.Wrapper>
     </Card>

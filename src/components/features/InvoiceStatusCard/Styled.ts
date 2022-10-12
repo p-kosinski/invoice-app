@@ -32,6 +32,10 @@ const ButtonsWrapper = styled.div(({ theme }) => css`
   @media only screen and (min-width: ${theme.breakpoints.sm}) {
     display: block;
 
+    a {
+      margin-right: 8px;
+    }
+
     button {
       &:not(:last-of-type) {
         margin-right: 8px;
