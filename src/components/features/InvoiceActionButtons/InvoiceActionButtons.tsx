@@ -5,6 +5,7 @@ import {
   selectInvoiceStatusById,
   changeInvoiceStatus
 } from '../../../redux/invoicesSlice';
+import { setDeletionDialogOpen } from '../../../redux/invoiceViewSlice';
 import type { Status } from '../../../redux/invoicesSlice';
 
 import { assertNotUndefined } from '../../../utils/typeUtils';
@@ -30,6 +31,10 @@ const InvoiceActionButtons: React.FC = () => {
     dispatch(changeInvoiceStatus({ id: id, newStatus: 'paid' }))
   };
 
+  const changeDeletionDialogOpen = (open: boolean) => {
+    dispatch(setDeletionDialogOpen(open))
+  };
+
   return (
     <Styled.Toolbar>
       <Container>
@@ -37,7 +42,7 @@ const InvoiceActionButtons: React.FC = () => {
           <EditInvoiceLink />
           <Button
             variant='delete'
-            onClick={() => console.log('"Delete" button was clicked')}
+            onClick={() => changeDeletionDialogOpen(true)}
           >
             Delete
           </Button>
