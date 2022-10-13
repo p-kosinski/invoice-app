@@ -68,6 +68,11 @@ export const lightTheme: DefaultTheme = {
         text: colorPalette.grey.light,
         hoverBg: colorPalette.lightGrey.light
       },
+      discard: {
+        bg: colorPalette.lightGrey.lighter,
+        text: colorPalette.grey.light,
+        hoverBg: colorPalette.lightGrey.light
+      },
       themeToggler: {
         default: colorPalette.grey.light,
         active: colorPalette.lightGrey.light
@@ -140,6 +145,11 @@ export const darkTheme: DefaultTheme = {
         bg: colorPalette.dark.light,
         text: colorPalette.lightGrey.light,
         hoverBg: colorPalette.dark.main
+      },
+      discard: {
+        bg: colorPalette.dark.light,
+        text: colorPalette.lightGrey.light,
+        hoverBg: colorPalette.neutral.white
       },
       themeToggler: {
         default: colorPalette.lightGrey.main,

@@ -72,6 +72,7 @@ interface ButtonColors {
   edit: TextButtonColorSettings;
   draft: TextButtonColorSettings;
   add: TextButtonColorSettings;
+  discard: TextButtonColorSettings;
   themeToggler: ButtonColorSettings;
 };
 

@@ -3,7 +3,7 @@ import Typography from '../Typography/Typography';
 import Styled from './Styled';
 
 type Props = {
-  variant: 'primary' | 'draft' | 'delete' | 'add';
+  variant: 'primary' | 'draft' | 'delete' | 'add' | 'discard';
   children?: string;
   onClick: () => any;
   ariaLabel?: string;
@@ -54,6 +54,17 @@ const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
             {`+ ${children}`}
           </Typography>
         </Styled.AddButton>
+      );
+    case 'discard':
+      return (
+        <Styled.DiscardButton
+          aria-label={ariaLabel}
+          onClick={() => onClick()}
+        >
+          <Typography variant='h4' element='span'>
+            {children}
+          </Typography>
+        </Styled.DiscardButton>
       );
     default:
       console.error('you need to specify correct \'variant\' prop');
