@@ -49,6 +49,7 @@ export interface ThunkStatusState {
 interface InvoicesState {
   loading: ThunkStatusState;
   statusChanging: ThunkStatusState;
+  deleting: ThunkStatusState;
   data: InvoicesData;
 };
 
@@ -60,6 +61,10 @@ const initialState: InvoicesState = {
   statusChanging: {
     active: false,
     error: false,
+  },
+  deleting: {
+    active: false,
+    error: false
   },
   data: [],
 };
@@ -88,6 +93,18 @@ export const changeInvoiceStatus = createAsyncThunk(
       body: JSON.stringify({
         status: newStatus,
       }),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    }).then((res) => res.json());
+  }
+);
+
+export const deleteInvoice = createAsyncThunk(
+  'invoices/deleteInvoice',
+  async (id: string) => {
+    return fetch(`${api.url}/${api.endpoints.invoices}/${id}`, {
+      method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
       },
@@ -134,12 +151,30 @@ export const invoicesSlice = createSlice({
     builder.addCase(changeInvoiceStatus.rejected, (state, action) => {
       state.statusChanging.active = false;
       state.statusChanging.error = true;
+    }),
+    builder.addCase(deleteInvoice.pending, (state, action) => {
+      state.deleting.active = true;
+      state.deleting.error = false;
+    }),
+    builder.addCase(deleteInvoice.fulfilled, (state, action) => {
+      const deletedInvoiceIndex = state.data.findIndex((invoice) => invoice.id === action.meta.arg);
+
+      state.data.splice(deletedInvoiceIndex, 1);
+      state.deleting.active = false;
+      state.deleting.error = false;
+    }),
+    builder.addCase(deleteInvoice.rejected, (state, action) => {
+      state.deleting.active = false;
+      state.deleting.error = true;
     })
   }
 });
 
 export const selectInvoicesData = (state: RootState) => state.invoices.data;
+
 export const selectInvoicesLoadingState = (state: RootState) => state.invoices.loading;
+export const selectInvoiceStatusChangingState = (state: RootState) => state.invoices.statusChanging;
+export const selectInvoiceDeletionState = (state: RootState) => state.invoices.deleting;
 
 export const selectInvoiceCreationDateById = (state: RootState, id: string) => {
   const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
