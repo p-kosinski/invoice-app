@@ -1,16 +1,42 @@
+import { useParams, useNavigate } from 'react-router-dom';
+
+import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
+import {
+  selectDeletionDialogOpen,
+  setDeletionDialogOpen
+} from '../../../redux/invoiceViewSlice';
+import { deleteInvoice } from '../../../redux/invoicesSlice';
+
+import { assertNotUndefined } from '../../../utils/typeUtils';
+
 import Card from '../../common/Card/Card';
 import Typography from '../../common/Typography/Typography';
 import Button from '../../common/Button/Button';
 
 import Styled from './Styled';
 
-type Props = {
-  open: boolean;
-};
+const DeletionConfirmDialog: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-const DeletionConfirmDialog: React.FC<Props> = ({ open }) => {
+  const { id } = useParams<{ id?: string }>();
+
+  assertNotUndefined(id);
+
+  const dialogOpen: boolean = useAppSelector(selectDeletionDialogOpen);
+
+  const changeDeletionDialogOpen = (open: boolean) => {
+    dispatch(setDeletionDialogOpen(open))
+  };
+
+  const deleteInvoiceFromAPI = () => {
+    dispatch(deleteInvoice(id));
+    navigate('/');
+    changeDeletionDialogOpen(false);
+  };
+
   return (
-    <Styled.Dialog open={open}>
+    <Styled.Dialog open={dialogOpen}>
       <Styled.Wrapper>
         <Card element='article'>
           <Styled.CardWrapper>
@@ -18,19 +44,19 @@ const DeletionConfirmDialog: React.FC<Props> = ({ open }) => {
               Confirm Deletion
             </Typography>
             <Typography variant='body1' element='p'>
-              Are you sure you want to delete invoice #XM9141?&nbsp;
+              Are you sure you want to delete invoice #{id}?&nbsp;
               This action cannot be undone.
             </Typography>
             <Styled.ButtonsWrapper>
               <Button
                 variant='discard'
-                onClick={() => console.log(`'Cancel' button was clicked`)}
+                onClick={() => changeDeletionDialogOpen(false)}
               >
                 Cancel
               </Button>
               <Button
                 variant='delete'
-                onClick={() => console.log(`'Delete' button was clicked`)}
+                onClick={() => deleteInvoiceFromAPI()}
               >
                 Delete
               </Button>
