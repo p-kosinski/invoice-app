@@ -48,6 +48,10 @@ const DeletionConfirmDialog: React.FC = () => {
     dialogOpen && focusCancelButton();
   }, [dialogOpen]);
 
+  useEffect(() => {
+    return () => changeDeletionDialogOpen(false);
+  }, []);
+
   return (
     <Styled.Dialog open={dialogOpen}>
       <Styled.Wrapper>
