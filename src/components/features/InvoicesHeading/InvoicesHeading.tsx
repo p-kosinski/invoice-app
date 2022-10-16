@@ -8,7 +8,7 @@ import {
 import type { StatusFiltersArray } from '../../../redux/invoicesViewSlice';
 import type {
   InvoicesData,
-  LoadingState,
+  ThunkStatusState,
   Status,
 } from '../../../redux/invoicesSlice';
 
@@ -20,7 +20,7 @@ import Styled from './Styled';
 const InvoicesHeading: React.FC = () => {
   const statusFilters: StatusFiltersArray = useAppSelector(selectStatusFilters);
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
-  const invoicesLoading: LoadingState = useAppSelector(
+  const invoicesLoading: ThunkStatusState = useAppSelector(
     selectInvoicesLoadingState
   );
   const filteredInvoices: InvoicesData = useAppSelector((state) =>

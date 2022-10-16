@@ -41,7 +41,9 @@ interface TextColors {
   invoiceTile: {
     dueDate: string;
     clientName: string;
-  }
+  },
+  goBackBtnHover: string;
+  invoiceItemAmount: string;
 };
 
 interface FormColors {
@@ -67,8 +69,10 @@ interface ButtonColorSettings {
 };
 
 interface ButtonColors {
-  button3: TextButtonColorSettings;
-  button4: TextButtonColorSettings;
+  edit: TextButtonColorSettings;
+  draft: TextButtonColorSettings;
+  add: TextButtonColorSettings;
+  discard: TextButtonColorSettings;
   themeToggler: ButtonColorSettings;
 };
 

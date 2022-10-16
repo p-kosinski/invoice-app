@@ -3,6 +3,7 @@ import type { RootState } from './store';
 import type { StatusFiltersArray } from './invoicesViewSlice';
 
 import { api } from '../settings';
+
 import { assertNotUndefined } from '../utils/typeUtils';
 
 export type Status = 'draft' | 'pending' | 'paid';
@@ -21,6 +22,8 @@ export type Item = {
   total: number;
 };
 
+export type ItemsArray = Item[];
+
 export interface Invoice {
   id: string;
   createdAt: string;
@@ -32,19 +35,21 @@ export interface Invoice {
   status: Status;
   senderAddress: Address,
   clientAddress: Address,
-  items: Item[],
+  items: ItemsArray,
   total: number;
 };
 
 export type InvoicesData = Invoice[];
 
-export interface LoadingState {
+export interface ThunkStatusState {
   active: boolean;
   error: boolean;
 };
 
 interface InvoicesState {
-  loading: LoadingState;
+  loading: ThunkStatusState;
+  statusChanging: ThunkStatusState;
+  deleting: ThunkStatusState;
   data: InvoicesData;
 };
 
@@ -52,6 +57,14 @@ const initialState: InvoicesState = {
   loading: {
     active: false,
     error: false,
+  },
+  statusChanging: {
+    active: false,
+    error: false,
+  },
+  deleting: {
+    active: false,
+    error: false
   },
   data: [],
 };
@@ -62,6 +75,40 @@ export const fetchInvoicesData = createAsyncThunk(
     return fetch(`${api.url}/${api.endpoints.invoices}`).then((res) =>
       res.json()
     )
+  }
+);
+
+export type ChangeInvoiceStatusArgs = {
+  id: string;
+  newStatus: Status;
+};
+
+export const changeInvoiceStatus = createAsyncThunk(
+  'invoices/changeInvoiceStatus',
+  async (args: ChangeInvoiceStatusArgs) => {
+    const { id, newStatus } = args;
+
+    return fetch(`${api.url}/${api.endpoints.invoices}/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        status: newStatus,
+      }),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    }).then((res) => res.json());
+  }
+);
+
+export const deleteInvoice = createAsyncThunk(
+  'invoices/deleteInvoice',
+  async (id: string) => {
+    return fetch(`${api.url}/${api.endpoints.invoices}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    }).then((res) => res.json());
   }
 );
 
@@ -82,18 +129,58 @@ export const invoicesSlice = createSlice({
     builder.addCase(fetchInvoicesData.rejected, (state, action) => {
       state.loading.active = false;
       state.loading.error = true;
+    }),
+    builder.addCase(changeInvoiceStatus.pending, (state, action) => {
+      state.statusChanging.active = true;
+      state.statusChanging.error = false;
+    }),
+    builder.addCase(changeInvoiceStatus.fulfilled, (state, action) => {
+      const changedInvoiceId = action.meta.arg.id;
+      const newInvoiceStatus = action.meta.arg.newStatus;
+
+      const changedInvoice = state.data.find(invoice => invoice.id === changedInvoiceId);
+      
+      assertNotUndefined(changedInvoice);
+      
+      const changedInvoiceIndex = state.data.indexOf(changedInvoice);
+
+      state.data[changedInvoiceIndex].status = newInvoiceStatus;
+      state.statusChanging.active = false;
+      state.statusChanging.error = false;
+    }),
+    builder.addCase(changeInvoiceStatus.rejected, (state, action) => {
+      state.statusChanging.active = false;
+      state.statusChanging.error = true;
+    }),
+    builder.addCase(deleteInvoice.pending, (state, action) => {
+      state.deleting.active = true;
+      state.deleting.error = false;
+    }),
+    builder.addCase(deleteInvoice.fulfilled, (state, action) => {
+      const deletedInvoiceIndex = state.data.findIndex((invoice) => invoice.id === action.meta.arg);
+
+      state.data.splice(deletedInvoiceIndex, 1);
+      state.deleting.active = false;
+      state.deleting.error = false;
+    }),
+    builder.addCase(deleteInvoice.rejected, (state, action) => {
+      state.deleting.active = false;
+      state.deleting.error = true;
     })
   }
 });
 
 export const selectInvoicesData = (state: RootState) => state.invoices.data;
-export const selectInvoicesLoadingState = (state: RootState) => state.invoices.loading;
 
-export const selectInvoiceClientNameById = (state: RootState, id: string) => {
+export const selectInvoicesLoadingState = (state: RootState) => state.invoices.loading;
+export const selectInvoiceStatusChangingState = (state: RootState) => state.invoices.statusChanging;
+export const selectInvoiceDeletionState = (state: RootState) => state.invoices.deleting;
+
+export const selectInvoiceCreationDateById = (state: RootState, id: string) => {
   const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
   
   assertNotUndefined(invoiceWithMatchingId);
-  return invoiceWithMatchingId.clientName;
+  return invoiceWithMatchingId.createdAt;
 };
 
 export const selectInvoicePaymentDueById = (state: RootState, id: string) => {
@@ -103,11 +190,25 @@ export const selectInvoicePaymentDueById = (state: RootState, id: string) => {
   return invoiceWithMatchingId.paymentDue;
 };
 
-export const selectInvoiceTotalById = (state: RootState, id: string) => {
+export const selectInvoiceDescriptionById = (state: RootState, id: string) => {
   const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
   
   assertNotUndefined(invoiceWithMatchingId);
-  return invoiceWithMatchingId.total;
+  return invoiceWithMatchingId.description;
+};
+
+export const selectInvoiceClientNameById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.clientName;
+};
+
+export const selectInvoiceClientEmailById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.clientEmail;
 };
 
 export const selectInvoiceStatusById = (state: RootState, id: string) => {
@@ -115,6 +216,34 @@ export const selectInvoiceStatusById = (state: RootState, id: string) => {
   
   assertNotUndefined(invoiceWithMatchingId);
   return invoiceWithMatchingId.status;
+};
+
+export const selectInvoiceSenderAddressById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.senderAddress;
+};
+
+export const selectInvoiceClientAddressById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.clientAddress;
+};
+
+export const selectInvoiceItemsById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.items;
+};
+
+export const selectInvoiceTotalById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId.total;
 };
 
 export const selectInvoicesFilteredByStatus = (state: RootState, statusFilters: StatusFiltersArray) => {

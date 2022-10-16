@@ -38,7 +38,9 @@ export const lightTheme: DefaultTheme = {
       invoiceTile: {
         dueDate: colorPalette.grey.light,
         clientName: colorPalette.lightGrey.main
-      }
+      },
+      goBackBtnHover: colorPalette.grey.light,
+      invoiceItemAmount: colorPalette.grey.light
     },
     formElements: {
       outline: colorPalette.lightGrey.light,
@@ -51,15 +53,25 @@ export const lightTheme: DefaultTheme = {
       statusFiltersBg: colorPalette.neutral.white
     },
     buttons: {
-      button3: {
+      edit: {
         bg: colorPalette.lightGrey.lighter,
         text: colorPalette.grey.light,
         hoverBg: colorPalette.lightGrey.light
       },
-      button4: {
+      draft: {
         bg: colorPalette.black.main,
         text: colorPalette.lightGrey.main,
         hoverBg: colorPalette.grey.main
+      },
+      add: {
+        bg: colorPalette.lightGrey.lighter,
+        text: colorPalette.grey.light,
+        hoverBg: colorPalette.lightGrey.light
+      },
+      discard: {
+        bg: colorPalette.lightGrey.lighter,
+        text: colorPalette.grey.light,
+        hoverBg: colorPalette.lightGrey.light
       },
       themeToggler: {
         default: colorPalette.grey.light,
@@ -104,7 +116,9 @@ export const darkTheme: DefaultTheme = {
       invoiceTile: {
         dueDate: colorPalette.lightGrey.light,
         clientName: colorPalette.neutral.light
-      }
+      },
+      goBackBtnHover: colorPalette.lightGrey.main,
+      invoiceItemAmount: colorPalette.lightGrey.main
     },
     formElements: {
       outline: colorPalette.dark.light,
@@ -117,15 +131,25 @@ export const darkTheme: DefaultTheme = {
       statusFiltersBg: colorPalette.dark.light
     },
     buttons: {
-      button3: {
+      edit: {
         bg: colorPalette.dark.light,
         text: colorPalette.lightGrey.light,
         hoverBg: colorPalette.neutral.white
       },
-      button4: {
+      draft: {
         bg: colorPalette.black.main,
         text: colorPalette.lightGrey.light,
         hoverBg: colorPalette.dark.main
+      },
+      add: {
+        bg: colorPalette.dark.light,
+        text: colorPalette.lightGrey.light,
+        hoverBg: colorPalette.dark.main
+      },
+      discard: {
+        bg: colorPalette.dark.light,
+        text: colorPalette.lightGrey.light,
+        hoverBg: colorPalette.neutral.white
       },
       themeToggler: {
         default: colorPalette.lightGrey.main,
