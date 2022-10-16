@@ -7,11 +7,19 @@ const ButtonPrimary = styled.button(({ theme }) => css`
   border-radius: 24px;
   background-color: ${theme.colors.accent.main};
   color: ${theme.colors.neutral.white};
+  outline: 1px solid transparent;
   cursor: pointer;
-  transition: background-color ${theme.transitionDuration} ease-in-out;
+  transition:
+    background-color ${theme.transitionDuration} ease-in-out,
+    outline ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.accent.light};
+  }
+
+  :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: 2px;
   }
 
   @media (hover: hover) {
@@ -51,11 +59,19 @@ const DeleteButton = styled.button(({ theme }) => css`
   border-radius: 24px;
   background-color: ${theme.colors.error.main};
   color: ${theme.colors.neutral.white};
+  outline: 1px solid transparent;
   cursor: pointer;
-  transition: background-color ${theme.transitionDuration} ease-in-out;
+  transition:
+    background-color ${theme.transitionDuration} ease-in-out,
+    outline ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.error.light};
+  }
+
+  :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: 2px;
   }
 
   @media (hover: hover) {
