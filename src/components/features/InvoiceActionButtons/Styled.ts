@@ -15,11 +15,15 @@ const Toolbar = styled.div(({ theme }) => css`
   }
 `);
 
-const Wrapper = styled.div`
+const Wrapper = styled.div(({ theme }) => css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    justify-content: space-around;
+  }
+`);
 
 const Styled = {
   Toolbar: Toolbar,
