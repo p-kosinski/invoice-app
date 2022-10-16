@@ -10,7 +10,7 @@ const Toolbar = styled.div(({ theme }) => css`
   box-shadow: 0px -10px 10px -5px hsla(231, 38%, 45%, 0.1);
   transition: background-color ${theme.transitionDuration} ease-in-out;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     display: none;
   }
 `);

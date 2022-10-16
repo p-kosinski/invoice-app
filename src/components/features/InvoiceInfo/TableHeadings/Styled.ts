@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const TableHeadings = styled.div(({ theme }) => css`
   display: none;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     display: block;
     color: ${theme.colors.text.secondary};
     transition: color ${theme.transitionDuration} ease-in-out;
@@ -17,7 +17,7 @@ const HeadingsWrapper = styled.div(({ theme }) => css`
     margin: 0;
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     margin-bottom: 24px;
     display: grid;
     grid-template-columns: 40% 20% 20% 20%;
@@ -27,7 +27,7 @@ const HeadingsWrapper = styled.div(({ theme }) => css`
 `);
 
 const ItemName = styled.div(({ theme }) => css`
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-area: name;
     display: flex;
     justify-content: start;
@@ -38,7 +38,7 @@ const ItemName = styled.div(({ theme }) => css`
 const Quantity = styled.div(({ theme }) => css`
   display: none;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-area: quantity;
     display: flex;
     justify-content: center;
@@ -51,7 +51,7 @@ const Quantity = styled.div(({ theme }) => css`
 const Price = styled.div(({ theme }) => css`
   display: none;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-area: price;
     display: flex;
     justify-content: end;
@@ -62,7 +62,7 @@ const Price = styled.div(({ theme }) => css`
 `);
 
 const Total = styled.div(({ theme }) => css`
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-area: total;
     display: flex;
     justify-content: end;

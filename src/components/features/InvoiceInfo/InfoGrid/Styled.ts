@@ -14,7 +14,7 @@ const InfoGrid = styled.div(({ theme }) => css`
     'paymentDue clientAddress'
     'email email';
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     row-gap: 24px;
@@ -22,10 +22,10 @@ const InfoGrid = styled.div(({ theme }) => css`
       'id id id senderAddress senderAddress senderAddress'
       'id id id senderAddress senderAddress senderAddress'
       'id id id senderAddress senderAddress senderAddress'
-      'date . clientAddress . email email'
-      'date . clientAddress . email email'
-      'paymentDue . clientAddress . . .'
-      'paymentDue . clientAddress . . .';
+      'date . clientAddress clientAddress email email'
+      'date . clientAddress clientAddress email email'
+      'paymentDue . clientAddress clientAddress . .'
+      'paymentDue . clientAddress clientAddress . .';
   }
 `);
 
@@ -64,7 +64,7 @@ const SenderAddressWrapper = styled.div(({ theme }) => css`
     transition: color ${theme.transitionDuration} ease-in-out;
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     align-items: start;
     justify-content: end;
 
@@ -115,7 +115,7 @@ const PaymentDueWrapper = styled.div(({ theme }) => css`
     }
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     justify-content: start;
   }
 `);
@@ -160,6 +160,10 @@ const ClientEmailWrapper = styled.div(({ theme }) => css`
       margin-bottom: 12px;
       color: ${theme.colors.text.secondary};
       transition: color ${theme.transitionDuration} ease-in-out;
+    }
+
+    strong {
+      word-wrap: break-word;
     }
   }
 `);

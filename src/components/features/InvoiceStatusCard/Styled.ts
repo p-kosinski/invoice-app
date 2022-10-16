@@ -3,13 +3,10 @@ import styled, { css } from 'styled-components';
 const Wrapper = styled.div(({ theme }) => css`
   padding: 24px;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
-    display: flex;
-    justify-content: space-between;
-  }
-
   @media only screen and (min-width: ${theme.breakpoints.md}) {
     padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
   }
 `);
 
@@ -20,7 +17,7 @@ const StatusWrapper = styled.div(({ theme }) => css`
   color: ${theme.colors.text.secondary};
   transition: color ${theme.transitionDuration} ease-in-out;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     display: inline-flex;
     gap: 16px;
   }
@@ -29,7 +26,7 @@ const StatusWrapper = styled.div(({ theme }) => css`
 const ButtonsWrapper = styled.div(({ theme }) => css`
   display: none;
   
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     display: block;
 
     a {

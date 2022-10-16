@@ -17,7 +17,7 @@ const InvoiceItemWrapper = styled.div(({ theme }) => css`
     margin: 0;
   }
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     display: grid;
     grid-template-columns: 40% 20% 20% 20%;
     grid-template-rows: 1fr;
@@ -26,7 +26,7 @@ const InvoiceItemWrapper = styled.div(({ theme }) => css`
 `);
 
 const ItemName = styled.div(({ theme }) => css`
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-area: name;
     display: flex;
     justify-content: start;
@@ -38,7 +38,7 @@ const QuantityAndPrice = styled.div(({ theme }) => css`
   color: ${theme.colors.text.invoiceItemAmount};
   transition: color ${theme.transitionDuration} ease-in-out;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     display: none;
   }
 `);
@@ -46,7 +46,7 @@ const QuantityAndPrice = styled.div(({ theme }) => css`
 const Quantity = styled.div(({ theme }) => css`
   display: none;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-area: quantity;
     display: flex;
     justify-content: center;
@@ -59,7 +59,7 @@ const Quantity = styled.div(({ theme }) => css`
 const Price = styled.div(({ theme }) => css`
   display: none;
 
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-area: price;
     display: flex;
     justify-content: end;
@@ -70,7 +70,7 @@ const Price = styled.div(({ theme }) => css`
 `);
 
 const Total = styled.div(({ theme }) => css`
-  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
     grid-area: total;
     display: flex;
     justify-content: end;
