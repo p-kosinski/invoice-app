@@ -111,13 +111,20 @@ const DiscardButton = styled.button(({ theme }) => css`
   border-radius: 24px;
   background-color: ${theme.colors.buttons.discard.bg};
   color: ${theme.colors.buttons.discard.text};
+  outline: 1px solid transparent;
   cursor: pointer;
   transition:
     background-color ${theme.transitionDuration} ease-in-out,
-    color ${theme.transitionDuration} ease-in-out;
+    color ${theme.transitionDuration} ease-in-out,
+    outline ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.buttons.discard.hoverBg};
+  }
+
+  :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: 2px;
   }
 
   @media (hover: hover) {
