@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import Typography from '../Typography/Typography';
 
 import Styled from './Styled';
@@ -9,7 +10,14 @@ type Props = {
   ariaLabel?: string;
 };
 
-const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
+type Ref = HTMLButtonElement;
+
+const Button = forwardRef<Ref, Props>(({
+  variant,
+  children,
+  onClick,
+  ariaLabel
+}, ref) => {
   switch(variant) {
     case 'primary':
       return (
@@ -60,6 +68,7 @@ const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
         <Styled.DiscardButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
+          ref={ref}
         >
           <Typography variant='h4' element='span'>
             {children}
@@ -70,6 +79,6 @@ const Button: React.FC<Props> = ({ variant, children, onClick, ariaLabel }) => {
       console.error('you need to specify correct \'variant\' prop');
       return (<></>);
   }
-};
+});
 
 export default Button;

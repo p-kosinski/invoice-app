@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
@@ -35,6 +36,18 @@ const DeletionConfirmDialog: React.FC = () => {
     changeDeletionDialogOpen(false);
   };
 
+  const cancelButton = useRef<HTMLButtonElement | null>(null);
+
+  const focusCancelButton = () => {
+    if(cancelButton !== null && 'current' in cancelButton) {
+      cancelButton.current && cancelButton.current.focus();
+    }
+  };
+
+  useEffect(() => {
+    dialogOpen && focusCancelButton();
+  }, [dialogOpen]);
+
   return (
     <Styled.Dialog open={dialogOpen}>
       <Styled.Wrapper>
@@ -50,6 +63,7 @@ const DeletionConfirmDialog: React.FC = () => {
             <Styled.ButtonsWrapper>
               <Button
                 variant='discard'
+                ref={cancelButton}
                 onClick={() => changeDeletionDialogOpen(false)}
               >
                 Cancel
