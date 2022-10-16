@@ -12,6 +12,7 @@ const Dialog = styled.dialog(({ theme }) => css`
   z-index: 1000;
   transition:
     opacity ${theme.transitionDuration} ease-in-out,
+    visibility ${theme.transitionDuration} ease-in-out,
     transform ${theme.transitionDuration} ease-in-out;
 
   &:not([open]) {
