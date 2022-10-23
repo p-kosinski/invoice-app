@@ -11,7 +11,7 @@ import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlic
 import Container from '../../layout/Container/Container';
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
 import InvoicesStatusFilters from '../../features/InvoicesStatusFilters/InvoicesStatusFilters';
-import NewInvoiceLink from '../../common/NewInvoiceLink/NewInvoiceLink';
+import NewInvoiceButton from '../../features/NewInvoiceButton/NewInvoiceButton';
 import Skeleton from '../../common/Skeleton/Skeleton';
 import NoInvoicesInfo from '../../features/NoInvoicesInfo/NoInvoicesInfo';
 import InvoicesList from '../../features/InvoicesList/InvoicesList';
@@ -35,7 +35,7 @@ const Invoices: React.FC = () => {
           <InvoicesHeading />
           <Styled.ButtonsWrapper>
             <InvoicesStatusFilters />
-            <NewInvoiceLink />
+            <NewInvoiceButton />
           </Styled.ButtonsWrapper>
         </Styled.HeadingWrapper>
         <Styled.InvoicesWrapper>
