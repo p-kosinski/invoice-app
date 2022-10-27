@@ -1,5 +1,5 @@
 import Container from '../../layout/Container/Container';
-import GoBackLink from '../../common/GoBackLink/GoBackLink';
+import GoBackButton from '../../common/GoBackButton/GoBackButton';
 import InvoiceInfo from '../../features/InvoiceInfo/InvoiceInfo';
 import InvoiceStatusCard from '../../features/InvoiceStatusCard/InvoiceStatusCard';
 import InvoiceActionButtons from '../../features/InvoiceActionButtons/InvoiceActionButtons';
@@ -12,7 +12,7 @@ const Invoice: React.FC = () => (
     <DeletionConfirmDialog />
     <Container>
       <Styled.GoBackLinkWrapper>
-        <GoBackLink />
+        <GoBackButton />
       </Styled.GoBackLinkWrapper>
       <InvoiceStatusCard />
       <Styled.InvoiceInfoWrapper>

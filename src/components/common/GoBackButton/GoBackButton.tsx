@@ -5,7 +5,7 @@ import Typography from '../Typography/Typography';
 
 import { ReactComponent as LeftArrowIcon } from '../../../assets/icon-arrow-left.svg';
 
-const GoBackButton = styled.button(({ theme }) => css`
+const StyledGoBackButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
   padding: 12px 24px;
@@ -33,17 +33,32 @@ const GoBackButton = styled.button(({ theme }) => css`
   }
 `);
 
-const GoBackLink: React.FC = () => {
-  const navigate = useNavigate();
-
-  return (
-    <GoBackButton onClick={() => navigate(-1)}>
-      <LeftArrowIcon />
-      <Typography variant='h4' element='span'>
-        Go back
-      </Typography>
-    </GoBackButton>
-  );
+type Props = {
+  onClick?: () => any;
 };
 
-export default GoBackLink;
+const GoBackButton: React.FC<Props> = ({ onClick }) => {
+  const navigate = useNavigate();
+
+  if (onClick) {
+    return (
+      <StyledGoBackButton onClick={() => onClick()}>
+        <LeftArrowIcon />
+        <Typography variant='h4' element='span'>
+          Go back
+        </Typography>
+      </StyledGoBackButton>
+    );
+  } else {
+    return (
+      <StyledGoBackButton onClick={() => navigate(-1)}>
+        <LeftArrowIcon />
+        <Typography variant='h4' element='span'>
+          Go back
+        </Typography>
+      </StyledGoBackButton>
+    );
+  }
+};
+
+export default GoBackButton;
