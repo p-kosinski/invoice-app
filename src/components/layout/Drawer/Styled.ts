@@ -10,6 +10,7 @@ const Backdrop = styled.div<Props>(
     display: none;
 
     @media only screen and (min-width: ${theme.breakpoints.md}) {
+      display: block;
       position: fixed;
       height: 100%;
       width: 100%;
