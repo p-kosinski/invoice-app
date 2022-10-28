@@ -7,14 +7,18 @@ type Props = {
 
 const Backdrop = styled.div<Props>(
   ({ theme, $open }) => css`
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background-color: hsla(0, 0%, 0%, 1);
-    z-index: 1;
-    visibility: ${$open ? 'visible' : 'hidden'};
-    opacity: ${$open ? 0.5 : 0};
-    transition: opacity ${theme.transitionDuration} ease-in-out;
+    display: none;
+
+    @media only screen and (min-width: ${theme.breakpoints.md}) {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      background-color: hsla(0, 0%, 0%, 1);
+      z-index: 1;
+      visibility: ${$open ? 'visible' : 'hidden'};
+      opacity: ${$open ? 0.5 : 0};
+      transition: opacity ${theme.transitionDuration} ease-in-out;
+    }
 
     @media only screen and (min-width: ${theme.breakpoints.xl}) {
       top: 0;
