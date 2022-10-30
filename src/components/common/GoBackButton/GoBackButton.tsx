@@ -1,48 +1,58 @@
 import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 
 import Typography from '../Typography/Typography';
 
 import { ReactComponent as LeftArrowIcon } from '../../../assets/icon-arrow-left.svg';
 
-const StyledGoBackButton = styled.button(({ theme }) => css`
-  border: none;
-  margin: 0;
-  padding: 12px 24px;
-  background-color: transparent;
-  color: ${theme.colors.text.main};
-  cursor: pointer;
-  border-radius: 24px;
-  outline: 1px solid transparent;
-  transition:
-    color ${theme.transitionDuration} ease-in-out,
-    outline ${theme.transitionDuration} ease-in-out;
+type StyledGoBackButtonProps = {
+  theme: DefaultTheme;
+  noInlinePadding?: boolean;
+};
 
-  svg {
-    margin-right: 24px;
-  }
+const StyledGoBackButton = styled.button<StyledGoBackButtonProps>(
+  ({ theme, noInlinePadding }) => css`
+    border: none;
+    padding: ${noInlinePadding ? '12px 0' : '12px 24px'};
+    background-color: transparent;
+    color: ${theme.colors.text.main};
+    cursor: pointer;
+    border-radius: 24px;
+    outline: 1px solid transparent;
+    transition:
+      color ${theme.transitionDuration} ease-in-out,
+      outline ${theme.transitionDuration} ease-in-out;
 
-  @media (hover: hover) {
-    &:hover {
-      color: ${theme.colors.text.goBackBtnHover};
+    svg {
+      margin-right: 24px;
     }
-  }
 
-  :focus-visible {
-    outline: 1px solid ${theme.colors.accent.main};
-  }
-`);
+    @media (hover: hover) {
+      &:hover {
+        color: ${theme.colors.text.goBackBtnHover};
+      }
+    }
+
+    :focus-visible {
+      outline: 1px solid ${theme.colors.accent.main};
+    }
+  `
+);
 
 type Props = {
+  noInlinePadding?: boolean;
   onClick?: () => any;
 };
 
-const GoBackButton: React.FC<Props> = ({ onClick }) => {
+const GoBackButton: React.FC<Props> = ({ noInlinePadding, onClick }) => {
   const navigate = useNavigate();
 
   if (onClick) {
     return (
-      <StyledGoBackButton onClick={() => onClick()}>
+      <StyledGoBackButton
+        noInlinePadding={noInlinePadding}
+        onClick={() => onClick()}
+      >
         <LeftArrowIcon />
         <Typography variant='h4' element='span'>
           Go back
@@ -51,7 +61,10 @@ const GoBackButton: React.FC<Props> = ({ onClick }) => {
     );
   } else {
     return (
-      <StyledGoBackButton onClick={() => navigate(-1)}>
+      <StyledGoBackButton
+        noInlinePadding={noInlinePadding}
+        onClick={() => navigate(-1)}
+      >
         <LeftArrowIcon />
         <Typography variant='h4' element='span'>
           Go back
