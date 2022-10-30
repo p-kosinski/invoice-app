@@ -96,6 +96,33 @@ const ParagraphH4 = styled.p(({theme}) => css`
   line-height: 24px;
 `);
 
+const H5 = styled.h4(({theme}) => css`
+  font-family: ${theme.font.family};
+  font-weight: ${theme.font.weights.bold};
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: -0.375px;
+  color: hsla(225, 14%, 53%, 1);
+`);
+
+const SpanH5 = styled.span(({theme}) => css`
+  font-family: ${theme.font.family};
+  font-weight: ${theme.font.weights.bold};
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: -0.375px;
+  color: hsla(225, 14%, 53%, 1);
+`);
+
+const ParagraphH5 = styled.p(({theme}) => css`
+  font-family: ${theme.font.family};
+  font-weight: ${theme.font.weights.bold};
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: -0.375px;
+  color: hsla(225, 14%, 53%, 1);
+`);
+
 const SpanBody1 = styled.span(({theme}) => css`
   font-family: ${theme.font.family};
   font-weight: ${theme.font.weights.medium};
@@ -141,6 +168,9 @@ const Styled = {
   H4: H4,
   SpanH4: SpanH4,
   ParagraphH4: ParagraphH4,
+  H5: H5,
+  SpanH5: SpanH5,
+  ParagraphH5: ParagraphH5,
   SpanBody1: SpanBody1,
   ParagraphBody1: ParagraphBody1,
   SpanBody2: SpanBody2,
