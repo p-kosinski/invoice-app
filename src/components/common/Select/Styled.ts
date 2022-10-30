@@ -1,7 +1,7 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
 const Wrapper = styled.div(({ theme }) => css`
-  width: fit-content;
+  width: 100%;
   font-family: ${theme.font.family};
   font-weight: ${theme.font.weights.bold};
   font-size: ${theme.typography.fontSizes.s};
@@ -17,9 +17,10 @@ const Label = styled.label(({ theme }) => css`
 `);
 
 const Select = styled.button(({ theme }) => css`
+  box-sizing: border-box;
   display: block;
   position: relative;
-  min-width: 240px;
+  width: 100%;
   min-height: 48px;
   padding: 15.5px 20px;
   font-weight: ${theme.font.weights.bold};
