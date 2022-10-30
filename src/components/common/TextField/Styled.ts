@@ -1,7 +1,7 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
 const Wrapper = styled.div`
-  width: fit-content;
+  width: 100%;
 `;
 
 const TextWrapper = styled.div`
@@ -37,8 +37,9 @@ const Label = styled.label<LabelProps>(
 );
 
 const Input = styled.input(({ theme }) => css`
+  box-sizing: border-box;
   display: block;
-  min-width: 198px;
+  width: 100%;
   padding: 15.5px 20px;
   background-color: ${theme.colors.formElements.background};
   border: 1px solid ${theme.colors.formElements.outline};
