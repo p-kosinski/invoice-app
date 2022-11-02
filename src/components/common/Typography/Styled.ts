@@ -96,7 +96,7 @@ const ParagraphH4 = styled.p(({theme}) => css`
   line-height: 24px;
 `);
 
-const H5 = styled.h4(({theme}) => css`
+const H5 = styled.h5(({theme}) => css`
   font-family: ${theme.font.family};
   font-weight: ${theme.font.weights.bold};
   font-size: 18px;
