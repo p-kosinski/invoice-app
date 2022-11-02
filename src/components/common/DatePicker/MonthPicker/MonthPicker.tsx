@@ -1,4 +1,4 @@
-import { KeyboardEvent } from 'react';
+import { KeyboardEvent, MouseEvent } from 'react';
 import { Dayjs } from 'dayjs';
 
 import { changeDateMonth } from '../../../../utils/dateUtils';
@@ -32,10 +32,10 @@ const MonthPicker: React.FC<Props> = (
     }
   };
 
-  const handleArrowClick = (isNextMonth: boolean) => {
-    return () => {
+  const handleArrowClick = (isNextMonth: boolean) =>
+    (e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
       setShownDate(changeDateMonth(shownDate, isNextMonth));
-    };
   };
 
   return (
