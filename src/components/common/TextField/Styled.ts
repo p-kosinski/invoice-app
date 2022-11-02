@@ -65,6 +65,12 @@ const Input = styled.input(({ theme }) => css`
     outline-offset: -1px;
   }
 
+  ::placeholder {
+    color: ${theme.colors.text.main};
+    opacity: 0.4;
+    transition: color ${theme.transitionDuration} ease-in-out;
+  }
+
   &[aria-invalid='true'] {
     border: 1px solid ${theme.colors.error.main};
 
