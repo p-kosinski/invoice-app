@@ -48,7 +48,10 @@ const DatePicker: React.FC<Props> = ({
           aria-haspopup='true'
           aria-expanded={calendarOpen}
           disabled={disabled}
-          onClick={() => setCalendarOpen(!calendarOpen)}
+          onClick={(e) => {
+            e.preventDefault();
+            setCalendarOpen(!calendarOpen);
+          }}
           ref={inputButtonRef}
         >
           <Styled.InputWrapper>

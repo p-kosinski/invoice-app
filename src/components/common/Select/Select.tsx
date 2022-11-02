@@ -80,7 +80,10 @@ const Select: React.FC<Props> = ({
           aria-haspopup='listbox'
           aria-expanded={optionsOpen}
           ref={selectButton}
-          onClick={() => setOptionsOpen(!optionsOpen)}
+          onClick={(e) => {
+            e.preventDefault();
+            setOptionsOpen(!optionsOpen);
+          }}
         >
           <Styled.SelectWrapper>
             {options[selectedOption].label}
