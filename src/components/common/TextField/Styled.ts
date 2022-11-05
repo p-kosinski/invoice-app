@@ -30,6 +30,7 @@ interface LabelProps extends InvalidStateProps {
 const Label = styled.label<LabelProps>(
   ({ theme, $invalid }) => css`
     display: block;
+    margin-block: 12px;
     color: ${$invalid ? theme.colors.error.main
                       : theme.colors.formElements.labelsText};
     transition: color ${theme.transitionDuration} ease-in-out;
