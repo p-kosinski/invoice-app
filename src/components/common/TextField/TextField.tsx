@@ -38,12 +38,11 @@ const TextField: React.FC<Props> = ({
   };
 
   const handleDecimalInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    /* Analyze this code to fully understand it! */
     const start = event.target.selectionStart;
     let inputValue = event.target.value;
 
-    inputValue = inputValue.replace(/([^0-9.]+)/, "");
-    inputValue = inputValue.replace(/^(0|\.)/, "");
+    inputValue = inputValue.replace(/([^0-9.]+)/, '');
+    inputValue = inputValue.replace(/^(0|\.)/, '');
 
     const match = /(\d{0,7})[^.]*((?:\.\d{0,2})?)/g.exec(inputValue);
 
@@ -54,9 +53,17 @@ const TextField: React.FC<Props> = ({
     onChange(newValue);
     
     if (inputValue.length > 0) {
-      event.target.value = Number(newValue).toFixed(2);
+      let parsedNewValue = '';
+
+      if (newValue === '.') {
+        parsedNewValue = '0.00';
+      } else {
+        parsedNewValue = Number(newValue).toFixed(2);
+      }
+
+      event.target.value = parsedNewValue;
       event.target.setSelectionRange(start, start);
-      onChange(Number(newValue).toFixed(2));
+      onChange(parsedNewValue);
     }
   };
 
@@ -113,7 +120,7 @@ const TextField: React.FC<Props> = ({
         <>
           <Styled.Input
             type='text'
-            pattern='[0-9]+([\.][0-9]+)?'
+            //pattern='[0-9]+([\.][0-9]+)?'
             inputMode='decimal'
             name={name}
             id={name}
