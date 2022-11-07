@@ -123,7 +123,7 @@ const TextField: React.FC<Props> = ({
         <>
           <Styled.Input
             type='text'
-            //pattern='[0-9]+([\.][0-9]+)?'
+            pattern='[0-9]+[\.][0-9]{2}'
             inputMode='decimal'
             name={name}
             id={name}
