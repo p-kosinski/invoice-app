@@ -33,8 +33,11 @@ const TextField: React.FC<Props> = ({
   onChange
 }) => {
   const handleNumericInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const numbersOnlyInputValue = event.target.value.replace(/\D/g, '');
-    onChange(numbersOnlyInputValue);
+    let inputValue = event.target.value;
+    inputValue = inputValue.replace(/\D/g, '');
+    inputValue = inputValue.replace(/^0+/, '');
+
+    onChange(inputValue);
   };
 
   const handleDecimalInputChange = (event: ChangeEvent<HTMLInputElement>) => {
