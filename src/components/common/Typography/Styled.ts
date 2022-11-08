@@ -155,6 +155,14 @@ const ParagraphBody2 = styled.p(({theme}) => css`
   line-height: 18px;
 `);
 
+const ErrorText = styled.p(({theme}) => css`
+  font-family: ${theme.font.family};
+  font-weight: ${theme.font.weights.semiBold};
+  font-size: ${theme.typography.fontSizes.xs};
+  letter-spacing: -0.21px;
+  line-height: ${theme.typography.lineHeights[1]};
+`);
+
 const Styled = {
   H1: H1,
   SpanH1: SpanH1,
@@ -174,7 +182,8 @@ const Styled = {
   SpanBody1: SpanBody1,
   ParagraphBody1: ParagraphBody1,
   SpanBody2: SpanBody2,
-  ParagraphBody2: ParagraphBody2
+  ParagraphBody2: ParagraphBody2,
+  ErrorText: ErrorText,
 };
 
 export default Styled;
