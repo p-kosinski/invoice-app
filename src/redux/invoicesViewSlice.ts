@@ -6,10 +6,12 @@ export type StatusFiltersArray = StatusFilter[];
 
 interface InvoicesViewState {
   statusFilters: StatusFiltersArray;
+  drawerOpen: boolean;
 };
 
 const initialState: InvoicesViewState = {
   statusFilters: [],
+  drawerOpen: false,
 };
 
 export const invoicesViewSlice = createSlice({
@@ -24,14 +26,19 @@ export const invoicesViewSlice = createSlice({
 
       state.statusFilters = newStatusFilters;
     },
+    setDrawerOpen: (state: InvoicesViewState, action: PayloadAction<boolean>) => {
+      state.drawerOpen = action.payload;
+    },
   }
 });
 
 export const {
   addStatusFilter,
-  removeStatusFilter
+  removeStatusFilter,
+  setDrawerOpen
 } = invoicesViewSlice.actions;
 
 export const selectStatusFilters = (state: RootState) => state.invoicesView.statusFilters;
+export const selectDrawerOpen = (state: RootState) => state.invoicesView.drawerOpen;
 
 export default invoicesViewSlice.reducer;
