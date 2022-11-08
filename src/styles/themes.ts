@@ -125,7 +125,7 @@ export const darkTheme: DefaultTheme = {
       background: colorPalette.dark.light,
       text: colorPalette.neutral.white,
       optionsText: colorPalette.lightGrey.light,
-      labelsText: colorPalette.lightGrey.main,
+      labelsText: colorPalette.lightGrey.light,
       dividers: colorPalette.dark.main,
       shadow: 'hsla(0, 0%, 0%, 0.25)',
       statusFiltersBg: colorPalette.dark.light
