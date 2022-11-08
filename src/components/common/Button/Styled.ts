@@ -3,12 +3,13 @@ import styled, { css } from 'styled-components';
 const ButtonPrimary = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
-  padding: 12px 24px;
+  padding: 12px 16px;
   border-radius: 24px;
   background-color: ${theme.colors.accent.main};
   color: ${theme.colors.neutral.white};
   outline: 1px solid transparent;
   cursor: pointer;
+  white-space: nowrap;
   transition:
     background-color ${theme.transitionDuration} ease-in-out,
     outline ${theme.transitionDuration} ease-in-out;
@@ -32,11 +33,12 @@ const ButtonPrimary = styled.button(({ theme }) => css`
 const DraftButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
-  padding: 12px 24px;
+  padding: 12px 16px;
   border-radius: 24px;
   background-color: ${theme.colors.buttons.draft.bg};
   color: ${theme.colors.buttons.draft.text};
   cursor: pointer;
+  white-space: nowrap;
   transition:
     background-color ${theme.transitionDuration} ease-in-out,
     color ${theme.transitionDuration} ease-in-out;
@@ -84,6 +86,7 @@ const DeleteButton = styled.button(({ theme }) => css`
 const AddButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
+  width: 100%;
   padding: 12px 24px;
   border-radius: 24px;
   background-color: ${theme.colors.buttons.add.bg};
@@ -107,7 +110,7 @@ const AddButton = styled.button(({ theme }) => css`
 const DiscardButton = styled.button(({ theme }) => css`
   border: none;
   margin: 0;
-  padding: 12px 24px;
+  padding: 12px 16px;
   border-radius: 24px;
   background-color: ${theme.colors.buttons.discard.bg};
   color: ${theme.colors.buttons.discard.text};

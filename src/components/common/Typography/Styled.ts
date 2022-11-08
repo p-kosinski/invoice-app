@@ -161,6 +161,8 @@ const ErrorText = styled.p(({theme}) => css`
   font-size: ${theme.typography.fontSizes.xs};
   letter-spacing: -0.21px;
   line-height: ${theme.typography.lineHeights[1]};
+  color: ${theme.colors.error.main};
+  margin: 0;
 `);
 
 const Styled = {

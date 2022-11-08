@@ -14,6 +14,8 @@ const StyledGoBackButton = styled.button<StyledGoBackButtonProps>(
   ({ theme, noInlinePadding }) => css`
     border: none;
     padding: ${noInlinePadding ? '12px 0' : '12px 24px'};
+    display: inline-flex;
+    align-items: baseline;
     background-color: transparent;
     color: ${theme.colors.text.main};
     cursor: pointer;

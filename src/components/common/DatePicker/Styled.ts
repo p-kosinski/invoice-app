@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const Label = styled.label(({ theme }) => css`
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   color: ${theme.colors.formElements.labelsText};
   transition: color ${theme.transitionDuration} ease-in-out;
 `);

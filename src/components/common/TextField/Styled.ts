@@ -20,6 +20,10 @@ const ErrorMsg = styled.div<InvalidStateProps>(
     color: ${theme.colors.error.main};
     opacity: ${$invalid ? 1 : 0};
     transition: opacity ${theme.transitionDuration} ease-in-out;
+
+    p {
+      margin-top: 0;
+    }
   `
 );
 
@@ -30,7 +34,7 @@ interface LabelProps extends InvalidStateProps {
 const Label = styled.label<LabelProps>(
   ({ theme, $invalid }) => css`
     display: block;
-    margin-block: 12px;
+    margin-bottom: 12px;
     color: ${$invalid ? theme.colors.error.main
                       : theme.colors.formElements.labelsText};
     transition: color ${theme.transitionDuration} ease-in-out;
@@ -51,6 +55,7 @@ const Input = styled.input(({ theme }) => css`
   line-height: ${theme.typography.lineHeights[1]};
   letter-spacing: ${theme.typography.letterSpacings[4]};
   color: ${theme.colors.formElements.text};
+  text-overflow: ellipsis;
   transition: 
     background-color ${theme.transitionDuration} ease-in-out,
     color ${theme.transitionDuration} ease-in-out,

@@ -8,6 +8,7 @@ import {
 } from '../../../redux/invoicesSlice';
 import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlice';
 
+import NewInvoice from '../../features/NewInvoice/NewInvoice';
 import Container from '../../layout/Container/Container';
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
 import InvoicesStatusFilters from '../../features/InvoicesStatusFilters/InvoicesStatusFilters';
@@ -29,30 +30,33 @@ const Invoices: React.FC = () => {
   }, [invoices.length]);
 
   return (
-    <Container>
-      <section>
-        <Styled.HeadingWrapper>
-          <InvoicesHeading />
-          <Styled.ButtonsWrapper>
-            <InvoicesStatusFilters />
-            <NewInvoiceButton />
-          </Styled.ButtonsWrapper>
-        </Styled.HeadingWrapper>
-        <Styled.InvoicesWrapper>
-          {invoicesLoading.active ?
-            <>
-              <Skeleton variant='invoiceTile' />
-              <Skeleton variant='invoiceTile' />
-              <Skeleton variant='invoiceTile' />
-            </>
-            :
-            <>
-              {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
-            </>
-          }
-        </Styled.InvoicesWrapper>
-      </section>
-    </Container>
+    <>
+      <NewInvoice />
+      <Container>
+        <section>
+          <Styled.HeadingWrapper>
+            <InvoicesHeading />
+            <Styled.ButtonsWrapper>
+              <InvoicesStatusFilters />
+              <NewInvoiceButton />
+            </Styled.ButtonsWrapper>
+          </Styled.HeadingWrapper>
+          <Styled.InvoicesWrapper>
+            {invoicesLoading.active ?
+              <>
+                <Skeleton variant='invoiceTile' />
+                <Skeleton variant='invoiceTile' />
+                <Skeleton variant='invoiceTile' />
+              </>
+              :
+              <>
+                {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
+              </>
+            }
+          </Styled.InvoicesWrapper>
+        </section>
+      </Container>
+    </>
   );
 };
 
