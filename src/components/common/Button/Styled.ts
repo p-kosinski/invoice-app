@@ -92,12 +92,19 @@ const AddButton = styled.button(({ theme }) => css`
   background-color: ${theme.colors.buttons.add.bg};
   color: ${theme.colors.buttons.add.text};
   cursor: pointer;
+  outline: 1px solid transparent;
   transition:
+    outline ${theme.transitionDuration} ease-in-out,
     background-color ${theme.transitionDuration} ease-in-out,
     color ${theme.transitionDuration} ease-in-out;
 
   &:active {
     background-color: ${theme.colors.buttons.add.hoverBg};
+  }
+
+  :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: 2px;
   }
 
   @media (hover: hover) {
