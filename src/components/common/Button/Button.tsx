@@ -8,18 +8,22 @@ import Styled from './Styled';
 
 type Props = {
   variant: 'primary' | 'draft' | 'delete' | 'add' | 'discard' | 'newInvoice';
+  ariaLabel?: string;
+  showOnMobile?: boolean;
+  hideOnMobile?: boolean;
   children?: string;
   onClick: () => any;
-  ariaLabel?: string;
 };
 
 type Ref = HTMLButtonElement;
 
 const Button = forwardRef<Ref, Props>(({
   variant,
+  showOnMobile,
+  hideOnMobile,
+  ariaLabel,
   children,
   onClick,
-  ariaLabel
 }, ref) => {
   switch(variant) {
     case 'primary':
@@ -27,6 +31,8 @@ const Button = forwardRef<Ref, Props>(({
         <Styled.ButtonPrimary
           aria-label={ariaLabel}
           onClick={() => onClick()}
+          $showOnMobile={showOnMobile}
+          $hideOnMobile={hideOnMobile}
         >
           <Typography variant='h4' element='span'>
             {children}
@@ -38,6 +44,8 @@ const Button = forwardRef<Ref, Props>(({
         <Styled.DraftButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
+          $showOnMobile={showOnMobile}
+          $hideOnMobile={hideOnMobile}
         >
           <Typography variant='h4' element='span'>
             {children}
@@ -49,6 +57,8 @@ const Button = forwardRef<Ref, Props>(({
         <Styled.DeleteButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
+          $showOnMobile={showOnMobile}
+          $hideOnMobile={hideOnMobile}
         >
           <Typography variant='h4' element='span'>
             {children}
@@ -60,6 +70,8 @@ const Button = forwardRef<Ref, Props>(({
         <Styled.AddButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
+          $showOnMobile={showOnMobile}
+          $hideOnMobile={hideOnMobile}
         >
           <Typography variant='h4' element='span'>
             {`+ ${children}`}
@@ -71,6 +83,8 @@ const Button = forwardRef<Ref, Props>(({
         <Styled.DiscardButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
+          $showOnMobile={showOnMobile}
+          $hideOnMobile={hideOnMobile}
           ref={ref}
         >
           <Typography variant='h4' element='span'>
@@ -83,6 +97,8 @@ const Button = forwardRef<Ref, Props>(({
         <Styled.NewInvoiceButton
           aria-label={ariaLabel}
           onClick={() => onClick()}
+          $showOnMobile={showOnMobile}
+          $hideOnMobile={hideOnMobile}
         >
           <Styled.AddIcon>
             <PlusIcon />
