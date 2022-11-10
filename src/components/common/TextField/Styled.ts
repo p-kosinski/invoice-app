@@ -16,7 +16,7 @@ const TextWrapper = styled.div<TextWrapperProps>(
     align-items: center;
 
     ${$showLabelOnlyOnMobile &&
-      `@media only screen and (min-width: ${theme.breakpoints.md}) {
+      `@media only screen and (min-width: ${theme.breakpoints.sm}) {
         display: none;
       }`
     }

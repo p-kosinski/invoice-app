@@ -66,7 +66,11 @@ const NewInvoice: React.FC = () => {
     <Drawer open={drawerOpen}>
       <Styled.Section>
         <Container>
-          <GoBackButton noInlinePadding onClick={() => closeDrawer()} />
+          <GoBackButton
+            showOnMobileOnly
+            noInlinePadding
+            onClick={() => closeDrawer()}
+          />
           <Styled.HeadingWrapper>
             <Styled.Heading>
               New Invoice
@@ -275,6 +279,7 @@ const NewInvoice: React.FC = () => {
                       value={item2Name}
                       onChange={setItem2Name}
                       errorMsg={`can't be empty`}
+                      showLabelOnlyOnMobile
                     />
                   </Styled.ItemNameWrapper>
                   <Styled.ItemQuantityWrapper>
@@ -284,6 +289,7 @@ const NewInvoice: React.FC = () => {
                       label='Qty.'
                       value={item2Quantity}
                       onChange={setItem2Quantity}
+                      showLabelOnlyOnMobile
                     />
                   </Styled.ItemQuantityWrapper>
                   <Styled.ItemPriceWrapper>
@@ -293,9 +299,10 @@ const NewInvoice: React.FC = () => {
                       label='Price'
                       value={item2Price}
                       onChange={setItem2Price}
+                      showLabelOnlyOnMobile
                     />
                   </Styled.ItemPriceWrapper>
-                  <Styled.ItemTotalWrapper>
+                  <Styled.ItemTotalWrapper $showLabelOnlyOnMobile>
                     <Typography variant='body1' element='p'>
                       Total
                     </Typography>
@@ -342,16 +349,26 @@ const NewInvoice: React.FC = () => {
             </Button>
             <Button
               variant='draft'
+              showOnMobile
               onClick={() => console.log(`'Save as Draft' button was clicked`)}
             >
               Save as Draft
             </Button>
-            <Button
-              variant='primary'
-              onClick={() => console.log(`'Save & Send' button was clicked`)}
-            >
-              Save & Send
-            </Button>
+            <Styled.SaveButtonsWrapper>
+              <Button
+                variant='draft'
+                hideOnMobile
+                onClick={() => console.log(`'Save as Draft' button was clicked`)}
+              >
+                Save as Draft
+              </Button>
+              <Button
+                variant='primary'
+                onClick={() => console.log(`'Save & Send' button was clicked`)}
+              >
+                Save & Send
+              </Button>
+            </Styled.SaveButtonsWrapper>
           </Styled.ToolbarWrapper>
         </Container>
       </Styled.Toolbar>

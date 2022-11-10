@@ -1,9 +1,9 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
-const Section = styled.section(({ theme }) => css`
+const Section = styled.section`
   margin-top: 12px;
   margin-bottom: 140px;
-`);
+`;
 
 const Heading = styled.h2(({ theme }) => css`
   font-family: ${theme.font.family};
@@ -15,6 +15,10 @@ const Heading = styled.h2(({ theme }) => css`
   margin-top: 12px;
   margin-bottom: 0;
   transition: color ${theme.transitionDuration} ease-in-out;
+
+  @media only screen and (min-width: ${theme.breakpoints.md}) {
+    margin-top: 28px;
+  }
 `);
 
 const HeadingWrapper = styled.div`
@@ -40,6 +44,14 @@ const BillFromFieldset = styled(Fieldset)(({ theme }) => css`
     'streetAddress streetAddress'
     'city postCode'
     'country country';
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+      'streetAddress streetAddress streetAddress'
+      'city postCode country';
+  }
 `);
 
 const BillToFieldset = styled(Fieldset)(({ theme }) => css`
@@ -51,11 +63,30 @@ const BillToFieldset = styled(Fieldset)(({ theme }) => css`
     'streetAddress streetAddress'
     'city postCode'
     'country country';
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      'name name name'
+      'email email email'
+      'streetAddress streetAddress streetAddress'
+      'city postCode country';
+  }
 `);
 
 const DetailsFieldset = styled(Fieldset)(({ theme }) => css`
   display: flex;
   flex-direction: column;
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      'date paymentTerms'
+      'description description';
+  }
 `);
 
 const Legend = styled.legend(({ theme }) => css`
@@ -63,41 +94,41 @@ const Legend = styled.legend(({ theme }) => css`
   margin-bottom: 12px;
 `);
 
-const NameWrapper = styled.div(({ theme }) => css`
+const NameWrapper = styled.div`
   grid-area: name;
-`);
+`;
 
-const EmailWrapper = styled.div(({ theme }) => css`
+const EmailWrapper = styled.div`
   grid-area: email;
-`);
+`;
 
-const StreetAddressWrapper = styled.div(({ theme }) => css`
+const StreetAddressWrapper = styled.div`
   grid-area: streetAddress;
-`);
+`;
 
-const CityWrapper = styled.div(({ theme }) => css`
+const CityWrapper = styled.div`
   grid-area: city;
-`);
+`;
 
-const PostCodeWrapper = styled.div(({ theme }) => css`
+const PostCodeWrapper = styled.div`
   grid-area: postCode;
-`);
+`;
 
-const CountryWrapper = styled.div(({ theme }) => css`
+const CountryWrapper = styled.div`
   grid-area: country;
-`);
+`;
 
-const DateWrapper = styled.div(({ theme }) => css`
+const DateWrapper = styled.div`
   grid-area: date;
-`);
+`;
 
-const PaymentTermsWrapper = styled.div(({ theme }) => css`
+const PaymentTermsWrapper = styled.div`
   grid-area: paymentTerms;
-`);
+`;
 
-const DescriptionWrapper = styled.div(({ theme }) => css`
+const DescriptionWrapper = styled.div`
   grid-area: description;
-`);
+`;
 
 const ItemListWrapper = styled.div(({ theme }) => css`
   margin-block: 24px;
@@ -105,6 +136,11 @@ const ItemListWrapper = styled.div(({ theme }) => css`
 
   h5 {
     margin-bottom: 24px;
+
+    @media only screen and (min-width: ${theme.breakpoints.sm}) {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
   }
 `);
 
@@ -116,6 +152,10 @@ const ItemList = styled.ul(({ theme }) => css`
   display: flex;
   flex-direction: column;
   row-gap: 48px;
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    row-gap: 16px;
+  }
 `);
 
 const ItemForm = styled.form(({ theme }) => css`
@@ -127,58 +167,102 @@ const ItemForm = styled.form(({ theme }) => css`
     'itemQuantity itemPrice itemTotal itemDelete';
   column-gap: 16px;
   row-gap: 24px;
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    grid-template-columns: 0.4fr 0.15fr 0.2fr 0.2fr 0.05fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'itemName itemQuantity itemPrice itemTotal itemDelete';
+  }
 `);
 
-const ItemNameWrapper = styled.div(({ theme }) => css`
+const ItemNameWrapper = styled.div`
   grid-area: itemName;
-`);
+`;
 
-const ItemQuantityWrapper = styled.div(({ theme }) => css`
+const ItemQuantityWrapper = styled.div`
   grid-area: itemQuantity;
-`);
+`;
 
-const ItemPriceWrapper = styled.div(({ theme }) => css`
+const ItemPriceWrapper = styled.div`
   grid-area: itemPrice;
-`);
+`;
 
-const ItemTotalWrapper = styled.div(({ theme }) => css`
-  grid-area: itemTotal;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+type ItemTotalWrapperProps = {
+  theme: DefaultTheme;
+  $showLabelOnlyOnMobile?: boolean;
+};
 
-  p:first-of-type {
-    margin-top: 3px;
-    color: ${theme.colors.formElements.labelsText};
-    transition: color ${theme.transitionDuration} ease-in-out;
-  }
+const ItemTotalWrapper = styled.div<ItemTotalWrapperProps>(
+  ({ theme, $showLabelOnlyOnMobile }) => css`
+    grid-area: itemTotal;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-  p:last-of-type {
-    color: ${theme.colors.lightGrey.main};
-  }
-`);
+    p:first-of-type {
+      margin-top: 3px;
+      color: ${theme.colors.formElements.labelsText};
+      transition: color ${theme.transitionDuration} ease-in-out;
 
-const ItemDeleteWrapper = styled.div(({ theme }) => css`
+      ${$showLabelOnlyOnMobile &&
+        `@media only screen and (min-width: ${theme.breakpoints.sm}) {
+          display: none;
+        }`
+      }
+    }
+
+    p:last-of-type {
+      color: ${theme.colors.lightGrey.main};
+    }
+  `
+);
+
+const ItemDeleteWrapper = styled.div`
   grid-area: itemDelete;
   display: flex;
   justify-content: end;
   align-items: end;
-`);
+`;
 
 const DeleteButton = styled.button(({ theme }) => css`
   border: none;
   padding: 15.5px 12px;
   background-color: transparent;
+  border-radius: 4px;
+  outline: 1px solid transparent;
+  cursor: pointer;
+  transition: outline ${theme.transitionDuration} ease-in-out;
 
   svg {
     display: block;
+    fill: ${theme.colors.lightGrey.main};
+    transition: fill ${theme.transitionDuration} ease-in-out;
+  }
+
+  &:active {
+    svg {
+      fill: ${theme.colors.error.main};
+    }
+  }
+
+  :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      svg {
+        fill: ${theme.colors.error.main};
+      }
+    }
   }
 `);
 
-const AddItemButtonWrapper = styled.div(({ theme }) => css`
+const AddItemButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-`);
+`;
 
 type ToolbarProps = {
   theme: DefaultTheme;
@@ -213,11 +297,16 @@ const ToolbarWrapper = styled.div(({ theme }) => css`
   }
 `);
 
-const ErrorMessages = styled.div(({ theme }) => css`
+const SaveButtonsWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+`;
+
+const ErrorMessages = styled.div`
   p:not(:last-of-type) {
     margin-bottom: 2px;
   }
-`);
+`;
 
 const Styled = {
   Section: Section,
@@ -249,6 +338,7 @@ const Styled = {
   AddItemButtonWrapper: AddItemButtonWrapper,
   Toolbar: Toolbar,
   ToolbarWrapper: ToolbarWrapper,
+  SaveButtonsWrapper: SaveButtonsWrapper,
   ErrorMessages: ErrorMessages,
 };
 
