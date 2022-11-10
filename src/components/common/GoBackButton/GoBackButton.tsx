@@ -7,13 +7,14 @@ import { ReactComponent as LeftArrowIcon } from '../../../assets/icon-arrow-left
 
 type StyledGoBackButtonProps = {
   theme: DefaultTheme;
-  noInlinePadding?: boolean;
+  $noInlinePadding?: boolean;
+  $showOnMobileOnly?: boolean;
 };
 
 const StyledGoBackButton = styled.button<StyledGoBackButtonProps>(
-  ({ theme, noInlinePadding }) => css`
+  ({ theme, $noInlinePadding, $showOnMobileOnly }) => css`
     border: none;
-    padding: ${noInlinePadding ? '12px 0' : '12px 24px'};
+    padding: ${$noInlinePadding ? '12px 0' : '12px 24px'};
     display: inline-flex;
     align-items: baseline;
     background-color: transparent;
@@ -38,21 +39,33 @@ const StyledGoBackButton = styled.button<StyledGoBackButtonProps>(
     :focus-visible {
       outline: 1px solid ${theme.colors.accent.main};
     }
+    
+    ${$showOnMobileOnly && `
+      @media only screen and (min-width: ${theme.breakpoints.md}) {
+        display: none;
+      }
+    `}
   `
 );
 
 type Props = {
   noInlinePadding?: boolean;
+  showOnMobileOnly?: boolean;
   onClick?: () => any;
 };
 
-const GoBackButton: React.FC<Props> = ({ noInlinePadding, onClick }) => {
+const GoBackButton: React.FC<Props> = ({
+  noInlinePadding,
+  showOnMobileOnly,
+  onClick
+}) => {
   const navigate = useNavigate();
 
   if (onClick) {
     return (
       <StyledGoBackButton
-        noInlinePadding={noInlinePadding}
+        $noInlinePadding={noInlinePadding}
+        $showOnMobileOnly={showOnMobileOnly}
         onClick={() => onClick()}
       >
         <LeftArrowIcon />
@@ -64,7 +77,8 @@ const GoBackButton: React.FC<Props> = ({ noInlinePadding, onClick }) => {
   } else {
     return (
       <StyledGoBackButton
-        noInlinePadding={noInlinePadding}
+        $noInlinePadding={noInlinePadding}
+        $showOnMobileOnly={showOnMobileOnly}
         onClick={() => navigate(-1)}
       >
         <LeftArrowIcon />
