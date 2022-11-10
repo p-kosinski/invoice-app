@@ -158,6 +158,20 @@ const ItemList = styled.ul(({ theme }) => css`
   }
 `);
 
+const ItemListTableHeadings = styled.div(({ theme }) => css`
+  display: none;
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    display: grid;
+    grid-template-columns: 0.4fr 0.15fr 0.2fr 0.2fr 0.05fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'itemName itemQuantity itemPrice itemTotal itemDelete';
+    color: ${theme.colors.formElements.labelsText};
+    transition: color ${theme.transitionDuration} ease-in-out;
+  }
+`);
+
 const ItemForm = styled.form(({ theme }) => css`
   display: grid;
   grid-template-columns: 0.6fr 1fr 1fr 0.6fr;
@@ -190,11 +204,11 @@ const ItemPriceWrapper = styled.div`
 
 type ItemTotalWrapperProps = {
   theme: DefaultTheme;
-  $showLabelOnlyOnMobile?: boolean;
+  $showLabel?: boolean;
 };
 
 const ItemTotalWrapper = styled.div<ItemTotalWrapperProps>(
-  ({ theme, $showLabelOnlyOnMobile }) => css`
+  ({ theme, $showLabel }) => css`
     grid-area: itemTotal;
     display: flex;
     flex-direction: column;
@@ -205,14 +219,15 @@ const ItemTotalWrapper = styled.div<ItemTotalWrapperProps>(
       color: ${theme.colors.formElements.labelsText};
       transition: color ${theme.transitionDuration} ease-in-out;
 
-      ${$showLabelOnlyOnMobile &&
-        `@media only screen and (min-width: ${theme.breakpoints.sm}) {
+      ${!$showLabel && `
+        @media only screen and (min-width: ${theme.breakpoints.sm}) {
           display: none;
-        }`
-      }
+        }
+      `}
+      
     }
 
-    p:last-of-type {
+    p:not(:first-of-type) {
       color: ${theme.colors.lightGrey.main};
     }
   `
@@ -258,6 +273,11 @@ const DeleteButton = styled.button(({ theme }) => css`
     }
   }
 `);
+
+const DeleteButtonPlaceholder = styled.div`
+  height: 47px;
+  width: 37px;
+`;
 
 const AddItemButtonWrapper = styled.div`
   display: flex;
@@ -328,6 +348,7 @@ const Styled = {
   DescriptionWrapper: DescriptionWrapper,
   ItemListWrapper: ItemListWrapper,
   ItemList: ItemList,
+  ItemListTableHeadings: ItemListTableHeadings,
   ItemForm: ItemForm,
   ItemNameWrapper: ItemNameWrapper,
   ItemQuantityWrapper: ItemQuantityWrapper,
@@ -335,6 +356,7 @@ const Styled = {
   ItemTotalWrapper: ItemTotalWrapper,
   ItemDeleteWrapper: ItemDeleteWrapper,
   DeleteButton: DeleteButton,
+  DeleteButtonPlaceholder: DeleteButtonPlaceholder,
   AddItemButtonWrapper: AddItemButtonWrapper,
   Toolbar: Toolbar,
   ToolbarWrapper: ToolbarWrapper,

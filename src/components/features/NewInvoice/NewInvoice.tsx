@@ -223,6 +223,31 @@ const NewInvoice: React.FC = () => {
           </form>
           <Styled.ItemListWrapper>
             <Typography variant='h5'>Item List</Typography>
+            <Styled.ItemListTableHeadings>
+              <Styled.ItemNameWrapper>
+                <Typography variant='body1' element='p'>
+                  Item Name
+                </Typography>
+              </Styled.ItemNameWrapper>
+              <Styled.ItemQuantityWrapper>
+                <Typography variant='body1' element='p'>
+                  Qty.
+                </Typography>
+              </Styled.ItemQuantityWrapper>
+              <Styled.ItemPriceWrapper>
+                <Typography variant='body1' element='p'>
+                  Price
+                </Typography>
+              </Styled.ItemPriceWrapper>
+              <Styled.ItemTotalWrapper $showLabel>
+                <Typography variant='body1' element='p'>
+                  Total
+                </Typography>
+              </Styled.ItemTotalWrapper>
+              <Styled.ItemDeleteWrapper>
+                <Styled.DeleteButtonPlaceholder />
+              </Styled.ItemDeleteWrapper>
+            </Styled.ItemListTableHeadings>
             <Styled.ItemList>
               <li>
                 <Styled.ItemForm>
@@ -234,6 +259,7 @@ const NewInvoice: React.FC = () => {
                       value={item1Name}
                       onChange={setItem1Name}
                       errorMsg={`can't be empty`}
+                      showLabelOnlyOnMobile
                     />
                   </Styled.ItemNameWrapper>
                   <Styled.ItemQuantityWrapper>
@@ -243,6 +269,7 @@ const NewInvoice: React.FC = () => {
                       label='Qty.'
                       value={item1Quantity}
                       onChange={setItem1Quantity}
+                      showLabelOnlyOnMobile
                     />
                   </Styled.ItemQuantityWrapper>
                   <Styled.ItemPriceWrapper>
@@ -252,6 +279,7 @@ const NewInvoice: React.FC = () => {
                       label='Price'
                       value={item1Price}
                       onChange={setItem1Price}
+                      showLabelOnlyOnMobile
                     />
                   </Styled.ItemPriceWrapper>
                   <Styled.ItemTotalWrapper>
@@ -302,7 +330,7 @@ const NewInvoice: React.FC = () => {
                       showLabelOnlyOnMobile
                     />
                   </Styled.ItemPriceWrapper>
-                  <Styled.ItemTotalWrapper $showLabelOnlyOnMobile>
+                  <Styled.ItemTotalWrapper>
                     <Typography variant='body1' element='p'>
                       Total
                     </Typography>

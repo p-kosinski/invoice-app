@@ -17,7 +17,8 @@ const TextWrapper = styled.div<TextWrapperProps>(
 
     ${$showLabelOnlyOnMobile &&
       `@media only screen and (min-width: ${theme.breakpoints.sm}) {
-        display: none;
+        visibility: hidden;
+        height: 0px;
       }`
     }
   `
