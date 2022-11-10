@@ -16,6 +16,7 @@ type Props = {
   invalid?: boolean;
   errorMsg?: string;
   disabled?: boolean;
+  showLabelOnlyOnMobile?: boolean;
   value: string;
   onChange: (value: string) => any;
 };
@@ -29,6 +30,7 @@ const TextField: React.FC<Props> = ({
   required,
   invalid,
   errorMsg,
+  showLabelOnlyOnMobile,
   value,
   onChange
 }) => {
@@ -72,7 +74,7 @@ const TextField: React.FC<Props> = ({
 
   return (
     <Styled.Wrapper>
-      <Styled.TextWrapper>
+      <Styled.TextWrapper $showLabelOnlyOnMobile={showLabelOnlyOnMobile}>
         <Styled.Label htmlFor={name} $invalid={invalid}>
           <Typography variant='body1' element='span'>
             {label}

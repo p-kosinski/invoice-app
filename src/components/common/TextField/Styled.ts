@@ -4,11 +4,24 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const TextWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+type TextWrapperProps = {
+  theme: DefaultTheme;
+  $showLabelOnlyOnMobile?: boolean;
+};
+
+const TextWrapper = styled.div<TextWrapperProps>(
+  ({ theme, $showLabelOnlyOnMobile }) => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ${$showLabelOnlyOnMobile &&
+      `@media only screen and (min-width: ${theme.breakpoints.md}) {
+        display: none;
+      }`
+    }
+  `
+);
 
 interface InvalidStateProps {
   theme: DefaultTheme;
