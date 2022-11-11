@@ -7,7 +7,9 @@ import {
   selectInvoicesLoadingState
 } from '../../../redux/invoicesSlice';
 import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlice';
+import { selectDrawerOpen } from '../../../redux/invoicesViewSlice';
 
+import Drawer from '../../layout/Drawer/Drawer';
 import NewInvoice from '../NewInvoice/NewInvoice';
 import Container from '../../layout/Container/Container';
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
@@ -25,13 +27,17 @@ const Invoices: React.FC = () => {
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
   const invoicesLoading: ThunkStatusState = useAppSelector(selectInvoicesLoadingState);
 
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
+
   useEffect(() => {
     !invoices.length && dispatch(fetchInvoicesData());
   }, [invoices.length]);
 
   return (
     <>
-      <NewInvoice />
+      <Drawer open={drawerOpen}>
+        <NewInvoice />
+      </Drawer>
       <Container>
         <section>
           <Styled.HeadingWrapper>
