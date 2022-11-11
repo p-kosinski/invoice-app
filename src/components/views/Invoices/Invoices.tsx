@@ -8,7 +8,7 @@ import {
 } from '../../../redux/invoicesSlice';
 import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlice';
 
-import NewInvoice from '../../features/NewInvoice/NewInvoice';
+import NewInvoice from '../NewInvoice/NewInvoice';
 import Container from '../../layout/Container/Container';
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
 import InvoicesStatusFilters from '../../features/InvoicesStatusFilters/InvoicesStatusFilters';
