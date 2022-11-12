@@ -10,7 +10,7 @@ import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlic
 import { selectDrawerOpen } from '../../../redux/invoicesViewSlice';
 
 import Drawer from '../../layout/Drawer/Drawer';
-import NewInvoice from '../NewInvoice/NewInvoice';
+import NewInvoice from '../../features/NewInvoice/NewInvoice';
 import Container from '../../layout/Container/Container';
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
 import InvoicesStatusFilters from '../../features/InvoicesStatusFilters/InvoicesStatusFilters';
