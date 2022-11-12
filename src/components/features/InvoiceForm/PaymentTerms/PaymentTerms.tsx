@@ -5,7 +5,7 @@ import Select from '../../../common/Select/Select';
 import Styled from '../Styled';
 
 const PaymentTerms: React.FC = () => {
-  const [paymentTerms, setPaymentTerms] = useState('');
+  const [paymentTerms, setPaymentTerms] = useState(0);
   
   return (
     <Styled.PaymentTermsWrapper>
@@ -13,12 +13,12 @@ const PaymentTerms: React.FC = () => {
         name='payment-terms'
         label='Payment Terms'
         options={[
-          {value: '1d', label: 'Net 1 Day'},
-          {value: '7d', label: 'Net 7 Days'},
-          {value: '14d', label: 'Net 14 Days'},
-          {value: '30d', label: 'Net 30 Days'}
+          {value: 1, label: 'Net 1 Day'},
+          {value: 7, label: 'Net 7 Days'},
+          {value: 14, label: 'Net 14 Days'},
+          {value: 30, label: 'Net 30 Days'}
         ]}
-        defaultOptionValue='30d'
+        defaultOptionValue={30}
         onChange={setPaymentTerms}
       />
     </Styled.PaymentTermsWrapper>
