@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
+
+import {
+  selectFormSenderPostCode,
+  setFormSenderPostCode
+} from '../../../../redux/invoicesViewSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
 import Styled from '../Styled';
 
 const SenderPostCode: React.FC = () => {
-  const [senderPostCode, setSenderPostCode] = useState('');
+  const dispatch = useAppDispatch();
+
+  const senderPostCode: string = useAppSelector(selectFormSenderPostCode);
+
+  const setSenderPostCode = (newValue: string) => {
+    dispatch(setFormSenderPostCode(newValue));
+  };
 
   return (
     <Styled.PostCodeWrapper>
