@@ -266,7 +266,7 @@ export const selectFormClientName = (state: RootState) =>
   state.invoicesView.newInvoiceForm.clientName;
 export const selectFormClientEmail = (state: RootState) =>
   state.invoicesView.newInvoiceForm.clientEmail;
- export const selectFormClientStreetAddress = (state: RootState) =>
+export const selectFormClientStreetAddress = (state: RootState) =>
   state.invoicesView.newInvoiceForm.clientAddress.street;
 export const selectFormClientCity = (state: RootState) =>
   state.invoicesView.newInvoiceForm.clientAddress.city;

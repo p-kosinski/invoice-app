@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
+
+import {
+  selectFormClientName,
+  setFormClientName
+} from '../../../../redux/invoicesViewSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
 import Styled from '../Styled';
 
 const ClientName: React.FC = () => {
-  const [clientName, setClientName] = useState('');
+  const dispatch = useAppDispatch();
+
+  const clientName: string = useAppSelector(selectFormClientName);
+
+  const setClientName = (newValue: string) => {
+    dispatch(setFormClientName(newValue));
+  };
   
   return (
     <Styled.NameWrapper>
