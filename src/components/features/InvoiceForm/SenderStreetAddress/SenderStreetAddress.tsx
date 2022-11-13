@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
+
+import {
+  selectFormSenderStreetAddress,
+  setFormSenderStreetAddress
+} from '../../../../redux/invoicesViewSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
 import Styled from '../Styled';
 
 const SenderStreetAddress: React.FC = () => {
-  const [senderStreetAddress, setSenderStreetAddress] = useState('');
+  const dispatch = useAppDispatch();
+
+  const senderStreetAddress: string =
+    useAppSelector(selectFormSenderStreetAddress);
+
+  const setSenderStreetAddress = (newValue: string) => {
+    dispatch(setFormSenderStreetAddress(newValue));
+  };
 
   return (
     <Styled.StreetAddressWrapper>
