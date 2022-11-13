@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
+
+import {
+  selectFormDescription,
+  setFormDescription
+} from '../../../../redux/invoicesViewSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
 import Styled from '../Styled';
 
 const Description: React.FC = () => {
-  const [description, setDescription] = useState('');
+  const dispatch = useAppDispatch();
+
+  const description: string = useAppSelector(selectFormDescription);
+
+  const setDescription = (newValue: string) => {
+    dispatch(setFormDescription(newValue));
+  };
   
   return (
     <Styled.DescriptionWrapper>
