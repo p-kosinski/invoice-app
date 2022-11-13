@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
+
+import {
+  selectFormClientCountry,
+  setFormClientCountry
+} from '../../../../redux/invoicesViewSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
 import Styled from '../Styled';
 
 const ClientCountry: React.FC = () => {
-  const [clientCountry, setClientCountry] = useState('');
+  const dispatch = useAppDispatch();
+
+  const clientCountry: string = useAppSelector(selectFormClientCountry);
+
+  const setClientCountry = (newValue: string) => {
+    dispatch(setFormClientCountry(newValue));
+  };
   
   return (
     <Styled.CountryWrapper>
