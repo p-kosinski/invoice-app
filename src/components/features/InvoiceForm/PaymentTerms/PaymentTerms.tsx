@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useAppDispatch } from '../../../../hooks/reduxHooks';
+
+import { setFormPaymentTerms } from '../../../../redux/invoicesViewSlice';
 
 import Select from '../../../common/Select/Select';
 
 import Styled from '../Styled';
 
 const PaymentTerms: React.FC = () => {
-  const [paymentTerms, setPaymentTerms] = useState(0);
+  const dispatch = useAppDispatch();
+
+  const setPaymentTerms = (newValue: number) => {
+    dispatch(setFormPaymentTerms(newValue));
+  };
   
   return (
     <Styled.PaymentTermsWrapper>
