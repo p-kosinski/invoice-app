@@ -57,13 +57,7 @@ const initialState: InvoicesViewState = {
     issueDate: '',
     paymentTerms: 0,
     description: '',
-    items: [
-      {
-        name: '',
-        quantity: '1',
-        price: '0.00',
-      },
-    ],
+    items: [],
   },
 };
 
