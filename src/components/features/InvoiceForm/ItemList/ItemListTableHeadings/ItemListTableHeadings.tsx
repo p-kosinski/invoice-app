@@ -1,8 +1,22 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Typography from '../../../../common/Typography/Typography';
 
 import Styled from '../Styled';
+
+const TableHeadingsGrid = styled.div(({ theme }) => css`
+  display: none;
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    display: grid;
+    grid-template-columns: 0.4fr 0.15fr 0.2fr 0.2fr 0.05fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'itemName itemQuantity itemPrice itemTotal itemDelete';
+    color: ${theme.colors.formElements.labelsText};
+    transition: color ${theme.transitionDuration} ease-in-out;
+  }
+`);
 
 const DeleteButtonPlaceholder = styled.div`
   height: 47px;
@@ -10,7 +24,7 @@ const DeleteButtonPlaceholder = styled.div`
 `;
 
 const ItemListTableHeadings: React.FC = () => (
-  <Styled.ItemListTableHeadings>
+  <TableHeadingsGrid>
     <Styled.ItemNameWrapper>
       <Typography variant='body1' element='p'>
         Item Name
@@ -34,7 +48,7 @@ const ItemListTableHeadings: React.FC = () => (
     <Styled.ItemDeleteWrapper>
       <DeleteButtonPlaceholder />
     </Styled.ItemDeleteWrapper>
-  </Styled.ItemListTableHeadings>
+  </TableHeadingsGrid>
 );
 
 export default ItemListTableHeadings;
