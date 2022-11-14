@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 
-import type { Address, ItemsArray } from './invoicesSlice';
+import type { Address } from './invoicesSlice';
 
 export type StatusFilter = 'draft' | 'pending' | 'paid';
 export type StatusFiltersArray = StatusFilter[];
@@ -11,6 +11,14 @@ type EditItemPropertyPayload<T> = {
   newValue: T;
 };
 
+type FormItem = {
+  name: string;
+  quantity: string;
+  price: string;
+};
+
+export type FormItemsArray = FormItem[];
+
 export interface FormState {
   senderAddress: Address;
   clientName: string;
@@ -19,7 +27,7 @@ export interface FormState {
   issueDate: string;
   paymentTerms: number;
   description: string;
-  items: ItemsArray;
+  items: FormItemsArray;
 }
 
 interface InvoicesViewState {
@@ -52,9 +60,8 @@ const initialState: InvoicesViewState = {
     items: [
       {
         name: '',
-        quantity: 1,
-        price: 0.0,
-        total: 0.0,
+        quantity: '1',
+        price: '0.00',
       },
     ],
   },
@@ -167,11 +174,10 @@ export const invoicesViewSlice = createSlice({
     addNewFormItem: (
       state: InvoicesViewState
     ) => {
-      const newItemObject = {
+      const newItemObject: FormItem = {
         name: '',
-        quantity: 1,
-        price: 0.00,
-        total: 0.00,
+        quantity: '1',
+        price: '0.00'
       };
 
       state.newInvoiceForm.items.push(newItemObject);
@@ -197,7 +203,7 @@ export const invoicesViewSlice = createSlice({
     },
     setFormItemQuantityByIndex: (
       state: InvoicesViewState,
-      action: PayloadAction<EditItemPropertyPayload<number>>
+      action: PayloadAction<EditItemPropertyPayload<string>>
     ) => {
       const { index, newValue } = action.payload;
 
@@ -205,20 +211,12 @@ export const invoicesViewSlice = createSlice({
     },
     setFormItemPriceByIndex: (
       state: InvoicesViewState,
-      action: PayloadAction<EditItemPropertyPayload<number>>
+      action: PayloadAction<EditItemPropertyPayload<string>>
     ) => {
       const { index, newValue } = action.payload;
 
       state.newInvoiceForm.items[index].price = newValue;
-    },
-    setFormItemTotalByIndex: (
-      state: InvoicesViewState,
-      action: PayloadAction<EditItemPropertyPayload<number>>
-    ) => {
-      const { index, newValue } = action.payload;
-
-      state.newInvoiceForm.items[index].total = newValue;
-    },
+    }
   },
 });
 
@@ -244,8 +242,7 @@ export const {
   deleteFormItemByIndex,
   setFormItemNameByIndex,
   setFormItemQuantityByIndex,
-  setFormItemPriceByIndex,
-  setFormItemTotalByIndex
+  setFormItemPriceByIndex
 } = invoicesViewSlice.actions;
 
 export const selectStatusFilters = (state: RootState) =>
@@ -293,7 +290,5 @@ export const selectFormItemQuantityByIndex = (state: RootState, i: number) =>
   state.invoicesView.newInvoiceForm.items[i].quantity;
 export const selectFormItemPriceByIndex = (state: RootState, i: number) =>
   state.invoicesView.newInvoiceForm.items[i].price;
-export const selectFormItemTotalByIndex = (state: RootState, i: number) =>
-  state.invoicesView.newInvoiceForm.items[i].total;
 
 export default invoicesViewSlice.reducer;
