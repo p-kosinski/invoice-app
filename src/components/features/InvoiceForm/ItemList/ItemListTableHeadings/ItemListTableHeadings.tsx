@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import Typography from '../../../../common/Typography/Typography';
 
-import Styled from '../Styled';
+import Styled from '../Item/Styled';
 
 const TableHeadingsGrid = styled.div(({ theme }) => css`
   display: none;
