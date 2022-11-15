@@ -16,12 +16,14 @@ type FormItem = {
 
 export type FormItemsArray = FormItem[];
 
+export type ValidationErrors = {
+  blankFields: boolean;
+  noItems: boolean;
+};
+
 interface FormValidationState {
   active: boolean;
-  errors: {
-    blankFields: boolean;
-    noItems: boolean;
-  }
+  errors: ValidationErrors;
 };
 
 interface FormValuesState {
@@ -44,8 +46,8 @@ const initialState: FormState = {
   validation: {
     active: false,
     errors: {
-      blankFields: false,
-      noItems: false,
+      blankFields: true,
+      noItems: true,
     }
   },
   values: {
@@ -74,6 +76,24 @@ export const invoiceFormSlice = createSlice({
   name: 'invoiceForm',
   initialState,
   reducers: {
+    setValidationActive: (
+      state: FormState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.validation.active = action.payload;
+    },
+    setValidationBlankFieldsError: (
+      state: FormState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.validation.errors.blankFields = action.payload;
+    },
+    setValidationNoItemsError: (
+      state: FormState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.validation.errors.noItems = action.payload;
+    },
     setSenderStreetAddress: (
       state: FormState,
       action: PayloadAction<string>
@@ -202,6 +222,9 @@ export const invoiceFormSlice = createSlice({
 });
 
 export const {
+  setValidationActive,
+  setValidationBlankFieldsError,
+  setValidationNoItemsError,
   setSenderStreetAddress,
   setSenderCity,
   setSenderPostCode,
@@ -222,6 +245,11 @@ export const {
   setItemQuantityByIndex,
   setItemPriceByIndex
 } = invoiceFormSlice.actions;
+
+export const selectValidationActive = (state: RootState) =>
+  state.invoiceForm.validation.active;
+export const selectValidationErrors = (state: RootState) =>
+  state.invoiceForm.validation.errors;
 
 export const selectSenderStreetAddress = (state: RootState) =>
   state.invoiceForm.values.senderAddress.street;
