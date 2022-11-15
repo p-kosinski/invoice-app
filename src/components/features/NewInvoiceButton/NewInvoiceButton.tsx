@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../../hooks/reduxHooks';
 
-import { setDrawerOpen } from '../../../redux/invoicesViewSlice';
+import { setDrawerOpen, setRenderForm } from '../../../redux/invoicesViewSlice';
 
 import Button from '../../common/Button/Button';
 
@@ -11,11 +11,18 @@ const NewInvoiceButton: React.FC = () => {
     dispatch(setDrawerOpen(true))
   };
 
+  const mountForm = () => {
+    dispatch(setRenderForm(true))
+  };
+
   return (
     <Button
       variant='newInvoice'
       ariaLabel='create new invoice'
-      onClick={() => openDrawer()}
+      onClick={() => {
+        mountForm();
+        openDrawer();
+      }}
     />
   );
 };

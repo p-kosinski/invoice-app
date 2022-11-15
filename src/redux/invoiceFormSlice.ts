@@ -76,6 +76,7 @@ export const invoiceFormSlice = createSlice({
   name: 'invoiceForm',
   initialState,
   reducers: {
+    resetForm: () => initialState,
     setValidationActive: (
       state: FormState,
       action: PayloadAction<boolean>
@@ -222,6 +223,7 @@ export const invoiceFormSlice = createSlice({
 });
 
 export const {
+  resetForm,
   setValidationActive,
   setValidationBlankFieldsError,
   setValidationNoItemsError,

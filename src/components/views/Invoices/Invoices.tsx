@@ -7,7 +7,7 @@ import {
   selectInvoicesLoadingState
 } from '../../../redux/invoicesSlice';
 import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlice';
-import { selectDrawerOpen } from '../../../redux/invoicesViewSlice';
+import { selectDrawerOpen, selectRenderForm } from '../../../redux/invoicesViewSlice';
 
 import Drawer from '../../layout/Drawer/Drawer';
 import NewInvoice from '../../features/NewInvoice/NewInvoice';
@@ -29,6 +29,8 @@ const Invoices: React.FC = () => {
 
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
+  const renderForm: boolean = useAppSelector(selectRenderForm);
+
   useEffect(() => {
     !invoices.length && dispatch(fetchInvoicesData());
   }, [invoices.length]);
@@ -36,7 +38,7 @@ const Invoices: React.FC = () => {
   return (
     <>
       <Drawer open={drawerOpen}>
-        <NewInvoice />
+        {renderForm && <NewInvoice />}
       </Drawer>
       <Container>
         <section>
