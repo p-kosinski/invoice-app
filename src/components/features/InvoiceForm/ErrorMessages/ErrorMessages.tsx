@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+import { useAppSelector } from '../../../../hooks/reduxHooks';
+
+import { selectValidationErrors } from '../../../../redux/invoiceFormSlice';
+import type { ValidationErrors } from '../../../../redux/invoiceFormSlice';
+
 import Typography from '../../../common/Typography/Typography';
 
 const ErrorMessagesWrapper = styled.div`
@@ -8,15 +13,25 @@ const ErrorMessagesWrapper = styled.div`
   }
 `;
 
-const ErrorMessages: React.FC = () => (
-  <ErrorMessagesWrapper>
-    <Typography variant='errorMsg'>
-      - All fields must be added
-    </Typography>
-    <Typography variant='errorMsg'>
-      - An item must be added
-    </Typography>
-  </ErrorMessagesWrapper>
-);
+const ErrorMessages: React.FC = () => {
+  const errors: ValidationErrors = useAppSelector(selectValidationErrors);
+
+  const { blankFields, noItems } = errors;
+
+  return (
+    <ErrorMessagesWrapper>
+      {blankFields && 
+        <Typography variant='errorMsg'>
+          - All fields must be added
+        </Typography>
+      }
+      {noItems && 
+        <Typography variant='errorMsg'>
+          - An item must be added
+        </Typography>
+      }
+    </ErrorMessagesWrapper>
+  );
+};
 
 export default ErrorMessages;

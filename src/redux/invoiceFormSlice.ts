@@ -46,8 +46,8 @@ const initialState: FormState = {
   validation: {
     active: false,
     errors: {
-      blankFields: true,
-      noItems: true,
+      blankFields: false,
+      noItems: false,
     }
   },
   values: {
