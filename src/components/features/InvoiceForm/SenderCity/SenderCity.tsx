@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
-  selectFormSenderCity,
-  setFormSenderCity
-} from '../../../../redux/invoicesViewSlice';
+  selectSenderCity,
+  setSenderCity
+} from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -12,10 +12,10 @@ import Styled from '../Styled';
 const SenderCity: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const senderCity: string = useAppSelector(selectFormSenderCity);
+  const senderCity: string = useAppSelector(selectSenderCity);
 
-  const setSenderCity = (newValue: string) => {
-    dispatch(setFormSenderCity(newValue));
+  const changeSenderCity = (newValue: string) => {
+    dispatch(setSenderCity(newValue));
   };
   
   return (
@@ -25,7 +25,7 @@ const SenderCity: React.FC = () => {
         name='sender-city'
         label='City'
         value={senderCity}
-        onChange={setSenderCity}
+        onChange={changeSenderCity}
       />
     </Styled.CityWrapper>
   );

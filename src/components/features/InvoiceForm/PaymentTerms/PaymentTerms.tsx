@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../../../hooks/reduxHooks';
 
-import { setFormPaymentTerms } from '../../../../redux/invoicesViewSlice';
+import { setPaymentTerms } from '../../../../redux/invoiceFormSlice';
 
 import Select from '../../../common/Select/Select';
 
@@ -9,8 +9,8 @@ import Styled from '../Styled';
 const PaymentTerms: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const setPaymentTerms = (newValue: number) => {
-    dispatch(setFormPaymentTerms(newValue));
+  const changePaymentTerms = (newValue: number) => {
+    dispatch(setPaymentTerms(newValue));
   };
   
   return (
@@ -25,7 +25,7 @@ const PaymentTerms: React.FC = () => {
           {value: 30, label: 'Net 30 Days'}
         ]}
         defaultOptionValue={30}
-        onChange={setPaymentTerms}
+        onChange={changePaymentTerms}
       />
     </Styled.PaymentTermsWrapper>
   );

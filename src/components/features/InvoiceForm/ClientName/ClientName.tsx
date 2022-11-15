@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
-  selectFormClientName,
-  setFormClientName
-} from '../../../../redux/invoicesViewSlice';
+  selectClientName,
+  setClientName
+} from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -12,10 +12,10 @@ import Styled from '../Styled';
 const ClientName: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const clientName: string = useAppSelector(selectFormClientName);
+  const clientName: string = useAppSelector(selectClientName);
 
-  const setClientName = (newValue: string) => {
-    dispatch(setFormClientName(newValue));
+  const changeClientName = (newValue: string) => {
+    dispatch(setClientName(newValue));
   };
   
   return (
@@ -25,7 +25,7 @@ const ClientName: React.FC = () => {
         name='client-name'
         label={`Client's Name`}
         value={clientName}
-        onChange={setClientName}
+        onChange={changeClientName}
         errorMsg={`can't be empty`}
       />
     </Styled.NameWrapper>

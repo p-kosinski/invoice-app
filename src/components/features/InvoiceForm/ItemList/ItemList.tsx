@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../../../hooks/reduxHooks';
 
-import { selectFormItems } from '../../../../redux/invoicesViewSlice';
-import type { FormItemsArray } from '../../../../redux/invoicesViewSlice';
+import { selectItems } from '../../../../redux/invoiceFormSlice';
+import type { FormItemsArray } from '../../../../redux/invoiceFormSlice';
 
 import Typography from '../../../common/Typography/Typography';
 
@@ -12,7 +12,7 @@ import AddItemButton from './AddItemButton/AddItemButton';
 import Styled from './Styled';
 
 const ItemList: React.FC = () => {
-  const items: FormItemsArray = useAppSelector(selectFormItems);
+  const items: FormItemsArray = useAppSelector(selectItems);
 
   return (
     <Styled.ItemListWrapper>

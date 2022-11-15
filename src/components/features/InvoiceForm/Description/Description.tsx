@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
-  selectFormDescription,
-  setFormDescription
-} from '../../../../redux/invoicesViewSlice';
+  selectDescription,
+  setDescription
+} from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -12,10 +12,10 @@ import Styled from '../Styled';
 const Description: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const description: string = useAppSelector(selectFormDescription);
+  const description: string = useAppSelector(selectDescription);
 
-  const setDescription = (newValue: string) => {
-    dispatch(setFormDescription(newValue));
+  const changeDescription = (newValue: string) => {
+    dispatch(setDescription(newValue));
   };
   
   return (
@@ -25,7 +25,7 @@ const Description: React.FC = () => {
         name='description'
         label='Project Description'
         value={description}
-        onChange={setDescription}
+        onChange={changeDescription}
         errorMsg={`can't be empty`}
         placeholder='e.g. Graphic Design Service'
       />

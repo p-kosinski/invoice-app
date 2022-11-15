@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../../../../hooks/reduxHooks';
 
-import { addNewFormItem } from '../../../../../redux/invoicesViewSlice';
+import { addNewItem } from '../../../../../redux/invoiceFormSlice';
 
 import Button from '../../../../common/Button/Button';
 
@@ -14,14 +14,14 @@ const AddItemButtonWrapper = styled.div`
 const AddItemButton: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const addNewItem = () => dispatch(addNewFormItem());
+  const addItem = () => dispatch(addNewItem());
 
   return (
     <AddItemButtonWrapper>
       <Button
         variant='add'
         ariaLabel='add new item'
-        onClick={() => addNewItem()}
+        onClick={() => addItem()}
       >
         Add New Item
       </Button>

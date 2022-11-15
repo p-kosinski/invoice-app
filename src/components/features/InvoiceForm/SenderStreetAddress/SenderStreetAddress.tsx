@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
-  selectFormSenderStreetAddress,
-  setFormSenderStreetAddress
-} from '../../../../redux/invoicesViewSlice';
+  selectSenderStreetAddress,
+  setSenderStreetAddress
+} from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -13,10 +13,10 @@ const SenderStreetAddress: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const senderStreetAddress: string =
-    useAppSelector(selectFormSenderStreetAddress);
+    useAppSelector(selectSenderStreetAddress);
 
-  const setSenderStreetAddress = (newValue: string) => {
-    dispatch(setFormSenderStreetAddress(newValue));
+  const changeSenderStreetAddress = (newValue: string) => {
+    dispatch(setSenderStreetAddress(newValue));
   };
 
   return (
@@ -26,7 +26,7 @@ const SenderStreetAddress: React.FC = () => {
         name='sender-street-address'
         label='Street Address'
         value={senderStreetAddress}
-        onChange={setSenderStreetAddress}
+        onChange={changeSenderStreetAddress}
         errorMsg={`can't be empty`}
       />
     </Styled.StreetAddressWrapper>

@@ -6,9 +6,9 @@ dayjs.extend(utc);
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
-  selectFormIssueDate,
-  setFormIssueDate
-} from '../../../../redux/invoicesViewSlice';
+  selectIssueDate,
+  setIssueDate
+} from '../../../../redux/invoiceFormSlice';
 
 import DatePicker from '../../../common/DatePicker/DatePicker';
 
@@ -17,14 +17,14 @@ import Styled from '../Styled';
 const IssueDate: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const date: string = useAppSelector(selectFormIssueDate);
+  const date: string = useAppSelector(selectIssueDate);
 
-  const setDate = (newValue: string) => {
-    dispatch(setFormIssueDate(newValue));
+  const changeDate = (newValue: string) => {
+    dispatch(setIssueDate(newValue));
   };
 
   useEffect(() => {
-    setDate(dayjs.utc().toISOString());
+    changeDate(dayjs.utc().toISOString());
   }, []);
   
   return (
@@ -33,7 +33,7 @@ const IssueDate: React.FC = () => {
         name='invoice-date'
         label='Invoice Date'
         selectedDate={date}
-        onChange={setDate}
+        onChange={changeDate}
       />
     </Styled.DateWrapper>
   );

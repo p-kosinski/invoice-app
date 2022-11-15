@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
-  selectFormClientEmail,
-  setFormClientEmail
-} from '../../../../redux/invoicesViewSlice';
+  selectClientEmail,
+  setClientEmail
+} from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -12,10 +12,10 @@ import Styled from '../Styled';
 const ClientEmail: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const clientEmail: string = useAppSelector(selectFormClientEmail);
+  const clientEmail: string = useAppSelector(selectClientEmail);
 
-  const setClientEmail = (newValue: string) => {
-    dispatch(setFormClientEmail(newValue));
+  const changeClientEmail = (newValue: string) => {
+    dispatch(setClientEmail(newValue));
   };
   
   return (
@@ -25,7 +25,7 @@ const ClientEmail: React.FC = () => {
         name='client-email'
         label={`Client's Email`}
         value={clientEmail}
-        onChange={setClientEmail}
+        onChange={changeClientEmail}
         errorMsg={`can't be empty`}
       />
     </Styled.EmailWrapper>

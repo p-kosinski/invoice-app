@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
-  selectFormClientCountry,
-  setFormClientCountry
-} from '../../../../redux/invoicesViewSlice';
+  selectClientCountry,
+  setClientCountry
+} from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -12,10 +12,10 @@ import Styled from '../Styled';
 const ClientCountry: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const clientCountry: string = useAppSelector(selectFormClientCountry);
+  const clientCountry: string = useAppSelector(selectClientCountry);
 
-  const setClientCountry = (newValue: string) => {
-    dispatch(setFormClientCountry(newValue));
+  const changeClientCountry = (newValue: string) => {
+    dispatch(setClientCountry(newValue));
   };
   
   return (
@@ -25,7 +25,7 @@ const ClientCountry: React.FC = () => {
         name='client-country'
         label='Country'
         value={clientCountry}
-        onChange={setClientCountry}
+        onChange={changeClientCountry}
       />
     </Styled.CountryWrapper>
   );

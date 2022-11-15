@@ -3,14 +3,14 @@ import { useMemo } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../../hooks/reduxHooks';
 
 import {
-  selectFormItemNameByIndex,
-  selectFormItemQuantityByIndex,
-  selectFormItemPriceByIndex,
-  setFormItemNameByIndex,
-  setFormItemQuantityByIndex,
-  setFormItemPriceByIndex,
-  deleteFormItemByIndex
-} from '../../../../../redux/invoicesViewSlice';
+  selectItemNameByIndex,
+  selectItemQuantityByIndex,
+  selectItemPriceByIndex,
+  setItemNameByIndex,
+  setItemQuantityByIndex,
+  setItemPriceByIndex,
+  deleteItemByIndex
+} from '../../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../../common/TextField/TextField';
 import Typography from '../../../../common/Typography/Typography';
@@ -27,27 +27,27 @@ const Item: React.FC<Props> = ({ index }) => {
   const dispatch = useAppDispatch();
 
   const itemName: string = useAppSelector((state) => 
-    selectFormItemNameByIndex(state, index)
+    selectItemNameByIndex(state, index)
   );
   const itemQuantity: string = useAppSelector((state) => 
-    selectFormItemQuantityByIndex(state, index)
+    selectItemQuantityByIndex(state, index)
   );
   const itemPrice: string = useAppSelector((state) => 
-    selectFormItemPriceByIndex(state, index)
+    selectItemPriceByIndex(state, index)
   );
 
   const setItemName = (newValue: string) => {
-    dispatch(setFormItemNameByIndex({ index: index, newValue: newValue }));
+    dispatch(setItemNameByIndex({ index: index, newValue: newValue }));
   };
   const setItemQuantity = (newValue: string) => {
-    dispatch(setFormItemQuantityByIndex({ index: index, newValue: newValue }));
+    dispatch(setItemQuantityByIndex({ index: index, newValue: newValue }));
   };
   const setItemPrice = (newValue: string) => {
-    dispatch(setFormItemPriceByIndex({ index: index, newValue: newValue }));
+    dispatch(setItemPriceByIndex({ index: index, newValue: newValue }));
   };
 
   const deleteItem = () => {
-    dispatch(deleteFormItemByIndex(index));
+    dispatch(deleteItemByIndex(index));
   };
 
   const itemTotal = useMemo(() => {

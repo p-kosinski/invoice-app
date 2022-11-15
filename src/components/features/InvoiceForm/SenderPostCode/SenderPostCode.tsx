@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
-  selectFormSenderPostCode,
-  setFormSenderPostCode
-} from '../../../../redux/invoicesViewSlice';
+  selectSenderPostCode,
+  setSenderPostCode
+} from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -12,10 +12,10 @@ import Styled from '../Styled';
 const SenderPostCode: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const senderPostCode: string = useAppSelector(selectFormSenderPostCode);
+  const senderPostCode: string = useAppSelector(selectSenderPostCode);
 
-  const setSenderPostCode = (newValue: string) => {
-    dispatch(setFormSenderPostCode(newValue));
+  const changeSenderPostCode = (newValue: string) => {
+    dispatch(setSenderPostCode(newValue));
   };
 
   return (
@@ -25,7 +25,7 @@ const SenderPostCode: React.FC = () => {
         name='sender-post-code'
         label='Post Code'
         value={senderPostCode}
-        onChange={setSenderPostCode}
+        onChange={changeSenderPostCode}
       />
     </Styled.PostCodeWrapper>
   );
