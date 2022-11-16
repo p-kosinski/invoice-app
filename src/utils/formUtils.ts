@@ -1,3 +1,7 @@
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
+
 export const generateId = (): string => {
   const generateRandomString = (characters: string, length: number): string => {
     let result = '';
@@ -27,4 +31,11 @@ export const generateId = (): string => {
   const newId = `${idLetters}${idNumbers}`;
 
   return newId;
+};
+
+export const calculatePaymentDue = (
+  issueDate: string,
+  daysForPayment: number
+): string => {
+  return dayjs.utc(issueDate).add(daysForPayment, 'day').format('YYYY-MM-DD');
 };
