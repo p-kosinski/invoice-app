@@ -26,7 +26,7 @@ interface FormValidationState {
   errors: ValidationErrors;
 };
 
-interface FormValuesState {
+export interface FormValuesState {
   senderAddress: Address;
   clientName: string;
   clientEmail: string;
@@ -252,6 +252,8 @@ export const selectValidationActive = (state: RootState) =>
   state.invoiceForm.validation.active;
 export const selectValidationErrors = (state: RootState) =>
   state.invoiceForm.validation.errors;
+
+export const selectFormValues = (state: RootState) => state.invoiceForm.values;
 
 export const selectSenderStreetAddress = (state: RootState) =>
   state.invoiceForm.values.senderAddress.street;
