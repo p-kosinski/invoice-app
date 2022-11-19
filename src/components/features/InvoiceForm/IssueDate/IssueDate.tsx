@@ -9,6 +9,7 @@ import {
   selectIssueDate,
   setIssueDate
 } from '../../../../redux/invoiceFormSlice';
+import { selectDrawerOpen } from '../../../../redux/invoicesViewSlice';
 
 import DatePicker from '../../../common/DatePicker/DatePicker';
 
@@ -18,6 +19,7 @@ const IssueDate: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const date: string = useAppSelector(selectIssueDate);
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
   const changeDate = (newValue: string) => {
     dispatch(setIssueDate(newValue));
@@ -26,6 +28,10 @@ const IssueDate: React.FC = () => {
   useEffect(() => {
     changeDate(dayjs.utc().toISOString());
   }, []);
+
+  useEffect(() => {
+    drawerOpen && changeDate(dayjs.utc().toISOString());
+  }, [drawerOpen]);
   
   return (
     <Styled.DateWrapper>

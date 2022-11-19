@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../../../hooks/reduxHooks';
 
-import { setDrawerOpen, setRenderForm } from '../../../../redux/invoicesViewSlice';
+import { setDrawerOpen } from '../../../../redux/invoicesViewSlice';
 import { resetForm } from '../../../../redux/invoiceFormSlice';
 
 import Button from '../../../common/Button/Button';
@@ -16,17 +16,12 @@ const DiscardButton: React.FC = () => {
     dispatch(resetForm());
   };
 
-  const unmountForm = () => {
-    dispatch(setRenderForm(false));
-  };
-
   return (
     <Button
       variant='discard'
       onClick={() => {
         closeDrawer();
         resetFormState();
-        unmountForm();
       }}
     >
       Discard
