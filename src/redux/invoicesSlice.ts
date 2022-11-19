@@ -33,9 +33,9 @@ export interface Invoice {
   clientName: string;
   clientEmail: string;
   status: Status;
-  senderAddress: Address,
-  clientAddress: Address,
-  items: ItemsArray,
+  senderAddress: Address;
+  clientAddress: Address;
+  items: ItemsArray;
   total: number;
 };
 
@@ -50,6 +50,7 @@ interface InvoicesState {
   loading: ThunkStatusState;
   statusChanging: ThunkStatusState;
   deleting: ThunkStatusState;
+  saving: ThunkStatusState;
   data: InvoicesData;
 };
 
@@ -64,9 +65,13 @@ const initialState: InvoicesState = {
   },
   deleting: {
     active: false,
-    error: false
+    error: false,
   },
-  data: [],
+  saving: {
+    active: false,
+    error: false,
+  },
+  data: []
 };
 
 export const fetchInvoicesData = createAsyncThunk(
@@ -108,6 +113,19 @@ export const deleteInvoice = createAsyncThunk(
       headers: {
         'Content-type': 'application/json',
       },
+    }).then((res) => res.json());
+  }
+);
+
+export const saveInvoice = createAsyncThunk(
+  'invoices/saveInvoice',
+  async (data: Invoice) => {
+    return fetch(`${api.url}/${api.endpoints.invoices}`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data)
     }).then((res) => res.json());
   }
 );
@@ -166,6 +184,19 @@ export const invoicesSlice = createSlice({
     builder.addCase(deleteInvoice.rejected, (state, action) => {
       state.deleting.active = false;
       state.deleting.error = true;
+    })
+    builder.addCase(saveInvoice.pending, (state, action) => {
+      state.saving.active = true;
+      state.saving.error = false;
+    }),
+    builder.addCase(saveInvoice.fulfilled, (state, action) => {
+      state.data.push(action.payload);
+      state.saving.active = false;
+      state.saving.error = false;
+    }),
+    builder.addCase(saveInvoice.rejected, (state, action) => {
+      state.saving.active = false;
+      state.saving.error = true;
     })
   }
 });
