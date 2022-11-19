@@ -2,10 +2,13 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
-import type { FormItemsArray } from '../redux/invoiceFormSlice';
-import type { ItemsArray, Item } from '../redux/invoicesSlice';
+import type {
+  FormItemsArray,
+  FormValuesState
+} from '../redux/invoiceFormSlice';
+import type { ItemsArray, Item, Invoice } from '../redux/invoicesSlice';
 
-export const generateId = (): string => {
+const generateId = (): string => {
   const generateRandomString = (characters: string, length: number): string => {
     let result = '';
 
@@ -36,7 +39,7 @@ export const generateId = (): string => {
   return newId;
 };
 
-export const calculatePaymentDue = (
+const calculatePaymentDue = (
   issueDate: string,
   daysForPayment: number
 ): string => {
@@ -75,4 +78,42 @@ export const prepareItemsData = (formItems: FormItemsArray): ItemsData => {
   };
 
   return itemsData;
+};
+
+export const prepareInvoiceDataObject = (
+  status: 'draft' | 'pending',
+  formValues: FormValuesState
+): Invoice => {
+  const {
+    senderAddress,
+    clientName,
+    clientEmail,
+    clientAddress,
+    issueDate,
+    paymentTerms,
+    description,
+    items
+  } = formValues;
+
+  const newId = generateId();
+  const creationDate = dayjs.utc(issueDate).format('YYYY-MM-DD');
+  const paymentDue = calculatePaymentDue(issueDate, paymentTerms);
+  const { itemsArray, itemsTotal } = prepareItemsData(items);
+
+  const invoiceDataObject: Invoice = {
+    id: newId,
+    createdAt: creationDate,
+    paymentDue: paymentDue,
+    description: description,
+    paymentTerms: paymentTerms,
+    clientName: clientName,
+    clientEmail: clientEmail,
+    status: status,
+    senderAddress: senderAddress,
+    clientAddress: clientAddress,
+    items: itemsArray,
+    total: itemsTotal
+  };
+
+  return invoiceDataObject;
 };
