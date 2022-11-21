@@ -68,48 +68,13 @@ const ItemDeleteWrapper = styled.div`
   align-items: end;
 `;
 
-const DeleteButton = styled.button(({ theme }) => css`
-  border: none;
-  padding: 15.5px 12px;
-  background-color: transparent;
-  border-radius: 4px;
-  outline: 1px solid transparent;
-  cursor: pointer;
-  transition: outline ${theme.transitionDuration} ease-in-out;
-
-  svg {
-    display: block;
-    fill: ${theme.colors.lightGrey.main};
-    transition: fill ${theme.transitionDuration} ease-in-out;
-  }
-
-  &:active {
-    svg {
-      fill: ${theme.colors.error.main};
-    }
-  }
-
-  :focus-visible {
-    outline: 1px solid ${theme.colors.accent.main};
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      svg {
-        fill: ${theme.colors.error.main};
-      }
-    }
-  }
-`);
-
 const Styled = {
   ItemForm: ItemForm,
   ItemNameWrapper: ItemNameWrapper,
   ItemQuantityWrapper: ItemQuantityWrapper,
   ItemPriceWrapper: ItemPriceWrapper,
   ItemTotalWrapper: ItemTotalWrapper,
-  ItemDeleteWrapper: ItemDeleteWrapper,
-  DeleteButton: DeleteButton,
+  ItemDeleteWrapper: ItemDeleteWrapper
 };
 
 export default Styled;
