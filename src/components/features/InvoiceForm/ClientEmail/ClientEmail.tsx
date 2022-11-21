@@ -26,6 +26,7 @@ const ClientEmail: React.FC = () => {
         label={`Client's Email`}
         value={clientEmail}
         onChange={changeClientEmail}
+        invalid={!clientEmail.length}
         errorMsg={`can't be empty`}
       />
     </Styled.EmailWrapper>

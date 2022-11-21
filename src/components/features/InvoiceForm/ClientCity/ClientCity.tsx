@@ -26,6 +26,7 @@ const ClientCity: React.FC = () => {
         label='City'
         value={clientCity}
         onChange={changeClientCity}
+        invalid={!clientCity.length}
       />
     </Styled.CityWrapper>
   );

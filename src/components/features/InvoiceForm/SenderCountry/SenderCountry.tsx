@@ -26,6 +26,7 @@ const SenderCountry: React.FC = () => {
         label='Country'
         value={senderCountry}
         onChange={changeSenderCountry}
+        invalid={!senderCountry.lenght}
       />
     </Styled.CountryWrapper>
   );

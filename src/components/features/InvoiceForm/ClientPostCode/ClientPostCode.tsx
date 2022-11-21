@@ -26,6 +26,7 @@ const ClientPostCode: React.FC = () => {
         label='Post Code'
         value={clientPostCode}
         onChange={changeClientPostCode}
+        invalid={!clientPostCode.length}
       />
     </Styled.PostCodeWrapper>
   );

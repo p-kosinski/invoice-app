@@ -26,6 +26,7 @@ const SenderCity: React.FC = () => {
         label='City'
         value={senderCity}
         onChange={changeSenderCity}
+        invalid={!senderCity.length}
       />
     </Styled.CityWrapper>
   );

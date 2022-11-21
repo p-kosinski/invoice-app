@@ -22,6 +22,8 @@ import ErrorMessages from './ErrorMessages/ErrorMessages';
 
 import Styled from './Styled';
 
+/* [TO DO] Add UI validation in input subcomponents */
+
 const InvoiceForm: React.FC = () => (
   <>
     <form>

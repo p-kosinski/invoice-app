@@ -26,6 +26,7 @@ const ClientName: React.FC = () => {
         label={`Client's Name`}
         value={clientName}
         onChange={changeClientName}
+        invalid={!clientName.length}
         errorMsg={`can't be empty`}
       />
     </Styled.NameWrapper>

@@ -73,6 +73,7 @@ const Item: React.FC<Props> = ({ index }) => {
             label='Item Name'
             value={itemName}
             onChange={setItemName}
+            invalid={!itemName.length}
             errorMsg={`can't be empty`}
             showLabelOnlyOnMobile
           />
@@ -84,6 +85,7 @@ const Item: React.FC<Props> = ({ index }) => {
             label='Qty.'
             value={itemQuantity}
             onChange={setItemQuantity}
+            invalid={!itemQuantity.length}
             showLabelOnlyOnMobile
           />
         </Styled.ItemQuantityWrapper>
@@ -94,6 +96,7 @@ const Item: React.FC<Props> = ({ index }) => {
             label='Price'
             value={itemPrice}
             onChange={setItemPrice}
+            invalid={!itemPrice.length}
             showLabelOnlyOnMobile
           />
         </Styled.ItemPriceWrapper>

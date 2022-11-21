@@ -27,6 +27,7 @@ const ClientStreetAddress: React.FC = () => {
         label='Street Address'
         value={clientStreetAddress}
         onChange={changeClientStreetAddress}
+        invalid={!clientStreetAddress.length}
         errorMsg={`can't be empty`}
       />
     </Styled.StreetAddressWrapper>

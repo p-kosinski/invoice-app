@@ -26,8 +26,9 @@ const Description: React.FC = () => {
         label='Project Description'
         value={description}
         onChange={changeDescription}
-        errorMsg={`can't be empty`}
         placeholder='e.g. Graphic Design Service'
+        invalid={!description.length}
+        errorMsg={`can't be empty`}
       />
     </Styled.DescriptionWrapper>
   );
