@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useAppSelector } from '../../../../hooks/reduxHooks';
 
 import { selectValidationErrors } from '../../../../redux/invoiceFormSlice';
-import type { ValidationErrors } from '../../../../redux/invoiceFormSlice';
+import type { FormValidationErrors } from '../../../../redux/invoiceFormSlice';
 
 import Typography from '../../../common/Typography/Typography';
 
@@ -14,9 +14,9 @@ const ErrorMessagesWrapper = styled.div`
 `;
 
 const ErrorMessages: React.FC = () => {
-  const errors: ValidationErrors = useAppSelector(selectValidationErrors);
+  const validationErrors: FormValidationErrors = useAppSelector(selectValidationErrors);
 
-  const { blankFields, noItems } = errors;
+  const { blankFields, noItems } = validationErrors;
 
   return (
     <ErrorMessagesWrapper>

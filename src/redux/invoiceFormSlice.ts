@@ -16,14 +16,9 @@ type FormItem = {
 
 export type FormItemsArray = FormItem[];
 
-export type ValidationErrors = {
+export type FormValidationErrors = {
   blankFields: boolean;
   noItems: boolean;
-};
-
-interface FormValidationState {
-  active: boolean;
-  errors: ValidationErrors;
 };
 
 export interface FormValuesState {
@@ -38,17 +33,14 @@ export interface FormValuesState {
 };
 
 interface FormState {
-  validation: FormValidationState;
+  validationErrors: FormValidationErrors;
   values: FormValuesState;
 };
 
 const initialState: FormState = {
-  validation: {
-    active: false,
-    errors: {
-      blankFields: false,
-      noItems: false,
-    }
+  validationErrors: {
+    blankFields: false,
+    noItems: false,
   },
   values: {
     senderAddress: {
@@ -77,23 +69,17 @@ export const invoiceFormSlice = createSlice({
   initialState,
   reducers: {
     resetForm: () => initialState,
-    setValidationActive: (
-      state: FormState,
-      action: PayloadAction<boolean>
-    ) => {
-      state.validation.active = action.payload;
-    },
     setValidationBlankFieldsError: (
       state: FormState,
       action: PayloadAction<boolean>
     ) => {
-      state.validation.errors.blankFields = action.payload;
+      state.validationErrors.blankFields = action.payload;
     },
     setValidationNoItemsError: (
       state: FormState,
       action: PayloadAction<boolean>
     ) => {
-      state.validation.errors.noItems = action.payload;
+      state.validationErrors.noItems = action.payload;
     },
     setSenderStreetAddress: (
       state: FormState,
@@ -224,7 +210,6 @@ export const invoiceFormSlice = createSlice({
 
 export const {
   resetForm,
-  setValidationActive,
   setValidationBlankFieldsError,
   setValidationNoItemsError,
   setSenderStreetAddress,
@@ -248,10 +233,8 @@ export const {
   setItemPriceByIndex
 } = invoiceFormSlice.actions;
 
-export const selectValidationActive = (state: RootState) =>
-  state.invoiceForm.validation.active;
 export const selectValidationErrors = (state: RootState) =>
-  state.invoiceForm.validation.errors;
+  state.invoiceForm.validationErrors;
 
 export const selectFormValues = (state: RootState) => state.invoiceForm.values;
 
