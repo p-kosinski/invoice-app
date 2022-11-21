@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 import { assertNotNull } from '../../../utils/typeUtils';
 
@@ -19,6 +19,7 @@ type Props = {
   showLabelOnlyOnMobile?: boolean;
   value: string;
   onChange: (value: string) => any;
+  onBlur?: () => any;
 };
 
 const TextField: React.FC<Props> = ({
@@ -32,10 +33,9 @@ const TextField: React.FC<Props> = ({
   errorMsg,
   showLabelOnlyOnMobile,
   value,
-  onChange
+  onChange,
+  onBlur
 }) => {
-  const [validate, setValidate] = useState(false);
-  
   const handleNumericInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     let inputValue = event.target.value;
     inputValue = inputValue.replace(/\D/g, '');
@@ -77,13 +77,13 @@ const TextField: React.FC<Props> = ({
   return (
     <Styled.Wrapper>
       <Styled.TextWrapper $showLabelOnlyOnMobile={showLabelOnlyOnMobile}>
-        <Styled.Label htmlFor={name} $invalid={validate && invalid}>
+        <Styled.Label htmlFor={name} $invalid={invalid}>
           <Typography variant='body1' element='span'>
             {label}
           </Typography>
         </Styled.Label>
         {errorMsg &&
-          <Styled.ErrorMsg $invalid={validate && invalid}>
+          <Styled.ErrorMsg $invalid={invalid}>
             <Typography variant='body1' element='p'>
               {errorMsg}
             </Typography>
@@ -97,12 +97,12 @@ const TextField: React.FC<Props> = ({
             name={name}
             id={name}
             aria-label={ariaLabel}
-            aria-invalid={validate && invalid}
+            aria-invalid={invalid}
             placeholder={placeholder}
             required={required}
             value={value}
             onChange={(event) => onChange(event.target.value)}
-            onBlur={() => setValidate(true)}
+            onBlur={() => onBlur && onBlur()}
           />
         </>
       }
@@ -116,13 +116,13 @@ const TextField: React.FC<Props> = ({
             name={name}
             id={name}
             aria-label={ariaLabel}
-            aria-invalid={validate && invalid}
+            aria-invalid={invalid}
             required={required}
             value={value}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
               handleNumericInputChange(event);
             }}
-            onBlur={() => setValidate(true)}
+            onBlur={() => onBlur && onBlur()}
           />
         </>
       }
@@ -135,13 +135,13 @@ const TextField: React.FC<Props> = ({
             name={name}
             id={name}
             aria-label={ariaLabel}
-            aria-invalid={validate && invalid}
+            aria-invalid={invalid}
             required={required}
             value={value}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
               handleDecimalInputChange(event);
             }}
-            onBlur={() => setValidate(true)}
+            onBlur={() => onBlur && onBlur()}
           />
         </>
       }

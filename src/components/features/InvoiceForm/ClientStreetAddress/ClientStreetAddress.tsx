@@ -1,9 +1,14 @@
+import { useState, useEffect } from 'react';
+
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
   selectClientStreetAddress,
   setClientStreetAddress
 } from '../../../../redux/invoiceFormSlice';
+
+import { selectInvoiceSavingSuccess } from '../../../../redux/invoicesSlice';
+import { selectValidationActive } from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -14,10 +19,19 @@ const ClientStreetAddress: React.FC = () => {
 
   const clientStreetAddress: string =
     useAppSelector(selectClientStreetAddress);
+  const invoiceSavingSuccess: boolean = 
+    useAppSelector(selectInvoiceSavingSuccess);
+  const validationActive: boolean = useAppSelector(selectValidationActive);
 
   const changeClientStreetAddress = (newValue: string) => {
     dispatch(setClientStreetAddress(newValue));
   };
+
+  const [validate, setValidate] = useState(false);
+
+  useEffect(() => {
+    invoiceSavingSuccess && setValidate(false);
+  }, [invoiceSavingSuccess]);
   
   return (
     <Styled.StreetAddressWrapper>
@@ -27,7 +41,8 @@ const ClientStreetAddress: React.FC = () => {
         label='Street Address'
         value={clientStreetAddress}
         onChange={changeClientStreetAddress}
-        invalid={!clientStreetAddress.length}
+        onBlur={() => setValidate(true)}
+        invalid={(validate || validationActive) && !clientStreetAddress.length}
         errorMsg={`can't be empty`}
       />
     </Styled.StreetAddressWrapper>

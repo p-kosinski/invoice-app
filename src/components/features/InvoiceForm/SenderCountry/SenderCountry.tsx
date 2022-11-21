@@ -1,9 +1,13 @@
+import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
   selectSenderCountry,
   setSenderCountry
 } from '../../../../redux/invoiceFormSlice';
+
+import { selectInvoiceSavingSuccess } from '../../../../redux/invoicesSlice';
+import { selectValidationActive } from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -13,10 +17,19 @@ const SenderCountry: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const senderCountry: string = useAppSelector(selectSenderCountry);
+  const invoiceSavingSuccess: boolean = 
+    useAppSelector(selectInvoiceSavingSuccess);
+  const validationActive: boolean = useAppSelector(selectValidationActive);
 
   const changeSenderCountry = (newValue: string) => {
     dispatch(setSenderCountry(newValue));
   };
+
+  const [validate, setValidate] = useState(false);
+
+  useEffect(() => {
+    invoiceSavingSuccess && setValidate(false);
+  }, [invoiceSavingSuccess]);
   
   return (
     <Styled.CountryWrapper>
@@ -26,7 +39,8 @@ const SenderCountry: React.FC = () => {
         label='Country'
         value={senderCountry}
         onChange={changeSenderCountry}
-        invalid={!senderCountry.length}
+        onBlur={() => setValidate(true)}
+        invalid={(validate || validationActive) && !senderCountry.length}
       />
     </Styled.CountryWrapper>
   );

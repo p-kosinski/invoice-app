@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 import {
   selectFormValues,
   resetForm,
+  setValidationActive,
   setValidationBlankFieldsError,
   setValidationNoItemsError
 } from '../../../../redux/invoiceFormSlice';
@@ -32,6 +33,10 @@ const SaveAndSendButton: React.FC = () => {
 
   const closeDrawer = () => {
     dispatch(setDrawerOpen(false));
+  };
+
+  const changeValidationActive = (value: boolean) => {
+    dispatch(setValidationActive(value));
   };
 
   const changeValidationBlankFieldsError = (value: boolean) => {
@@ -84,6 +89,8 @@ const SaveAndSendButton: React.FC = () => {
         validateFormStringValue(addressField);
       }
     };
+
+    changeValidationActive(true);
 
     changeValidationBlankFieldsError(false);
     changeValidationNoItemsError(false);

@@ -1,9 +1,14 @@
+import { useState, useEffect } from 'react';
+
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
 import {
   selectSenderCity,
   setSenderCity
 } from '../../../../redux/invoiceFormSlice';
+
+import { selectInvoiceSavingSuccess } from '../../../../redux/invoicesSlice';
+import { selectValidationActive } from '../../../../redux/invoiceFormSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -13,10 +18,19 @@ const SenderCity: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const senderCity: string = useAppSelector(selectSenderCity);
+  const invoiceSavingSuccess: boolean = 
+    useAppSelector(selectInvoiceSavingSuccess);
+  const validationActive: boolean = useAppSelector(selectValidationActive);
 
   const changeSenderCity = (newValue: string) => {
     dispatch(setSenderCity(newValue));
   };
+
+  const [validate, setValidate] = useState(false);
+
+  useEffect(() => {
+    invoiceSavingSuccess && setValidate(false);
+  }, [invoiceSavingSuccess]);
   
   return (
     <Styled.CityWrapper>
@@ -26,7 +40,8 @@ const SenderCity: React.FC = () => {
         label='City'
         value={senderCity}
         onChange={changeSenderCity}
-        invalid={!senderCity.length}
+        onBlur={() => setValidate(true)}
+        invalid={(validate || validationActive) && !senderCity.length}
       />
     </Styled.CityWrapper>
   );

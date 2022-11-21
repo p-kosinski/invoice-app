@@ -1,4 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction
+} from '@reduxjs/toolkit';
 import type { RootState } from './store';
 import type { StatusFiltersArray } from './invoicesViewSlice';
 
@@ -46,11 +50,15 @@ export interface ThunkStatusState {
   error: boolean;
 };
 
+export interface ThunkStatusWithSuccessState extends ThunkStatusState {
+  success: boolean;
+};
+
 interface InvoicesState {
   loading: ThunkStatusState;
   statusChanging: ThunkStatusState;
   deleting: ThunkStatusState;
-  saving: ThunkStatusState;
+  saving: ThunkStatusWithSuccessState;
   data: InvoicesData;
 };
 
@@ -70,6 +78,7 @@ const initialState: InvoicesState = {
   saving: {
     active: false,
     error: false,
+    success: false,
   },
   data: []
 };
@@ -133,7 +142,14 @@ export const saveInvoice = createAsyncThunk(
 export const invoicesSlice = createSlice({
   name: 'invoices',
   initialState,
-  reducers: {},
+  reducers: {
+    setInvoiceSavingSuccess: (
+      state: InvoicesState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.saving.success = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchInvoicesData.pending, (state, action) => {
       state.loading.active = true;
@@ -188,24 +204,32 @@ export const invoicesSlice = createSlice({
     builder.addCase(saveInvoice.pending, (state, action) => {
       state.saving.active = true;
       state.saving.error = false;
+      state.saving.success = false;
     }),
     builder.addCase(saveInvoice.fulfilled, (state, action) => {
       state.data.push(action.payload);
       state.saving.active = false;
       state.saving.error = false;
+      state.saving.success = true;
     }),
     builder.addCase(saveInvoice.rejected, (state, action) => {
       state.saving.active = false;
       state.saving.error = true;
+      state.saving.success = false;
     })
   }
 });
+
+export const { setInvoiceSavingSuccess } = invoicesSlice.actions;
 
 export const selectInvoicesData = (state: RootState) => state.invoices.data;
 
 export const selectInvoicesLoadingState = (state: RootState) => state.invoices.loading;
 export const selectInvoiceStatusChangingState = (state: RootState) => state.invoices.statusChanging;
 export const selectInvoiceDeletionState = (state: RootState) => state.invoices.deleting;
+
+export const selectInvoiceSavingState = (state: RootState) => state.invoices.saving;
+export const selectInvoiceSavingSuccess = (state: RootState) => state.invoices.saving.success;
 
 export const selectInvoiceCreationDateById = (state: RootState, id: string) => {
   const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
