@@ -16,7 +16,6 @@ const ErrorMessagesWrapper = styled.div`
 type ErrorMessageProps = {
   theme: DefaultTheme;
   $show?: boolean;
-  $delay?: boolean;
 };
 
 const ErrorMessage = styled.div<ErrorMessageProps>(
