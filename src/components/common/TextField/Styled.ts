@@ -63,6 +63,7 @@ const Input = styled.input(({ theme }) => css`
   background-color: ${theme.colors.formElements.background};
   border: 1px solid ${theme.colors.formElements.outline};
   border-radius: 4px;
+  outline: 1px solid transparent;
   font-family: ${theme.font.family};
   font-weight: ${theme.font.weights.bold};
   font-size: ${theme.typography.fontSizes.s};

@@ -28,6 +28,7 @@ const Select = styled.button(({ theme }) => css`
   color: ${theme.colors.formElements.text};
   border: 1px solid ${theme.colors.formElements.outline};
   border-radius: 4px;
+  outline: 1px solid transparent;
   cursor: pointer;
   transition: 
     background-color ${theme.transitionDuration} ease-in-out,

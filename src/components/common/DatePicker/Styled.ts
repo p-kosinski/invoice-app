@@ -27,6 +27,7 @@ const Input = styled.button(({ theme, disabled }) => css`
   color: ${theme.colors.formElements.text};
   border: 1px solid ${theme.colors.formElements.outline};
   border-radius: 4px;
+  outline: 1px solid transparent;
   cursor: ${disabled ? 'default' : 'pointer'};
   transition: 
     background-color ${theme.transitionDuration} ease-in-out,
