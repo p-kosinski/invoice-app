@@ -1,4 +1,10 @@
-import { useCallback, useState, useRef } from 'react';
+import {
+  useCallback,
+  useState,
+  useRef,
+  KeyboardEvent,
+  MouseEvent
+} from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
 import { parseDateToLocaleString } from '../../../utils/dateUtils';
@@ -50,7 +56,10 @@ const DatePicker: React.FC<Props> = ({
           disabled={disabled}
           onClick={(e) => {
             e.preventDefault();
-            setCalendarOpen(!calendarOpen);
+
+            if(e.target === document.activeElement) {
+              setCalendarOpen(!calendarOpen);
+            }
           }}
           ref={inputButtonRef}
         >
