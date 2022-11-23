@@ -39,6 +39,14 @@ const DatePicker: React.FC<Props> = ({
     return parseDateToLocaleString(selectedDate);
   }, [selectedDate]);
 
+  const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if(e.currentTarget.id === document.activeElement?.id) {
+      setCalendarOpen(!calendarOpen);
+    }
+  };
+
   return (
     <ClickAwayListener onClickAway={() => setCalendarOpen(false)}>
       <Styled.Wrapper>
@@ -54,13 +62,7 @@ const DatePicker: React.FC<Props> = ({
           aria-haspopup='true'
           aria-expanded={calendarOpen}
           disabled={disabled}
-          onClick={(e) => {
-            e.preventDefault();
-
-            if(e.target === document.activeElement) {
-              setCalendarOpen(!calendarOpen);
-            }
-          }}
+          onClick={(e) => handleButtonClick(e)}
           ref={inputButtonRef}
         >
           <Styled.InputWrapper>
