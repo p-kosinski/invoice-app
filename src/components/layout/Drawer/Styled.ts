@@ -29,7 +29,8 @@ const Backdrop = styled.div<Props>(
 
 const Drawer = styled.aside<Props>(
   ({ theme, $open }) => css`
-    position: fixed;
+    position: absolute;
+    top: 72px;
     left: 0;
     height: calc(100vh - 72px);
     width: 100%;
@@ -37,9 +38,11 @@ const Drawer = styled.aside<Props>(
     overflow: hidden;
     z-index: 2;
     transform: ${$open ? 'translateX(0)' : 'translateX(-100%)'};
+    visibility: ${$open ? 'visible' : 'hidden'};
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
-      transform ${theme.transitionDuration} ease-in-out;
+      transform ${theme.transitionDuration} ease-in-out,
+      visibility ${theme.transitionDuration} ease-in-out;
 
     @media only screen and (min-width: ${theme.breakpoints.md}) {
       width: 80%;
