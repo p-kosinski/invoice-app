@@ -13,6 +13,7 @@ import {
 import {
   selectValidationActive
 } from '../../../../../../redux/invoiceFormSlice';
+import { selectDrawerOpen } from '../../../../../../redux/invoicesViewSlice';
 
 import TextField from '../../../../../common/TextField/TextField';
 
@@ -29,6 +30,7 @@ const NameField: React.FC<Props> = ({ index }) => {
   const invoiceSavingSuccess: boolean = 
     useAppSelector(selectInvoiceSavingSuccess);
   const validationActive: boolean = useAppSelector(selectValidationActive);
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
   const setItemName = (newValue: string) => {
     dispatch(setItemNameByIndex({ index: index, newValue: newValue }));
@@ -39,6 +41,10 @@ const NameField: React.FC<Props> = ({ index }) => {
   useEffect(() => {
     invoiceSavingSuccess && setValidate(false);
   }, [invoiceSavingSuccess]);
+
+  useEffect(() => {
+    !drawerOpen && setValidate(false);
+  }, [drawerOpen]);
 
   return (
     <>

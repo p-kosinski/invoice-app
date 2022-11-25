@@ -9,6 +9,7 @@ import {
 
 import { selectInvoiceSavingSuccess } from '../../../../redux/invoicesSlice';
 import { selectValidationActive } from '../../../../redux/invoiceFormSlice';
+import { selectDrawerOpen } from '../../../../redux/invoicesViewSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -21,6 +22,7 @@ const ClientCity: React.FC = () => {
   const invoiceSavingSuccess: boolean = 
     useAppSelector(selectInvoiceSavingSuccess);
   const validationActive: boolean = useAppSelector(selectValidationActive);
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
   const changeClientCity = (newValue: string) => {
     dispatch(setClientCity(newValue));
@@ -31,6 +33,10 @@ const ClientCity: React.FC = () => {
   useEffect(() => {
     invoiceSavingSuccess && setValidate(false);
   }, [invoiceSavingSuccess]);
+
+  useEffect(() => {
+    !drawerOpen && setValidate(false);
+  }, [drawerOpen]);
   
   return (
     <Styled.CityWrapper>
