@@ -1,14 +1,28 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
 const Wrapper = styled.div`
-  width: fit-content;
+  width: 100%;
 `;
 
-const TextWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+type TextWrapperProps = {
+  theme: DefaultTheme;
+  $showLabelOnlyOnMobile?: boolean;
+};
+
+const TextWrapper = styled.div<TextWrapperProps>(
+  ({ theme, $showLabelOnlyOnMobile }) => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ${$showLabelOnlyOnMobile &&
+      `@media only screen and (min-width: ${theme.breakpoints.sm}) {
+        visibility: hidden;
+        height: 0px;
+      }`
+    }
+  `
+);
 
 interface InvalidStateProps {
   theme: DefaultTheme;
@@ -20,6 +34,10 @@ const ErrorMsg = styled.div<InvalidStateProps>(
     color: ${theme.colors.error.main};
     opacity: ${$invalid ? 1 : 0};
     transition: opacity ${theme.transitionDuration} ease-in-out;
+
+    p {
+      margin-top: 0;
+    }
   `
 );
 
@@ -30,6 +48,7 @@ interface LabelProps extends InvalidStateProps {
 const Label = styled.label<LabelProps>(
   ({ theme, $invalid }) => css`
     display: block;
+    margin-bottom: 12px;
     color: ${$invalid ? theme.colors.error.main
                       : theme.colors.formElements.labelsText};
     transition: color ${theme.transitionDuration} ease-in-out;
@@ -37,18 +56,21 @@ const Label = styled.label<LabelProps>(
 );
 
 const Input = styled.input(({ theme }) => css`
+  box-sizing: border-box;
   display: block;
-  min-width: 198px;
+  width: 100%;
   padding: 15.5px 20px;
   background-color: ${theme.colors.formElements.background};
   border: 1px solid ${theme.colors.formElements.outline};
   border-radius: 4px;
+  outline: 1px solid transparent;
   font-family: ${theme.font.family};
   font-weight: ${theme.font.weights.bold};
   font-size: ${theme.typography.fontSizes.s};
   line-height: ${theme.typography.lineHeights[1]};
   letter-spacing: ${theme.typography.letterSpacings[4]};
   color: ${theme.colors.formElements.text};
+  text-overflow: ellipsis;
   transition: 
     background-color ${theme.transitionDuration} ease-in-out,
     color ${theme.transitionDuration} ease-in-out,
@@ -62,6 +84,12 @@ const Input = styled.input(({ theme }) => css`
   &:focus-visible {
     outline: 1px solid ${theme.colors.accent.main};
     outline-offset: -1px;
+  }
+
+  ::placeholder {
+    color: ${theme.colors.text.main};
+    opacity: 0.4;
+    transition: color ${theme.transitionDuration} ease-in-out;
   }
 
   &[aria-invalid='true'] {

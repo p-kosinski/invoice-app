@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, MouseEvent, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
@@ -125,9 +125,11 @@ const DaysGrid: React.FC<Props> = ({
     }
   };
 
-  const handleGridCellClick = (value: Dayjs) => {
-    onChange(dayjs.utc(value).toISOString());
-    setCalendarOpen(false);
+  const handleGridCellClick = (value: Dayjs) =>
+    (e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      onChange(dayjs.utc(value).toISOString());
+      setCalendarOpen(false);
   };
 
   return (
@@ -146,7 +148,7 @@ const DaysGrid: React.FC<Props> = ({
               $focused={checkIfDatesAreEqual(value, focusedDate)}
               $inShownMonth={inShownMonth}
               disabled={!inShownMonth}
-              onClick={() => handleGridCellClick(value)}
+              onClick={handleGridCellClick(value)}
             >
               <Typography variant='h4' element='span'>
                 {text}

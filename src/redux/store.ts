@@ -4,13 +4,15 @@ import themeReducer from './themeSlice';
 import invoicesReducer from './invoicesSlice';
 import invoicesViewReducer from './invoicesViewSlice';
 import invoiceViewReducer from './invoiceViewSlice';
+import invoiceFormReducer from './invoiceFormSlice';
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
     invoices: invoicesReducer,
     invoicesView: invoicesViewReducer,
-    invoiceView: invoiceViewReducer
+    invoiceView: invoiceViewReducer,
+    invoiceForm: invoiceFormReducer
   }
 });
 

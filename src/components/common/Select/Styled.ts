@@ -1,7 +1,7 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
 const Wrapper = styled.div(({ theme }) => css`
-  width: fit-content;
+  width: 100%;
   font-family: ${theme.font.family};
   font-weight: ${theme.font.weights.bold};
   font-size: ${theme.typography.fontSizes.s};
@@ -11,15 +11,16 @@ const Wrapper = styled.div(({ theme }) => css`
 
 const Label = styled.label(({ theme }) => css`
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   color: ${theme.colors.formElements.labelsText};
   transition: color ${theme.transitionDuration} ease-in-out;
 `);
 
 const Select = styled.button(({ theme }) => css`
+  box-sizing: border-box;
   display: block;
   position: relative;
-  min-width: 240px;
+  width: 100%;
   min-height: 48px;
   padding: 15.5px 20px;
   font-weight: ${theme.font.weights.bold};
@@ -27,6 +28,7 @@ const Select = styled.button(({ theme }) => css`
   color: ${theme.colors.formElements.text};
   border: 1px solid ${theme.colors.formElements.outline};
   border-radius: 4px;
+  outline: 1px solid transparent;
   cursor: pointer;
   transition: 
     background-color ${theme.transitionDuration} ease-in-out,

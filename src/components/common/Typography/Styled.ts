@@ -96,6 +96,33 @@ const ParagraphH4 = styled.p(({theme}) => css`
   line-height: 24px;
 `);
 
+const H5 = styled.h5(({theme}) => css`
+  font-family: ${theme.font.family};
+  font-weight: ${theme.font.weights.bold};
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: -0.375px;
+  color: hsla(225, 14%, 53%, 1);
+`);
+
+const SpanH5 = styled.span(({theme}) => css`
+  font-family: ${theme.font.family};
+  font-weight: ${theme.font.weights.bold};
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: -0.375px;
+  color: hsla(225, 14%, 53%, 1);
+`);
+
+const ParagraphH5 = styled.p(({theme}) => css`
+  font-family: ${theme.font.family};
+  font-weight: ${theme.font.weights.bold};
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: -0.375px;
+  color: hsla(225, 14%, 53%, 1);
+`);
+
 const SpanBody1 = styled.span(({theme}) => css`
   font-family: ${theme.font.family};
   font-weight: ${theme.font.weights.medium};
@@ -128,6 +155,16 @@ const ParagraphBody2 = styled.p(({theme}) => css`
   line-height: 18px;
 `);
 
+const ErrorText = styled.p(({theme}) => css`
+  font-family: ${theme.font.family};
+  font-weight: ${theme.font.weights.semiBold};
+  font-size: ${theme.typography.fontSizes.xs};
+  letter-spacing: -0.21px;
+  line-height: ${theme.typography.lineHeights[1]};
+  color: ${theme.colors.error.main};
+  margin: 0;
+`);
+
 const Styled = {
   H1: H1,
   SpanH1: SpanH1,
@@ -141,10 +178,14 @@ const Styled = {
   H4: H4,
   SpanH4: SpanH4,
   ParagraphH4: ParagraphH4,
+  H5: H5,
+  SpanH5: SpanH5,
+  ParagraphH5: ParagraphH5,
   SpanBody1: SpanBody1,
   ParagraphBody1: ParagraphBody1,
   SpanBody2: SpanBody2,
-  ParagraphBody2: ParagraphBody2
+  ParagraphBody2: ParagraphBody2,
+  ErrorText: ErrorText,
 };
 
 export default Styled;

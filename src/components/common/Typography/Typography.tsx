@@ -1,7 +1,7 @@
 import Styled from './Styled';
 
 type Props = {
-  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'body1' | 'body2';
+  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'body1' | 'body2' | 'errorMsg';
   children: string | React.ReactNode;
   element?: 'span' | 'p' | undefined;
 };
@@ -40,6 +40,14 @@ const Typography: React.FC<Props> = ({ variant, children, element }) => {
       } else {
         return (<Styled.H4>{children}</Styled.H4>);
       };
+    case 'h5':
+      if(element === 'span') {
+        return (<Styled.SpanH5>{children}</Styled.SpanH5>);
+      } else if(element === 'p') {
+        return (<Styled.ParagraphH5>{children}</Styled.ParagraphH5>);
+      } else {
+        return (<Styled.H5>{children}</Styled.H5>);
+      };
     case 'body1':
       if(element === 'span') {
         return (<Styled.SpanBody1>{children}</Styled.SpanBody1>);
@@ -56,6 +64,8 @@ const Typography: React.FC<Props> = ({ variant, children, element }) => {
       } else {
         return (<Styled.SpanBody2>{children}</Styled.SpanBody2>);
       };
+    case 'errorMsg':
+      return (<Styled.ErrorText>{children}</Styled.ErrorText>);
     default:
       return (<span>{children}</span>);
   }

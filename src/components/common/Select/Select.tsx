@@ -8,21 +8,23 @@ import { ReactComponent as ArrowDownIcon } from '../../../assets/icon-arrow-down
 import Styled from './Styled';
 
 type Option = {
-  value: string;
+  value: number;
   label: string;
 }
 
 interface Props {
   name: string;
   label?: string;
+  buttonTabIndex?: number;
   options: Option[];
-  defaultOptionValue: string;
-  onChange: (value: string) => void;
+  defaultOptionValue: number;
+  onChange: (value: number) => void;
 }
 
 const Select: React.FC<Props> = ({
   name,
   label,
+  buttonTabIndex,
   options,
   defaultOptionValue,
   onChange,
@@ -41,14 +43,14 @@ const Select: React.FC<Props> = ({
     onChange(defaultOptionValue);
   }, []);
 
-  const handleOptionClick = (i: number, clickedValue: string) => () => {
+  const handleOptionClick = (i: number, clickedValue: number) => () => {
     onChange(clickedValue);
     setSelectedOption(i);
     setOptionsOpen(false);
   };
 
   const handleOptionKeyDown =
-    (i: number, clickedValue: string) => (e: KeyboardEvent<HTMLLIElement>) => {
+    (i: number, clickedValue: number) => (e: KeyboardEvent<HTMLLIElement>) => {
       switch (e.key) {
         case ' ':
         case 'SpaceBar':
@@ -73,14 +75,17 @@ const Select: React.FC<Props> = ({
           </Typography>
         </Styled.Label>
         <Styled.Select
-          tabIndex={0}
+          tabIndex={buttonTabIndex}
           role='button'
           id={name}
           aria-label={`${label} - ${options[selectedOption].label}`}
           aria-haspopup='listbox'
           aria-expanded={optionsOpen}
           ref={selectButton}
-          onClick={() => setOptionsOpen(!optionsOpen)}
+          onClick={(e) => {
+            e.preventDefault();
+            setOptionsOpen(!optionsOpen);
+          }}
         >
           <Styled.SelectWrapper>
             {options[selectedOption].label}
@@ -89,14 +94,14 @@ const Select: React.FC<Props> = ({
           <Styled.OptionsList
             aria-hidden={!optionsOpen}
             role='listbox'
-            aria-activedescendant={options[selectedOption].value}
+            aria-activedescendant={options[selectedOption].value.toString()}
             tabIndex={-1}
             $visible={optionsOpen}
           >
             {options.map((option, i) => (
               <Styled.Option
                 key={i}
-                id={option.value}
+                id={option.value.toString()}
                 tabIndex={0}
                 role='option'
                 aria-selected={selectedOption === i}
@@ -111,6 +116,10 @@ const Select: React.FC<Props> = ({
       </Styled.Wrapper>
     </ClickAwayListener>
   );
+};
+
+Select.defaultProps = {
+  buttonTabIndex: 0,
 };
 
 export default Select;

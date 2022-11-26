@@ -7,11 +7,14 @@ import {
   selectInvoicesLoadingState
 } from '../../../redux/invoicesSlice';
 import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlice';
+import { selectDrawerOpen } from '../../../redux/invoicesViewSlice';
 
+import Drawer from '../../layout/Drawer/Drawer';
+import NewInvoice from '../../features/NewInvoice/NewInvoice';
 import Container from '../../layout/Container/Container';
 import InvoicesHeading from '../../features/InvoicesHeading/InvoicesHeading';
 import InvoicesStatusFilters from '../../features/InvoicesStatusFilters/InvoicesStatusFilters';
-import NewInvoiceLink from '../../common/NewInvoiceLink/NewInvoiceLink';
+import NewInvoiceButton from '../../features/NewInvoiceButton/NewInvoiceButton';
 import Skeleton from '../../common/Skeleton/Skeleton';
 import NoInvoicesInfo from '../../features/NoInvoicesInfo/NoInvoicesInfo';
 import InvoicesList from '../../features/InvoicesList/InvoicesList';
@@ -24,35 +27,42 @@ const Invoices: React.FC = () => {
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
   const invoicesLoading: ThunkStatusState = useAppSelector(selectInvoicesLoadingState);
 
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
+
   useEffect(() => {
     !invoices.length && dispatch(fetchInvoicesData());
   }, [invoices.length]);
 
   return (
-    <Container>
-      <section>
-        <Styled.HeadingWrapper>
-          <InvoicesHeading />
-          <Styled.ButtonsWrapper>
-            <InvoicesStatusFilters />
-            <NewInvoiceLink />
-          </Styled.ButtonsWrapper>
-        </Styled.HeadingWrapper>
-        <Styled.InvoicesWrapper>
-          {invoicesLoading.active ?
-            <>
-              <Skeleton variant='invoiceTile' />
-              <Skeleton variant='invoiceTile' />
-              <Skeleton variant='invoiceTile' />
-            </>
-            :
-            <>
-              {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
-            </>
-          }
-        </Styled.InvoicesWrapper>
-      </section>
-    </Container>
+    <>
+      <Drawer open={drawerOpen}>
+        <NewInvoice />
+      </Drawer>
+      <Container>
+        <section>
+          <Styled.HeadingWrapper>
+            <InvoicesHeading />
+            <Styled.ButtonsWrapper>
+              <InvoicesStatusFilters />
+              <NewInvoiceButton />
+            </Styled.ButtonsWrapper>
+          </Styled.HeadingWrapper>
+          <Styled.InvoicesWrapper>
+            {invoicesLoading.active ?
+              <>
+                <Skeleton variant='invoiceTile' />
+                <Skeleton variant='invoiceTile' />
+                <Skeleton variant='invoiceTile' />
+              </>
+              :
+              <>
+                {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
+              </>
+            }
+          </Styled.InvoicesWrapper>
+        </section>
+      </Container>
+    </>
   );
 };
 
