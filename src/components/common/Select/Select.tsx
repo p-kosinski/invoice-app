@@ -15,6 +15,7 @@ type Option = {
 interface Props {
   name: string;
   label?: string;
+  buttonTabIndex?: number;
   options: Option[];
   defaultOptionValue: number;
   onChange: (value: number) => void;
@@ -23,6 +24,7 @@ interface Props {
 const Select: React.FC<Props> = ({
   name,
   label,
+  buttonTabIndex,
   options,
   defaultOptionValue,
   onChange,
@@ -73,7 +75,7 @@ const Select: React.FC<Props> = ({
           </Typography>
         </Styled.Label>
         <Styled.Select
-          tabIndex={0}
+          tabIndex={buttonTabIndex}
           role='button'
           id={name}
           aria-label={`${label} - ${options[selectedOption].label}`}
@@ -114,6 +116,10 @@ const Select: React.FC<Props> = ({
       </Styled.Wrapper>
     </ClickAwayListener>
   );
+};
+
+Select.defaultProps = {
+  buttonTabIndex: 0,
 };
 
 export default Select;

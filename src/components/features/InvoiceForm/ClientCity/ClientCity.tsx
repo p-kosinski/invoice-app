@@ -44,6 +44,7 @@ const ClientCity: React.FC = () => {
         input='text'
         name='client-city'
         label='City'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={clientCity}
         onChange={changeClientCity}
         onBlur={() => setValidate(true)}

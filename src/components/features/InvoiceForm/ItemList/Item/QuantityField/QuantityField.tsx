@@ -52,6 +52,7 @@ const QuantityField: React.FC<Props> = ({ index }) => {
         input='numeric'
         name={`item-${index + 1}-quantity`}
         label='Qty.'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={itemQuantity}
         onChange={setItemQuantity}
         onBlur={() => setValidate(true)}

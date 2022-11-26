@@ -38,6 +38,7 @@ const IssueDate: React.FC = () => {
       <DatePicker
         name='invoice-date'
         label='Invoice Date'
+        buttonTabIndex={drawerOpen ? 0 : -1}
         selectedDate={date}
         onChange={changeDate}
       />

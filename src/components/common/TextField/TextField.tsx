@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, forwardRef } from 'react';
 
 import { assertNotNull } from '../../../utils/typeUtils';
 
@@ -16,13 +16,16 @@ type Props = {
   invalid?: boolean;
   errorMsg?: string;
   disabled?: boolean;
+  inputTabIndex?: number;
   showLabelOnlyOnMobile?: boolean;
   value: string;
   onChange: (value: string) => any;
   onBlur?: () => any;
 };
 
-const TextField: React.FC<Props> = ({
+export type Ref = HTMLInputElement;
+
+const TextField = forwardRef<Ref, Props>(({
   input,
   name,
   label,
@@ -31,11 +34,12 @@ const TextField: React.FC<Props> = ({
   required,
   invalid,
   errorMsg,
+  inputTabIndex,
   showLabelOnlyOnMobile,
   value,
   onChange,
   onBlur
-}) => {
+}, ref) => {
   const handleNumericInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     let inputValue = event.target.value;
     inputValue = inputValue.replace(/\D/g, '');
@@ -97,12 +101,14 @@ const TextField: React.FC<Props> = ({
             name={name}
             id={name}
             aria-label={ariaLabel}
+            tabIndex={inputTabIndex}
             aria-invalid={invalid}
             placeholder={placeholder}
             required={required}
             value={value}
             onChange={(event) => onChange(event.target.value)}
             onBlur={() => onBlur && onBlur()}
+            ref={ref}
           />
         </>
       }
@@ -115,6 +121,7 @@ const TextField: React.FC<Props> = ({
             maxLength={4}
             name={name}
             id={name}
+            tabIndex={inputTabIndex}
             aria-label={ariaLabel}
             aria-invalid={invalid}
             required={required}
@@ -123,6 +130,7 @@ const TextField: React.FC<Props> = ({
               handleNumericInputChange(event);
             }}
             onBlur={() => onBlur && onBlur()}
+            ref={ref}
           />
         </>
       }
@@ -135,6 +143,7 @@ const TextField: React.FC<Props> = ({
             name={name}
             id={name}
             aria-label={ariaLabel}
+            tabIndex={inputTabIndex}
             aria-invalid={invalid}
             required={required}
             value={value}
@@ -142,11 +151,16 @@ const TextField: React.FC<Props> = ({
               handleDecimalInputChange(event);
             }}
             onBlur={() => onBlur && onBlur()}
+            ref={ref}
           />
         </>
       }
     </Styled.Wrapper>
   );
+});
+
+TextField.defaultProps = {
+  inputTabIndex: 0,
 };
 
 export default TextField;

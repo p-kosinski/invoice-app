@@ -1,10 +1,16 @@
 import styled, { css } from 'styled-components';
 
-import { useAppDispatch } from '../../../../../../hooks/reduxHooks';
+import {
+  useAppSelector,
+  useAppDispatch
+} from '../../../../../../hooks/reduxHooks';
 
 import { deleteItemByIndex } from '../../../../../../redux/invoiceFormSlice';
+import { selectDrawerOpen } from '../../../../../../redux/invoicesViewSlice';
 
-import { ReactComponent as DeleteIcon } from '../../../../../../assets/icon-delete.svg';
+import {
+  ReactComponent as DeleteIcon
+} from '../../../../../../assets/icon-delete.svg';
 
 const StyledDeleteButton = styled.button(({ theme }) => css`
   border: none;
@@ -47,12 +53,15 @@ type Props = {
 const DeleteButton: React.FC<Props> = ({ index }) => {
   const dispatch = useAppDispatch();
 
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
+
   const deleteItem = () => {
     dispatch(deleteItemByIndex(index));
   };
 
   return (
     <StyledDeleteButton
+      tabIndex={drawerOpen ? 0 : -1}
       onClick={(e) => {
         e.preventDefault();
         deleteItem();

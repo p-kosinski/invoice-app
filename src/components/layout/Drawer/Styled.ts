@@ -38,7 +38,6 @@ const Drawer = styled.aside<Props>(
     overflow: hidden;
     z-index: 2;
     transform: ${$open ? 'translateX(0)' : 'translateX(-100%)'};
-    visibility: ${$open ? 'visible' : 'hidden'};
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
       transform ${theme.transitionDuration} ease-in-out,

@@ -44,6 +44,7 @@ const ClientEmail: React.FC = () => {
         input='text'
         name='client-email'
         label={`Client's Email`}
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={clientEmail}
         onChange={changeClientEmail}
         onBlur={() => setValidate(true)}

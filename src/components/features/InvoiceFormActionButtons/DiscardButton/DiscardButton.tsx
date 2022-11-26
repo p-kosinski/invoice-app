@@ -1,12 +1,17 @@
-import { useAppDispatch } from '../../../../hooks/reduxHooks';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
-import { setDrawerOpen } from '../../../../redux/invoicesViewSlice';
+import {
+  setDrawerOpen,
+  selectDrawerOpen
+} from '../../../../redux/invoicesViewSlice';
 import { resetForm } from '../../../../redux/invoiceFormSlice';
 
 import Button from '../../../common/Button/Button';
 
 const DiscardButton: React.FC = () => {
   const dispatch = useAppDispatch();
+
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
   const closeDrawer = () => {
     dispatch(setDrawerOpen(false));
@@ -19,6 +24,7 @@ const DiscardButton: React.FC = () => {
   return (
     <Button
       variant='discard'
+      tabIndex={drawerOpen ? 0 : -1}
       onClick={() => {
         closeDrawer();
         resetFormState();

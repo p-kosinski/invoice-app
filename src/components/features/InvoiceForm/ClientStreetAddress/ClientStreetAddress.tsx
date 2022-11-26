@@ -45,6 +45,7 @@ const ClientStreetAddress: React.FC = () => {
         input='text'
         name='client-street-address'
         label='Street Address'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={clientStreetAddress}
         onChange={changeClientStreetAddress}
         onBlur={() => setValidate(true)}

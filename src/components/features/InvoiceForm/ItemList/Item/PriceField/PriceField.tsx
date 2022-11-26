@@ -52,6 +52,7 @@ const PriceField: React.FC<Props> = ({ index }) => {
         input='decimal'
         name={`item-${index + 1}-price`}
         label='Price'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={itemPrice}
         onChange={setItemPrice}
         onBlur={() => setValidate(true)}

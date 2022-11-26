@@ -44,6 +44,7 @@ const ClientPostCode: React.FC = () => {
         input='text'
         name='client-post-code'
         label='Post Code'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={clientPostCode}
         onChange={changeClientPostCode}
         onBlur={() => setValidate(true)}

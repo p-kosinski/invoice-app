@@ -44,6 +44,7 @@ const Description: React.FC = () => {
         input='text'
         name='description'
         label='Project Description'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={description}
         onChange={changeDescription}
         onBlur={() => setValidate(true)}

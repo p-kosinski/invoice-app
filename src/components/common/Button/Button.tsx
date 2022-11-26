@@ -8,6 +8,7 @@ import Styled from './Styled';
 
 type Props = {
   variant: 'primary' | 'draft' | 'delete' | 'add' | 'discard' | 'newInvoice';
+  tabIndex?: number;
   ariaLabel?: string;
   showOnMobile?: boolean;
   hideOnMobile?: boolean;
@@ -19,6 +20,7 @@ type Ref = HTMLButtonElement;
 
 const Button = forwardRef<Ref, Props>(({
   variant,
+  tabIndex,
   showOnMobile,
   hideOnMobile,
   ariaLabel,
@@ -29,6 +31,7 @@ const Button = forwardRef<Ref, Props>(({
     case 'primary':
       return (
         <Styled.ButtonPrimary
+          tabIndex={tabIndex}
           aria-label={ariaLabel}
           onClick={() => onClick()}
           $showOnMobile={showOnMobile}
@@ -42,6 +45,7 @@ const Button = forwardRef<Ref, Props>(({
     case 'draft':
       return (
         <Styled.DraftButton
+          tabIndex={tabIndex}
           aria-label={ariaLabel}
           onClick={() => onClick()}
           $showOnMobile={showOnMobile}
@@ -55,6 +59,7 @@ const Button = forwardRef<Ref, Props>(({
     case 'delete':
       return (
         <Styled.DeleteButton
+          tabIndex={tabIndex}
           aria-label={ariaLabel}
           onClick={() => onClick()}
           $showOnMobile={showOnMobile}
@@ -68,6 +73,7 @@ const Button = forwardRef<Ref, Props>(({
     case 'add':
       return (
         <Styled.AddButton
+          tabIndex={tabIndex}
           aria-label={ariaLabel}
           onClick={() => onClick()}
           $showOnMobile={showOnMobile}
@@ -81,6 +87,7 @@ const Button = forwardRef<Ref, Props>(({
     case 'discard':
       return (
         <Styled.DiscardButton
+          tabIndex={tabIndex}
           aria-label={ariaLabel}
           onClick={() => onClick()}
           $showOnMobile={showOnMobile}
@@ -95,6 +102,7 @@ const Button = forwardRef<Ref, Props>(({
     case 'newInvoice':
       return (
         <Styled.NewInvoiceButton
+          tabIndex={tabIndex}
           aria-label={ariaLabel}
           onClick={() => onClick()}
           $showOnMobile={showOnMobile}
@@ -115,5 +123,9 @@ const Button = forwardRef<Ref, Props>(({
       return (<></>);
   }
 });
+
+Button.defaultProps = {
+  tabIndex: 0,
+};
 
 export default Button;

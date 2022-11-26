@@ -44,6 +44,7 @@ const ClientName: React.FC = () => {
         input='text'
         name='client-name'
         label={`Client's Name`}
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={clientName}
         onChange={changeClientName}
         onBlur={() => setValidate(true)}

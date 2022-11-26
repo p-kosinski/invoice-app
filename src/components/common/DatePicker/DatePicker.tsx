@@ -19,6 +19,7 @@ import Styled from './Styled';
 type Props = {
   name: string;
   label: string;
+  buttonTabIndex?: number;
   disabled?: boolean | undefined;
   selectedDate: string;
   onChange: (value: string) => void;
@@ -27,6 +28,7 @@ type Props = {
 const DatePicker: React.FC<Props> = ({
   name,
   label,
+  buttonTabIndex,
   disabled,
   selectedDate,
   onChange
@@ -58,6 +60,7 @@ const DatePicker: React.FC<Props> = ({
         <Styled.Input
           id={name}
           name={name}
+          tabIndex={buttonTabIndex}
           aria-label={label}
           aria-haspopup='true'
           aria-expanded={calendarOpen}
@@ -82,6 +85,10 @@ const DatePicker: React.FC<Props> = ({
       </Styled.Wrapper>
     </ClickAwayListener>
   );
+};
+
+DatePicker.defaultProps = {
+  buttonTabIndex: 0,
 };
 
 export default DatePicker;

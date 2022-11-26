@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
@@ -12,6 +12,7 @@ import { selectValidationActive } from '../../../../redux/invoiceFormSlice';
 import { selectDrawerOpen } from '../../../../redux/invoicesViewSlice';
 
 import TextField from '../../../common/TextField/TextField';
+import type { Ref } from '../../../common/TextField/TextField';
 
 import Styled from '../Styled';
 
@@ -39,17 +40,25 @@ const SenderStreetAddress: React.FC = () => {
     !drawerOpen && setValidate(false);
   }, [drawerOpen]);
 
+  const inputRef = useRef<Ref>(null);
+
+  useEffect(() => {
+    drawerOpen && inputRef.current?.focus();
+  }, [drawerOpen]);
+
   return (
     <Styled.StreetAddressWrapper>
       <TextField
         input='text'
         name='sender-street-address'
         label='Street Address'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={senderStreetAddress}
         onChange={changeSenderStreetAddress}
         onBlur={() => setValidate(true)}
         invalid={(validate || validationActive) && !senderStreetAddress.length}
         errorMsg={`can't be empty`}
+        ref={inputRef}
       />
     </Styled.StreetAddressWrapper>
   );

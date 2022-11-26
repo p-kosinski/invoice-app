@@ -43,6 +43,7 @@ const SenderCountry: React.FC = () => {
         input='text'
         name='sender-country'
         label='Country'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={senderCountry}
         onChange={changeSenderCountry}
         onBlur={() => setValidate(true)}

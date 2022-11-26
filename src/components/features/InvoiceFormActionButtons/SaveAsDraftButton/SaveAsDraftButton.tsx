@@ -3,7 +3,10 @@ import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 import { resetForm, selectFormValues } from '../../../../redux/invoiceFormSlice';
 import type { FormValuesState } from '../../../../redux/invoiceFormSlice';
 import { saveInvoice } from '../../../../redux/invoicesSlice';
-import { setDrawerOpen } from '../../../../redux/invoicesViewSlice';
+import {
+  setDrawerOpen,
+  selectDrawerOpen
+} from '../../../../redux/invoicesViewSlice';
 
 import { prepareInvoiceDataObject } from '../../../../utils/formUtils';
 
@@ -21,6 +24,7 @@ const SaveAsDraftButton: React.FC<Props> = ({
   const dispatch = useAppDispatch();
 
   const formValues: FormValuesState = useAppSelector(selectFormValues);
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
   const saveInvoiceAsDraft = () => {
     const invoiceDataObject = prepareInvoiceDataObject('draft', formValues);
@@ -45,6 +49,7 @@ const SaveAsDraftButton: React.FC<Props> = ({
   return (
     <Button
       variant='draft'
+      tabIndex={drawerOpen ? 0 : -1}
       showOnMobile={showOnMobile}
       hideOnMobile={hideOnMobile}
       onClick={() => handleClick()}

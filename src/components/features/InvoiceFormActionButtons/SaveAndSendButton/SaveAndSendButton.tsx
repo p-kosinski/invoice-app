@@ -10,7 +10,10 @@ import {
 import type { FormValuesState } from '../../../../redux/invoiceFormSlice';
 import { saveInvoice } from '../../../../redux/invoicesSlice';
 import type { Address } from '../../../../redux/invoicesSlice';
-import { setDrawerOpen } from '../../../../redux/invoicesViewSlice';
+import {
+  setDrawerOpen,
+  selectDrawerOpen
+} from '../../../../redux/invoicesViewSlice';
 
 import { prepareInvoiceDataObject } from '../../../../utils/formUtils';
 
@@ -20,6 +23,7 @@ const SaveAndSendButton: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const formValues: FormValuesState = useAppSelector(selectFormValues);
+  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
   const saveInvoiceAsPending = () => {
     const invoiceDataObject = prepareInvoiceDataObject('pending', formValues);
@@ -135,6 +139,7 @@ const SaveAndSendButton: React.FC = () => {
   return (
     <Button
       variant='primary'
+      tabIndex={drawerOpen ? 0 : -1}
       onClick={() => handleClick()}
     >
       Save & Send

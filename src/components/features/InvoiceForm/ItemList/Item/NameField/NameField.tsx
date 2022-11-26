@@ -52,6 +52,7 @@ const NameField: React.FC<Props> = ({ index }) => {
         input='text'
         name={`item-${index + 1}-name`}
         label='Item Name'
+        inputTabIndex={drawerOpen ? 0 : -1}
         value={itemName}
         onChange={setItemName}
         onBlur={() => setValidate(true)}
