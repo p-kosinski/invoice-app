@@ -6,8 +6,17 @@ import { ReactComponent as PlusIcon } from '../../../assets/icon-plus.svg';
 
 import Styled from './Styled';
 
+type Variant =
+  | 'primary'
+  | 'draft'
+  | 'delete'
+  | 'add'
+  | 'discard'
+  | 'edit'
+  | 'newInvoice';
+
 type Props = {
-  variant: 'primary' | 'draft' | 'delete' | 'add' | 'discard' | 'newInvoice';
+  variant: Variant;
   tabIndex?: number;
   ariaLabel?: string;
   showOnMobile?: boolean;
@@ -98,6 +107,21 @@ const Button = forwardRef<Ref, Props>(({
             {children}
           </Typography>
         </Styled.DiscardButton>
+      );
+    case 'edit':
+      return (
+        <Styled.EditButton
+          tabIndex={tabIndex}
+          aria-label={ariaLabel}
+          onClick={() => onClick()}
+          $showOnMobile={showOnMobile}
+          $hideOnMobile={hideOnMobile}
+          ref={ref}
+        >
+          <Typography variant='h4' element='span'>
+            {children}
+          </Typography>
+        </Styled.EditButton>
       );
     case 'newInvoice':
       return (
