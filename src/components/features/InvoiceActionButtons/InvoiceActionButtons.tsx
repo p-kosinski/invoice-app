@@ -2,16 +2,19 @@ import { useParams } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
 import {
+  setInvoiceDataChangingSuccess,
   selectInvoiceStatusById,
   changeInvoiceStatus
 } from '../../../redux/invoicesSlice';
-import { setDeletionDialogOpen } from '../../../redux/invoiceViewSlice';
+import {
+  setDeletionDialogOpen,
+  setDrawerOpen
+} from '../../../redux/invoiceViewSlice';
 import type { Status } from '../../../redux/invoicesSlice';
 
 import { assertNotUndefined } from '../../../utils/typeUtils';
 
 import Container from '../../layout/Container/Container';
-import EditInvoiceLink from '../../common/EditInvoiceLink/EditInvoiceLink';
 import Button from '../../common/Button/Button';
 
 import Styled from './Styled';
@@ -27,6 +30,14 @@ const InvoiceActionButtons: React.FC = () => {
     selectInvoiceStatusById(state, id)
   );
 
+  const openDrawer = () => {
+    dispatch(setDrawerOpen(true))
+  };
+
+  const resetInvoiceDataChangingSuccess = () => {
+    dispatch(setInvoiceDataChangingSuccess(false));
+  };
+
   const changeInvoiceStatusToPaid = () => {
     dispatch(changeInvoiceStatus({ id: id, newStatus: 'paid' }))
   };
@@ -39,7 +50,16 @@ const InvoiceActionButtons: React.FC = () => {
     <Styled.Toolbar>
       <Container>
         <Styled.Wrapper>
-          <EditInvoiceLink />
+          <Button
+            variant='edit'
+            ariaLabel='edit invoice'
+            onClick={() => {
+              openDrawer();
+              resetInvoiceDataChangingSuccess();
+            }}
+          >
+            Edit
+          </Button>
           <Button
             variant='delete'
             onClick={() => changeDeletionDialogOpen(true)}
