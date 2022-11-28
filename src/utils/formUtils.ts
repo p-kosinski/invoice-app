@@ -6,7 +6,7 @@ import type {
   FormItemsArray,
   FormValuesState
 } from '../redux/invoiceFormSlice';
-import type { ItemsArray, Item, Invoice } from '../redux/invoicesSlice';
+import type { ItemsArray, Item, Invoice, Status } from '../redux/invoicesSlice';
 
 const generateId = (): string => {
   const generateRandomString = (characters: string, length: number): string => {
@@ -81,7 +81,7 @@ export const prepareItemsData = (formItems: FormItemsArray): ItemsData => {
 };
 
 export const prepareInvoiceDataObject = (
-  status: 'draft' | 'pending',
+  status: Status,
   formValues: FormValuesState
 ): Invoice => {
   const {
