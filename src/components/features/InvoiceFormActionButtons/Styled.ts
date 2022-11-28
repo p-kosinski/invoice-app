@@ -21,21 +21,36 @@ const Toolbar = styled.div<ToolbarProps>(
   `
 );
 
-const ToolbarWrapper = styled.div(({ theme }) => css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+type ToolbarWrapperProps = {
+  theme: DefaultTheme;
+  $variant: 'new' | 'edit';
+};
 
-  button {
-    padding: 12px;
+const ToolbarWrapper = styled.div<ToolbarWrapperProps>(
+  ({ theme, $variant }) => css`
+    display: flex;
+    ${$variant === 'new' && `justify-content: space-between`};
+    ${$variant === 'edit' && `justify-content: end`};
+    align-items: center;
 
-    @media only screen and (min-width: ${theme.breakpoints.xs}) {
-      padding: 12px 16px;
+    ${$variant === 'new' &&
+      `button {
+        padding: 12px;
+
+        @media only screen and (min-width: ${theme.breakpoints.xs}) {
+          padding: 12px 16px;
+        }
+      }`
     }
-  }
-`);
+    ${$variant === 'edit' &&
+      `button {
+        padding: 12px 24px;
+      }`
+    }
+  `
+);
 
-const SaveButtonsWrapper = styled.div`
+const ButtonsWrapper = styled.div`
   display: flex;
   gap: 12px;
 `;
@@ -43,7 +58,7 @@ const SaveButtonsWrapper = styled.div`
 const Styled = {
   Toolbar: Toolbar,
   ToolbarWrapper: ToolbarWrapper,
-  SaveButtonsWrapper: SaveButtonsWrapper,
+  ButtonsWrapper: ButtonsWrapper,
 };
 
 export default Styled;
