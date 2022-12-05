@@ -3,10 +3,18 @@ import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 import type {
+  FormItem,
   FormItemsArray,
   FormValuesState
 } from '../redux/invoiceFormSlice';
-import type { ItemsArray, Item, Invoice, Status } from '../redux/invoicesSlice';
+import type {
+  ItemsArray,
+  Item,
+  Invoice,
+  Status,
+  Address,
+  ChangedInvoiceData
+} from '../redux/invoicesSlice';
 
 const generateId = (): string => {
   const generateRandomString = (characters: string, length: number): string => {
@@ -116,4 +124,77 @@ export const prepareInvoiceDataObject = (
   };
 
   return invoiceDataObject;
+};
+
+export const prepareChangedInvoiceDataObject = (
+  status: Status,
+  formValues: FormValuesState
+): ChangedInvoiceData => {
+  const {
+    senderAddress,
+    clientName,
+    clientEmail,
+    clientAddress,
+    issueDate,
+    paymentTerms,
+    description,
+    items
+  } = formValues;
+
+  const paymentDue = calculatePaymentDue(issueDate, paymentTerms);
+  const { itemsArray, itemsTotal } = prepareItemsData(items);
+
+  const changedInvoiceData: ChangedInvoiceData = {
+    paymentDue: paymentDue,
+    description: description,
+    paymentTerms: paymentTerms,
+    clientName: clientName,
+    clientEmail: clientEmail,
+    status: status,
+    senderAddress: senderAddress,
+    clientAddress: clientAddress,
+    items: itemsArray,
+    total: itemsTotal
+  };
+
+  return changedInvoiceData;
+};
+
+export const parseInvoiceDataToFormValues = (
+  invoiceData: Invoice
+): FormValuesState => {
+  const parseDateToUTCISOString = (date: string): string => {
+    return dayjs.utc(date).toISOString();
+  };
+
+  const parseInvoiceItemsToFormItems = (
+    invoiceItems: ItemsArray
+  ): FormItemsArray => {
+    let parsedItemsArray: FormItemsArray = [];
+
+    for (let item of invoiceItems) {
+      const parsedItemData: FormItem = {
+        name: item.name,
+        quantity: item.quantity.toString(),
+        price: item.price.toFixed(2),
+      };
+
+      parsedItemsArray.push(parsedItemData);
+    }
+
+    return parsedItemsArray;
+  };
+
+  const parsedDataObject: FormValuesState = {
+    senderAddress: invoiceData.senderAddress,
+    clientName: invoiceData.clientName,
+    clientEmail: invoiceData.clientEmail,
+    clientAddress: invoiceData.clientAddress,
+    issueDate: parseDateToUTCISOString(invoiceData.createdAt),
+    paymentTerms: invoiceData.paymentTerms,
+    description: invoiceData.description,
+    items: parseInvoiceItemsToFormItems(invoiceData.items),
+  };
+
+  return parsedDataObject;
 };
