@@ -43,6 +43,19 @@ export interface Invoice {
   total: number;
 };
 
+export interface ChangedInvoiceData {
+  paymentDue: string;
+  description: string;
+  paymentTerms: number;
+  clientName: string;
+  clientEmail: string;
+  status: Status;
+  senderAddress: Address;
+  clientAddress: Address;
+  items: ItemsArray;
+  total: number;
+};
+
 export type InvoicesData = Invoice[];
 
 export interface ThunkStatusState {
@@ -122,20 +135,20 @@ export const changeInvoiceStatus = createAsyncThunk(
 
 export type ChangeInvoiceDataArgs = {
   id: string;
-  data: Invoice;
+  changedData: ChangedInvoiceData;
 };
 
 export const changeInvoiceData = createAsyncThunk(
   'invoices/changeInvoiceData',
   async (args: ChangeInvoiceDataArgs) => {
-    const { id, data } = args;
+    const { id, changedData } = args;
 
     return fetch(`${api.url}/${api.endpoints.invoices}/${id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(changedData),
     }).then((res) => res.json());
   }
 );
@@ -256,13 +269,13 @@ export const invoicesSlice = createSlice({
       state.dataChanging.success = false;
     }),
     builder.addCase(changeInvoiceData.fulfilled, (state, action) => {
-      const { id, data } = action.meta.arg;
+      const { id } = action.meta.arg;
 
       const changedInvoiceIndex = state.data.findIndex(
         (invoice) => invoice.id === id
       );
 
-      state.data.splice(changedInvoiceIndex, 1, data);
+      state.data[changedInvoiceIndex] = action.payload;
       state.dataChanging.active = false;
       state.dataChanging.error = false;
       state.dataChanging.success = true;
@@ -291,6 +304,13 @@ export const selectInvoiceSavingSuccess = (state: RootState) => state.invoices.s
 
 export const selectInvoiceDataChangingState = (state: RootState) => state.invoices.dataChanging;
 export const selectInvoiceDataChangingSuccess = (state: RootState) => state.invoices.dataChanging.success;
+
+export const selectInvoiceDataById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId;
+};
 
 export const selectInvoiceCreationDateById = (state: RootState, id: string) => {
   const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
