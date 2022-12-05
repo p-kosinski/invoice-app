@@ -32,7 +32,7 @@ const NewInvoice: React.FC = () => {
         </Styled.HeadingWrapper>
         <InvoiceForm />
       </Container>
-      <InvoiceFormActionButtons />
+      <InvoiceFormActionButtons variant='new' />
     </Styled.Section>
   );
 };
