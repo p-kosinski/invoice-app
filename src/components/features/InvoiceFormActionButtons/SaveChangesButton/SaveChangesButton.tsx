@@ -20,7 +20,7 @@ import {
   selectDrawerOpen
 } from '../../../../redux/invoiceViewSlice';
 
-import { prepareInvoiceDataObject } from '../../../../utils/formUtils';
+import { prepareChangedInvoiceDataObject } from '../../../../utils/formUtils';
 import { assertNotUndefined } from '../../../../utils/typeUtils';
 
 import Button from '../../../common/Button/Button';
@@ -41,9 +41,9 @@ const SaveChangesButton: React.FC = () => {
   const saveInvoiceDataChanges = () => {
     const getNewInvoiceStatus = (): Status => status === 'draft' ? 'pending' : status;
     const newInvoiceStatus = getNewInvoiceStatus();
-    const invoiceDataObject = prepareInvoiceDataObject(newInvoiceStatus, formValues);
+    const invoiceDataObject = prepareChangedInvoiceDataObject(newInvoiceStatus, formValues);
 
-    dispatch(changeInvoiceData({id: id, data: invoiceDataObject}));
+    dispatch(changeInvoiceData({id: id, changedData: invoiceDataObject}));
   };
 
   const resetFormState = () => {
