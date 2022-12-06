@@ -66,7 +66,7 @@ const initialState: FormState = {
       country: '',
     },
     issueDate: '',
-    paymentTerms: 0,
+    paymentTerms: 1,
     description: '',
     items: [],
   }

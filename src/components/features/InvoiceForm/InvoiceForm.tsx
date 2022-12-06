@@ -55,7 +55,7 @@ const InvoiceForm: React.FC<Props> = ({ edit }) => (
       </Styled.BillToFieldset>
       <Styled.DetailsFieldset>
         <IssueDate edit={edit} />
-        <PaymentTerms />
+        <PaymentTerms edit={edit} />
         <Description />
       </Styled.DetailsFieldset>
     </form>
