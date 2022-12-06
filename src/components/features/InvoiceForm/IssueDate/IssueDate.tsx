@@ -15,7 +15,11 @@ import DatePicker from '../../../common/DatePicker/DatePicker';
 
 import Styled from '../Styled';
 
-const IssueDate: React.FC = () => {
+type Props = {
+  edit?: boolean;
+};
+
+const IssueDate: React.FC<Props> = ({ edit }) => {
   const dispatch = useAppDispatch();
 
   const date: string = useAppSelector(selectIssueDate);
@@ -41,6 +45,7 @@ const IssueDate: React.FC = () => {
         buttonTabIndex={drawerOpen ? 0 : -1}
         selectedDate={date}
         onChange={changeDate}
+        disabled={edit}
       />
     </Styled.DateWrapper>
   );

@@ -69,7 +69,7 @@ const EditInvoice: React.FC = () => {
             Edit <span>#</span>{id}
           </Styled.Heading>
         </Styled.HeadingWrapper>
-        <InvoiceForm />
+        <InvoiceForm edit />
       </Container>
       <InvoiceFormActionButtons variant='edit' />
     </Styled.Section>
