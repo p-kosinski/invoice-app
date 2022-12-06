@@ -15,37 +15,55 @@ type Option = {
 interface Props {
   name: string;
   label?: string;
+  ariaLabel?: string;
   buttonTabIndex?: number;
   options: Option[];
-  defaultOptionValue: number;
+  defaultOptionValue?: number;
+  selectedValue: number;
   onChange: (value: number) => void;
 }
 
 const Select: React.FC<Props> = ({
   name,
   label,
+  ariaLabel,
   buttonTabIndex,
   options,
   defaultOptionValue,
+  selectedValue,
   onChange,
 }) => {
   const [optionsOpen, setOptionsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(0);
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
 
   const selectButton = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    const defaultOptionIndex = options.findIndex((object) => {
-      return object.value === defaultOptionValue;
+  const findOptionIndex = (value: number): number => {
+    const optionIndex = options.findIndex((optionObject) => {
+      return optionObject.value === value;
     });
 
-    setSelectedOption(defaultOptionIndex);
-    onChange(defaultOptionValue);
-  }, []);
+    return optionIndex;
+  };
+
+  useEffect(() => {
+    if (defaultOptionValue) {
+      const defaultOptionIndex = findOptionIndex(defaultOptionValue);
+
+      setSelectedOptionIndex(defaultOptionIndex);
+      onChange(defaultOptionValue);
+    }
+  }, [defaultOptionValue]);
+
+  useEffect(() => {
+    const optionIndex = findOptionIndex(selectedValue);
+
+    setSelectedOptionIndex(optionIndex)
+  }, [selectedValue]);
 
   const handleOptionClick = (i: number, clickedValue: number) => () => {
     onChange(clickedValue);
-    setSelectedOption(i);
+    setSelectedOptionIndex(i);
     setOptionsOpen(false);
   };
 
@@ -57,7 +75,7 @@ const Select: React.FC<Props> = ({
         case 'Enter':
           e.preventDefault();
           onChange(clickedValue);
-          setSelectedOption(i);
+          setSelectedOptionIndex(i);
           setOptionsOpen(false);
           selectButton.current && selectButton.current.focus();
           break;
@@ -78,7 +96,7 @@ const Select: React.FC<Props> = ({
           tabIndex={buttonTabIndex}
           role='button'
           id={name}
-          aria-label={`${label} - ${options[selectedOption].label}`}
+          aria-label={ariaLabel}
           aria-haspopup='listbox'
           aria-expanded={optionsOpen}
           ref={selectButton}
@@ -88,13 +106,13 @@ const Select: React.FC<Props> = ({
           }}
         >
           <Styled.SelectWrapper>
-            {options[selectedOption].label}
+            {options[selectedOptionIndex].label}
             <ArrowDownIcon />
           </Styled.SelectWrapper>
           <Styled.OptionsList
             aria-hidden={!optionsOpen}
             role='listbox'
-            aria-activedescendant={options[selectedOption].value.toString()}
+            aria-activedescendant={options[selectedOptionIndex].value.toString()}
             tabIndex={-1}
             $visible={optionsOpen}
           >
@@ -104,7 +122,7 @@ const Select: React.FC<Props> = ({
                 id={option.value.toString()}
                 tabIndex={0}
                 role='option'
-                aria-selected={selectedOption === i}
+                aria-selected={selectedOptionIndex === i}
                 onClick={handleOptionClick(i, option.value)}
                 onKeyDown={handleOptionKeyDown(i, option.value)}
               >
