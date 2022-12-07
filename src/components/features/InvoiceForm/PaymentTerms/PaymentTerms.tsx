@@ -1,16 +1,24 @@
 import { useAppSelector, useAppDispatch } from '../../../../hooks/reduxHooks';
 
-import { setPaymentTerms } from '../../../../redux/invoiceFormSlice';
+import {
+  selectPaymentTerms,
+  setPaymentTerms
+} from '../../../../redux/invoiceFormSlice';
 import { selectDrawerOpen } from '../../../../redux/invoicesViewSlice';
 
 import Select from '../../../common/Select/Select';
 
 import Styled from '../Styled';
 
-const PaymentTerms: React.FC = () => {
+type Props = {
+  edit?: boolean;
+};
+
+const PaymentTerms: React.FC<Props> = ({ edit }) => {
   const dispatch = useAppDispatch();
 
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
+  const paymentTerms: number = useAppSelector(selectPaymentTerms);
 
   const changePaymentTerms = (newValue: number) => {
     dispatch(setPaymentTerms(newValue));
@@ -21,6 +29,7 @@ const PaymentTerms: React.FC = () => {
       <Select
         name='payment-terms'
         label='Payment Terms'
+        ariaLabel='select payment terms'
         buttonTabIndex={drawerOpen ? 0 : -1}
         options={[
           {value: 1, label: 'Net 1 Day'},
@@ -28,7 +37,8 @@ const PaymentTerms: React.FC = () => {
           {value: 14, label: 'Net 14 Days'},
           {value: 30, label: 'Net 30 Days'}
         ]}
-        defaultOptionValue={30}
+        defaultOptionValue={edit ? undefined : 30}
+        selectedValue={paymentTerms}
         onChange={changePaymentTerms}
       />
     </Styled.PaymentTermsWrapper>

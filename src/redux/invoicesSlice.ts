@@ -43,6 +43,19 @@ export interface Invoice {
   total: number;
 };
 
+export interface ChangedInvoiceData {
+  paymentDue: string;
+  description: string;
+  paymentTerms: number;
+  clientName: string;
+  clientEmail: string;
+  status: Status;
+  senderAddress: Address;
+  clientAddress: Address;
+  items: ItemsArray;
+  total: number;
+};
+
 export type InvoicesData = Invoice[];
 
 export interface ThunkStatusState {
@@ -57,6 +70,7 @@ export interface ThunkStatusWithSuccessState extends ThunkStatusState {
 interface InvoicesState {
   loading: ThunkStatusState;
   statusChanging: ThunkStatusState;
+  dataChanging: ThunkStatusWithSuccessState;
   deleting: ThunkStatusState;
   saving: ThunkStatusWithSuccessState;
   data: InvoicesData;
@@ -70,6 +84,11 @@ const initialState: InvoicesState = {
   statusChanging: {
     active: false,
     error: false,
+  },
+  dataChanging: {
+    active: false,
+    error: false,
+    success: false,
   },
   deleting: {
     active: false,
@@ -114,6 +133,26 @@ export const changeInvoiceStatus = createAsyncThunk(
   }
 );
 
+export type ChangeInvoiceDataArgs = {
+  id: string;
+  changedData: ChangedInvoiceData;
+};
+
+export const changeInvoiceData = createAsyncThunk(
+  'invoices/changeInvoiceData',
+  async (args: ChangeInvoiceDataArgs) => {
+    const { id, changedData } = args;
+
+    return fetch(`${api.url}/${api.endpoints.invoices}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(changedData),
+    }).then((res) => res.json());
+  }
+);
+
 export const deleteInvoice = createAsyncThunk(
   'invoices/deleteInvoice',
   async (id: string) => {
@@ -149,6 +188,12 @@ export const invoicesSlice = createSlice({
     ) => {
       state.saving.success = action.payload;
     },
+    setInvoiceDataChangingSuccess: (
+      state: InvoicesState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.dataChanging.success = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchInvoicesData.pending, (state, action) => {
@@ -169,16 +214,15 @@ export const invoicesSlice = createSlice({
       state.statusChanging.error = false;
     }),
     builder.addCase(changeInvoiceStatus.fulfilled, (state, action) => {
-      const changedInvoiceId = action.meta.arg.id;
-      const newInvoiceStatus = action.meta.arg.newStatus;
+      const { id, newStatus } = action.meta.arg;
 
-      const changedInvoice = state.data.find(invoice => invoice.id === changedInvoiceId);
+      const changedInvoice = state.data.find(invoice => invoice.id === id);
       
       assertNotUndefined(changedInvoice);
       
       const changedInvoiceIndex = state.data.indexOf(changedInvoice);
 
-      state.data[changedInvoiceIndex].status = newInvoiceStatus;
+      state.data[changedInvoiceIndex].status = newStatus;
       state.statusChanging.active = false;
       state.statusChanging.error = false;
     }),
@@ -191,7 +235,9 @@ export const invoicesSlice = createSlice({
       state.deleting.error = false;
     }),
     builder.addCase(deleteInvoice.fulfilled, (state, action) => {
-      const deletedInvoiceIndex = state.data.findIndex((invoice) => invoice.id === action.meta.arg);
+      const deletedInvoiceIndex = state.data.findIndex(
+        (invoice) => invoice.id === action.meta.arg
+      );
 
       state.data.splice(deletedInvoiceIndex, 1);
       state.deleting.active = false;
@@ -200,7 +246,7 @@ export const invoicesSlice = createSlice({
     builder.addCase(deleteInvoice.rejected, (state, action) => {
       state.deleting.active = false;
       state.deleting.error = true;
-    })
+    }),
     builder.addCase(saveInvoice.pending, (state, action) => {
       state.saving.active = true;
       state.saving.error = false;
@@ -216,11 +262,36 @@ export const invoicesSlice = createSlice({
       state.saving.active = false;
       state.saving.error = true;
       state.saving.success = false;
+    }),
+    builder.addCase(changeInvoiceData.pending, (state, action) => {
+      state.dataChanging.active = true;
+      state.dataChanging.error = false;
+      state.dataChanging.success = false;
+    }),
+    builder.addCase(changeInvoiceData.fulfilled, (state, action) => {
+      const { id } = action.meta.arg;
+
+      const changedInvoiceIndex = state.data.findIndex(
+        (invoice) => invoice.id === id
+      );
+
+      state.data[changedInvoiceIndex] = action.payload;
+      state.dataChanging.active = false;
+      state.dataChanging.error = false;
+      state.dataChanging.success = true;
+    }),
+    builder.addCase(changeInvoiceData.rejected, (state, action) => {
+      state.dataChanging.active = false;
+      state.dataChanging.error = true;
+      state.dataChanging.success = false;
     })
   }
 });
 
-export const { setInvoiceSavingSuccess } = invoicesSlice.actions;
+export const {
+  setInvoiceSavingSuccess,
+  setInvoiceDataChangingSuccess
+} = invoicesSlice.actions;
 
 export const selectInvoicesData = (state: RootState) => state.invoices.data;
 
@@ -230,6 +301,16 @@ export const selectInvoiceDeletionState = (state: RootState) => state.invoices.d
 
 export const selectInvoiceSavingState = (state: RootState) => state.invoices.saving;
 export const selectInvoiceSavingSuccess = (state: RootState) => state.invoices.saving.success;
+
+export const selectInvoiceDataChangingState = (state: RootState) => state.invoices.dataChanging;
+export const selectInvoiceDataChangingSuccess = (state: RootState) => state.invoices.dataChanging.success;
+
+export const selectInvoiceDataById = (state: RootState, id: string) => {
+  const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);
+  
+  assertNotUndefined(invoiceWithMatchingId);
+  return invoiceWithMatchingId;
+};
 
 export const selectInvoiceCreationDateById = (state: RootState, id: string) => {
   const invoiceWithMatchingId =  state.invoices.data.find(invoice => invoice.id === id);

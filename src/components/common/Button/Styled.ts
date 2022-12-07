@@ -242,6 +242,53 @@ const DiscardButton = styled.button<ButtonProps>(
   `
 );
 
+const EditButton = styled.button<ButtonProps>(
+  ({ theme, $showOnMobile, $hideOnMobile }) => css`
+    border: none;
+    margin: 0;
+    padding: 12px 24px;
+    border-radius: 24px;
+    background-color: ${theme.colors.buttons.edit.bg};
+    color: ${theme.colors.buttons.edit.text};
+    outline: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      background-color ${theme.transitionDuration} ease-in-out,
+      color ${theme.transitionDuration} ease-in-out,
+      outline ${theme.transitionDuration} ease-in-out;
+
+    &:active {
+      background-color: ${theme.colors.buttons.edit.hoverBg};
+    }
+
+    :focus-visible {
+      outline: 1px solid ${theme.colors.accent.main};
+      outline-offset: 2px;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: ${theme.colors.buttons.edit.hoverBg};
+      }
+    }
+
+    ${$showOnMobile &&
+      `@media only screen and (min-width: ${theme.breakpoints.sm}) {
+        display: none;
+      }`
+    }
+
+    ${$hideOnMobile &&
+      `display: none;
+
+        @media only screen and (min-width: ${theme.breakpoints.sm}) {
+          display: block;
+        }
+      `
+    }
+  `
+);
+
 const NewInvoiceButton = styled.button<ButtonProps>(
   ({ theme, $showOnMobile, $hideOnMobile }) => css`
     border: none;
@@ -326,6 +373,7 @@ const Styled = {
   DeleteButton: DeleteButton,
   AddButton: AddButton,
   DiscardButton: DiscardButton,
+  EditButton: EditButton,
   NewInvoiceButton: NewInvoiceButton,
   AddIcon: AddIcon,
   TextWrapper: TextWrapper,

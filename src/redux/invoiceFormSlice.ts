@@ -8,7 +8,7 @@ type EditItemPropertyPayload<T> = {
   newValue: T;
 };
 
-type FormItem = {
+export type FormItem = {
   name: string;
   quantity: string;
   price: string;
@@ -66,7 +66,7 @@ const initialState: FormState = {
       country: '',
     },
     issueDate: '',
-    paymentTerms: 0,
+    paymentTerms: 1,
     description: '',
     items: [],
   }
@@ -94,6 +94,12 @@ export const invoiceFormSlice = createSlice({
       action: PayloadAction<boolean>
     ) => {
       state.validation.errors.noItems = action.payload;
+    },
+    setAllValues: (
+      state: FormState,
+      action: PayloadAction<FormValuesState>
+    ) => {
+      state.values = action.payload;
     },
     setSenderStreetAddress: (
       state: FormState,
@@ -227,6 +233,7 @@ export const {
   setValidationActive,
   setValidationBlankFieldsError,
   setValidationNoItemsError,
+  setAllValues,
   setSenderStreetAddress,
   setSenderCity,
   setSenderPostCode,

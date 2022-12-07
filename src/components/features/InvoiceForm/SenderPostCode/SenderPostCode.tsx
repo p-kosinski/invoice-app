@@ -7,9 +7,17 @@ import {
   setSenderPostCode
 } from '../../../../redux/invoiceFormSlice';
 
-import { selectInvoiceSavingSuccess } from '../../../../redux/invoicesSlice';
+import {
+  selectInvoiceSavingSuccess,
+  selectInvoiceDataChangingSuccess
+} from '../../../../redux/invoicesSlice';
 import { selectValidationActive } from '../../../../redux/invoiceFormSlice';
-import { selectDrawerOpen } from '../../../../redux/invoicesViewSlice';
+import {
+  selectDrawerOpen as selectInvoicesDrawerOpen
+} from '../../../../redux/invoicesViewSlice';
+import {
+  selectDrawerOpen as selectInvoiceDrawerOpen
+} from '../../../../redux/invoiceViewSlice';
 
 import TextField from '../../../common/TextField/TextField';
 
@@ -19,10 +27,13 @@ const SenderPostCode: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const senderPostCode: string = useAppSelector(selectSenderPostCode);
-  const invoiceSavingSuccess: boolean = 
+  const invoiceSavingSuccess: boolean =
     useAppSelector(selectInvoiceSavingSuccess);
+  const invoiceDataChangingSuccess: boolean =
+    useAppSelector(selectInvoiceDataChangingSuccess);
   const validationActive: boolean = useAppSelector(selectValidationActive);
-  const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
+  const invoicesDrawerOpen: boolean = useAppSelector(selectInvoicesDrawerOpen);
+  const invoiceDrawerOpen: boolean = useAppSelector(selectInvoiceDrawerOpen);
 
   const changeSenderPostCode = (newValue: string) => {
     dispatch(setSenderPostCode(newValue));
@@ -31,12 +42,12 @@ const SenderPostCode: React.FC = () => {
   const [validate, setValidate] = useState(false);
 
   useEffect(() => {
-    invoiceSavingSuccess && setValidate(false);
-  }, [invoiceSavingSuccess]);
+    (invoiceSavingSuccess || invoiceDataChangingSuccess) && setValidate(false);
+  }, [invoiceSavingSuccess, invoiceDataChangingSuccess]);
 
   useEffect(() => {
-    !drawerOpen && setValidate(false);
-  }, [drawerOpen]);
+    (!invoicesDrawerOpen || !invoiceDrawerOpen) && setValidate(false);
+  }, [invoicesDrawerOpen, invoiceDrawerOpen]);
 
   return (
     <Styled.PostCodeWrapper>
@@ -44,7 +55,7 @@ const SenderPostCode: React.FC = () => {
         input='text'
         name='sender-post-code'
         label='Post Code'
-        inputTabIndex={drawerOpen ? 0 : -1}
+        inputTabIndex={(invoicesDrawerOpen || invoiceDrawerOpen) ? 0 : -1}
         value={senderPostCode}
         onChange={changeSenderPostCode}
         onBlur={() => setValidate(true)}

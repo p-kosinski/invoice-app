@@ -22,7 +22,11 @@ import ErrorMessages from './ErrorMessages/ErrorMessages';
 
 import Styled from './Styled';
 
-const InvoiceForm: React.FC = () => (
+type Props = {
+  edit?: boolean;
+};
+
+const InvoiceForm: React.FC<Props> = ({ edit }) => (
   <>
     <form>
       <Styled.BillFromFieldset>
@@ -50,8 +54,8 @@ const InvoiceForm: React.FC = () => (
         <ClientCountry />
       </Styled.BillToFieldset>
       <Styled.DetailsFieldset>
-        <IssueDate />
-        <PaymentTerms />
+        <IssueDate edit={edit} />
+        <PaymentTerms edit={edit} />
         <Description />
       </Styled.DetailsFieldset>
     </form>
