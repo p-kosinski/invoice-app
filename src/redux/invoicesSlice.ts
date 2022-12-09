@@ -111,6 +111,15 @@ export const fetchInvoicesData = createAsyncThunk(
   }
 );
 
+export const fetchInvoiceDataById = createAsyncThunk(
+  'invoices/fetchInvoicesDataById',
+  async (id: string) => {
+    return fetch(`${api.url}/${api.endpoints.invoices}/${id}`).then((res) =>
+      res.json()
+    )
+  }
+);
+
 export type ChangeInvoiceStatusArgs = {
   id: string;
   newStatus: Status;
@@ -206,6 +215,19 @@ export const invoicesSlice = createSlice({
       state.loading.error = false;
     }),
     builder.addCase(fetchInvoicesData.rejected, (state, action) => {
+      state.loading.active = false;
+      state.loading.error = true;
+    }),
+    builder.addCase(fetchInvoiceDataById.pending, (state, action) => {
+      state.loading.active = true;
+      state.loading.error = false;
+    }),
+    builder.addCase(fetchInvoiceDataById.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.loading.active = false;
+      state.loading.error = false;
+    }),
+    builder.addCase(fetchInvoiceDataById.rejected, (state, action) => {
       state.loading.active = false;
       state.loading.error = true;
     }),
