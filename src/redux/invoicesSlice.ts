@@ -223,7 +223,7 @@ export const invoicesSlice = createSlice({
       state.loading.error = false;
     }),
     builder.addCase(fetchInvoiceDataById.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.data = [action.payload];
       state.loading.active = false;
       state.loading.error = false;
     }),
