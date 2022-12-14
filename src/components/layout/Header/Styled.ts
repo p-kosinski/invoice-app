@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Header = styled.header(({ theme }) => css`
   height: 72px;
@@ -17,6 +18,18 @@ const Header = styled.header(({ theme }) => css`
     left: 0;
     flex-direction: column;
     border-radius: 0 20px 20px 0;
+  }
+`);
+
+const HomePageLink = styled(Link)(({ theme }) => css`
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  outline: 1px solid transparent;
+  transition: outline ${theme.transitionDuration} ease-in-out;
+
+  :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: 4px;
   }
 `);
 
@@ -50,6 +63,7 @@ const Divider = styled.hr(({ theme }) => css`
 
 const Styled = {
   Header: Header,
+  HomePageLink: HomePageLink,
   ButtonsWrapper: ButtonsWrapper,
   Divider: Divider,
 };
