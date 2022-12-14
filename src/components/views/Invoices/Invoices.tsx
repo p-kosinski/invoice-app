@@ -30,7 +30,7 @@ const Invoices: React.FC = () => {
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
   useEffect(() => {
-    !invoices.length && dispatch(fetchInvoicesData());
+    invoices.length <= 1 && dispatch(fetchInvoicesData());
   }, [invoices.length]);
 
   return (
