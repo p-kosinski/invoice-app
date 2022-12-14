@@ -1,7 +1,7 @@
 import Styled from './Styled';
 
 type Props = {
-  variant: 'invoiceTile' | 'text';
+  variant: 'invoiceTile' | 'card' | 'text';
   height?: string;
   width?: string;
 };
@@ -12,6 +12,12 @@ const Skeleton: React.FC<Props> = ({ variant, height, width }) => {
       return (
         <>
           <Styled.InvoiceTileSkeleton />
+        </>
+      );
+    case 'card':
+      return (
+        <>
+          <Styled.CardSkeleton $height={height} $width={width} />
         </>
       );
     case 'text':
