@@ -67,6 +67,7 @@ const DeletionConfirmDialog: React.FC = () => {
             <Styled.ButtonsWrapper>
               <Button
                 variant='discard'
+                paddingInline='24px'
                 ref={cancelButton}
                 onClick={() => changeDeletionDialogOpen(false)}
               >

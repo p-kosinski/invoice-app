@@ -1,9 +1,13 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
-type ButtonProps = {
+interface ButtonProps {
   theme: DefaultTheme;
   $showOnMobile?: boolean;
   $hideOnMobile?: boolean;
+};
+
+interface ButtonPropsExtended extends ButtonProps {
+  $paddingInline?: string;
 };
 
 const ButtonPrimary = styled.button<ButtonProps>(
@@ -195,11 +199,11 @@ const AddButton = styled.button<ButtonProps>(
   `
 );
 
-const DiscardButton = styled.button<ButtonProps>(
-  ({ theme, $showOnMobile, $hideOnMobile }) => css`
+const DiscardButton = styled.button<ButtonPropsExtended>(
+  ({ theme, $showOnMobile, $hideOnMobile, $paddingInline }) => css`
     border: none;
     margin: 0;
-    padding: 12px 16px;
+    padding: 12px ${$paddingInline ? $paddingInline : '16px'};
     border-radius: 24px;
     background-color: ${theme.colors.buttons.discard.bg};
     color: ${theme.colors.buttons.discard.text};
