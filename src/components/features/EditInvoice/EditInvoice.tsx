@@ -9,7 +9,7 @@ import {
 } from '../../../redux/invoiceViewSlice';
 import { selectInvoiceDataById } from '../../../redux/invoicesSlice';
 import type { Invoice } from '../../../redux/invoicesSlice';
-import { setAllValues } from '../../../redux/invoiceFormSlice';
+import { setAllValues, resetForm } from '../../../redux/invoiceFormSlice';
 import type { FormValuesState } from '../../../redux/invoiceFormSlice';
 
 import { assertNotUndefined } from '../../../utils/typeUtils';
@@ -40,6 +40,10 @@ const EditInvoice: React.FC = () => {
     dispatch(setDrawerOpen(false))
   };
 
+  const resetFormState = () => {
+    dispatch(resetForm());
+  };
+
   const changeFormValues = (values: FormValuesState) => {
     dispatch(setAllValues(values));
   };
@@ -62,7 +66,10 @@ const EditInvoice: React.FC = () => {
         <GoBackButton
           showOnMobileOnly
           noInlinePadding
-          onClick={() => closeDrawer()}
+          onClick={() => {
+            closeDrawer();
+            resetFormState();
+          }}
         />
         <Styled.HeadingWrapper>
           <Styled.Heading>
