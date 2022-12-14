@@ -40,7 +40,7 @@ type SkeletonProps = {
 
 const CardSkeleton = styled.div<SkeletonProps>(
   ({ theme, $height, $width }) => css`
-    height: ${$height};
+    min-height: ${$height};
     width: ${$width};
     margin-bottom: 16px;
     border-radius: 8px;
