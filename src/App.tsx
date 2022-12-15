@@ -5,6 +5,12 @@ import { Normalize } from 'styled-normalize';
 import { useAppSelector } from './hooks/reduxHooks';
 import { selectThemeMode } from './redux/themeSlice';
 import type { ThemeMode } from './redux/themeSlice';
+import {
+  selectDrawerOpen as selectInvoicesDrawerOpen
+} from './redux/invoicesViewSlice';
+import {
+  selectDrawerOpen as selectInvoiceDrawerOpen
+} from './redux/invoiceViewSlice';
 
 import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
 import MainLayout from './components/layout/MainLayout/MainLayout';
@@ -13,33 +19,43 @@ import Invoice from './components/views/Invoice/Invoice';
 
 import { lightTheme, darkTheme } from './styles/themes';
 
-const GlobalStyle = createGlobalStyle(({ theme }) => css`
-  body {
-    background-color: ${theme.colors.backgrounds.page};
-    scrollbar-width: thin;
-    scrollbar-color: ${theme.colors.formElements.outline} transparent;
-    transition:
-      background-color ${theme.transitionDuration} ease-in-out,
-      scrollbar-color ${theme.transitionDuration} ease-in-out;
+type GlobalStyleProps = {
+  $noScroll: boolean;
+};
 
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
+const GlobalStyle = createGlobalStyle<GlobalStyleProps>(
+  ({ theme, $noScroll }) => css`
+    body {
+      background-color: ${theme.colors.backgrounds.page};
+      ${$noScroll && 'overflow: hidden;'};
+      scrollbar-width: thin;
+      scrollbar-color: ${theme.colors.formElements.outline} transparent;
+      transition:
+        background-color ${theme.transitionDuration} ease-in-out,
+        scrollbar-color ${theme.transitionDuration} ease-in-out;
 
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background-color: ${theme.colors.formElements.outline};
-      border-radius: 4px;
-      transition: background-color ${theme.transitionDuration} ease-in-out;
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: ${theme.colors.formElements.outline};
+        border-radius: 4px;
+        transition: background-color ${theme.transitionDuration} ease-in-out;
+      }
     }
-  }
-`);
+  `
+);
 
 const App: React.FC = () => {
   const themeMode: ThemeMode = useAppSelector(selectThemeMode);
+  
+  const invoicesDrawerOpen: boolean = useAppSelector(selectInvoicesDrawerOpen);
+  const invoiceDrawerOpen: boolean = useAppSelector(selectInvoiceDrawerOpen);
 
   const themes = {
     light: lightTheme,
@@ -49,7 +65,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={themes[themeMode]}>
       <Normalize />
-      <GlobalStyle />
+      <GlobalStyle $noScroll={invoicesDrawerOpen || invoiceDrawerOpen} />
       <BrowserRouter>
         <MainLayout>
           <ScrollToTop>
