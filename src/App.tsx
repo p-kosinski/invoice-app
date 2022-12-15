@@ -6,6 +6,7 @@ import { useAppSelector } from './hooks/reduxHooks';
 import { selectThemeMode } from './redux/themeSlice';
 import type { ThemeMode } from './redux/themeSlice';
 
+import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import Invoices from './components/views/Invoices/Invoices';
 import Invoice from './components/views/Invoice/Invoice';
@@ -51,10 +52,12 @@ const App: React.FC = () => {
       <GlobalStyle />
       <BrowserRouter>
         <MainLayout>
-          <Routes>
-            <Route path='/' element={<Invoices />} />
-            <Route path='/:id' element={<Invoice />} />
-          </Routes>
+          <ScrollToTop>
+            <Routes>
+              <Route path='/' element={<Invoices />} />
+              <Route path='/:id' element={<Invoice />} />
+            </Routes>
+          </ScrollToTop>
         </MainLayout>
       </BrowserRouter>
     </ThemeProvider>
