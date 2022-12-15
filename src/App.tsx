@@ -15,7 +15,25 @@ import { lightTheme, darkTheme } from './styles/themes';
 const GlobalStyle = createGlobalStyle(({ theme }) => css`
   body {
     background-color: ${theme.colors.backgrounds.page};
-    transition: background-color ${theme.transitionDuration} ease-in-out;
+    scrollbar-width: thin;
+    scrollbar-color: ${theme.colors.formElements.outline} transparent;
+    transition:
+      background-color ${theme.transitionDuration} ease-in-out,
+      scrollbar-color ${theme.transitionDuration} ease-in-out;
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${theme.colors.formElements.outline};
+      border-radius: 4px;
+      transition: background-color ${theme.transitionDuration} ease-in-out;
+    }
   }
 `);
 
