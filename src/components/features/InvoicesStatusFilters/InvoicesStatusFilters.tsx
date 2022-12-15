@@ -1,21 +1,30 @@
-import { useState, ChangeEvent, KeyboardEvent } from 'react';
+import { useState, ChangeEvent, KeyboardEvent, useEffect } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
-import { useAppDispatch } from '../../../hooks/reduxHooks';
+import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
 import {
   addStatusFilter,
   removeStatusFilter,
+  resetStatusFilters,
+  selectStatusFilters
 } from '../../../redux/invoicesViewSlice';
-import type { StatusFilter } from '../../../redux/invoicesViewSlice';
+import type {
+  StatusFilter,
+  StatusFiltersArray
+} from '../../../redux/invoicesViewSlice';
 
 import Typography from '../../common/Typography/Typography';
 
-import { ReactComponent as ArrowDownIcon } from '../../../assets/icon-arrow-down.svg';
+import {
+  ReactComponent as ArrowDownIcon
+} from '../../../assets/icon-arrow-down.svg';
 
 import Styled from './Styled';
 
 const InvoicesStatusFilters: React.FC = () => {
   const dispatch = useAppDispatch();
+
+  const statusFilters: StatusFiltersArray = useAppSelector(selectStatusFilters);
 
   const addInvoiceStatusFilter = (filter: StatusFilter) => {
     dispatch(addStatusFilter(filter));
@@ -23,6 +32,10 @@ const InvoicesStatusFilters: React.FC = () => {
 
   const removeInvoiceStatusFilter = (filter: StatusFilter) => {
     dispatch(removeStatusFilter(filter));
+  };
+
+  const resetInvoiceStatusFilters = () => {
+    dispatch(resetStatusFilters());
   };
 
   const [filtersOpened, setFiltersOpened] = useState(false);
@@ -61,6 +74,12 @@ const InvoicesStatusFilters: React.FC = () => {
       }
     };
 
+  useEffect(() => {
+    return () => {
+      resetInvoiceStatusFilters();
+    };
+  }, []);
+
   return (
     <ClickAwayListener onClickAway={() => setFiltersOpened(false)}>
       <Styled.Wrapper>
@@ -83,6 +102,7 @@ const InvoicesStatusFilters: React.FC = () => {
                 name='draft'
                 value='draft'
                 tabIndex={0}
+                checked={statusFilters.includes('draft')}
                 onKeyDown={handleCheckboxKeyDown('draft')}
                 onChange={handleCheckboxChange()}
               />
@@ -99,6 +119,7 @@ const InvoicesStatusFilters: React.FC = () => {
                 name='pending'
                 value='pending'
                 tabIndex={0}
+                checked={statusFilters.includes('pending')}
                 onKeyDown={handleCheckboxKeyDown('pending')}
                 onChange={handleCheckboxChange()}
               />
@@ -115,6 +136,7 @@ const InvoicesStatusFilters: React.FC = () => {
                 name='paid'
                 value='paid'
                 tabIndex={0}
+                checked={statusFilters.includes('paid')}
                 onKeyDown={handleCheckboxKeyDown('paid')}
                 onChange={handleCheckboxChange()}
               />
