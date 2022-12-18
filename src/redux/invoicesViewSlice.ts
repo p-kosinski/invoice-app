@@ -18,6 +18,11 @@ export const invoicesViewSlice = createSlice({
   name: 'invoicesView',
   initialState,
   reducers: {
+    resetStatusFilters: (
+      state: InvoicesViewState
+    ) => {
+      state.statusFilters = [];
+    },
     addStatusFilter: (
       state: InvoicesViewState,
       action: PayloadAction<StatusFilter>
@@ -44,6 +49,7 @@ export const invoicesViewSlice = createSlice({
 });
 
 export const {
+  resetStatusFilters,
   addStatusFilter,
   removeStatusFilter,
   setDrawerOpen

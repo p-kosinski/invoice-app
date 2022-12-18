@@ -26,7 +26,7 @@ const Dialog = styled.dialog(({ theme }) => css`
   }
 
   @media only screen and (min-width: ${theme.breakpoints.xl}) {
-    margin-top: 0;
+    height: calc(100vh + 48px);
   }
 `);
 

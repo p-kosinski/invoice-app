@@ -66,6 +66,7 @@ const Drawer = styled.aside<Props>(
 const Wrapper = styled.div(({ theme }) => css`
   height: 100%;
   overflow-y: scroll;
+  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: ${theme.colors.formElements.outline} transparent;
   transition: scrollbar-color ${theme.transitionDuration} ease-in-out;

@@ -21,6 +21,7 @@ type Props = {
   ariaLabel?: string;
   showOnMobile?: boolean;
   hideOnMobile?: boolean;
+  paddingInline?: string;
   children?: string;
   onClick: () => any;
 };
@@ -32,6 +33,7 @@ const Button = forwardRef<Ref, Props>(({
   tabIndex,
   showOnMobile,
   hideOnMobile,
+  paddingInline,
   ariaLabel,
   children,
   onClick,
@@ -101,6 +103,7 @@ const Button = forwardRef<Ref, Props>(({
           onClick={() => onClick()}
           $showOnMobile={showOnMobile}
           $hideOnMobile={hideOnMobile}
+          $paddingInline={paddingInline}
           ref={ref}
         >
           <Typography variant='h4' element='span'>

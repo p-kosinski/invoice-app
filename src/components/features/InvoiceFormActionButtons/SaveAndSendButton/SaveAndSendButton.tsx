@@ -89,7 +89,7 @@ const SaveAndSendButton: React.FC = () => {
     };
 
     const validateAddressFields = (addressFields: Address) => {
-      for (let addressField in addressFields) {
+      for (let addressField of Object.values(addressFields)) {
         validateFormStringValue(addressField);
       }
     };

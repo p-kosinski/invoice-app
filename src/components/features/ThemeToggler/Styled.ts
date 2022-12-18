@@ -7,7 +7,10 @@ const ThemeToggleButton = styled.button(({ theme }) => css`
   width: 26px;
   position: relative;
   background-color: transparent;
+  border-radius: 14px;
+  outline: 1px solid transparent;
   cursor: pointer;
+  transition: outline ${theme.transitionDuration} ease-in-out;
 
   svg {
     position: absolute;
@@ -22,6 +25,11 @@ const ThemeToggleButton = styled.button(({ theme }) => css`
     svg {
       fill: ${theme.colors.buttons.themeToggler.active};
     }
+  }
+
+  :focus-visible {
+    outline: 1px solid ${theme.colors.accent.main};
+    outline-offset: 4px;
   }
 
   @media (hover: hover) {
