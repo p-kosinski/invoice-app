@@ -18,7 +18,9 @@ const Backdrop = styled.div<Props>(
       z-index: 1;
       visibility: ${$open ? 'visible' : 'hidden'};
       opacity: ${$open ? 0.5 : 0};
-      transition: opacity ${theme.transitionDuration} ease-in-out;
+      transition:
+        opacity ${theme.transitionDuration} ease-in-out,
+        visibility ${theme.transitionDuration} ease-in-out;
     }
 
     @media only screen and (min-width: ${theme.breakpoints.xl}) {
