@@ -55,7 +55,11 @@ const InvoicesStatusFilters: React.FC = () => {
   };
 
   const handleCheckboxKeyDown =
-    (value: StatusFilter) => (e: KeyboardEvent<HTMLInputElement>) => {
+    (value: StatusFilter) => (
+      e: KeyboardEvent<HTMLInputElement> & {
+        target: HTMLInputElement;
+      }
+    ) => {
       switch (e.key) {
         case ' ':
         case 'SpaceBar':
