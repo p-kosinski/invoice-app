@@ -1,3 +1,5 @@
+import AnimateMount from '../AnimateMount/AnimateMount';
+
 import Styled from './Styled';
 
 type Props = {
@@ -10,9 +12,9 @@ const Skeleton: React.FC<Props> = ({ variant, height, width }) => {
   switch(variant) {
     case 'invoiceTile':
       return (
-        <>
+        <AnimateMount variant='fade'>
           <Styled.InvoiceTileSkeleton />
-        </>
+        </AnimateMount>
       );
     case 'card':
       return (
@@ -22,9 +24,9 @@ const Skeleton: React.FC<Props> = ({ variant, height, width }) => {
       );
     case 'text':
       return (
-        <>
+        <AnimateMount variant='fade'>
           <Styled.TextSkeleton $height={height} $width={width} />
-        </>
+        </AnimateMount>
       );
     default:
       console.error(`Invalid 'variant' prop`);

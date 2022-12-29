@@ -1,10 +1,13 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
-const HeadingWrapper = styled.div`
+const HeadingWrapper = styled(motion.div)`
   margin-block: clamp(32px, 5vw, 70px);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 999;
 `;
 
 const ButtonsWrapper = styled.div(({ theme }) => css`

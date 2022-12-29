@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
-const NoInvoicesInfo = styled.div`
+const NoInvoicesInfo = styled(motion.div)`
   padding-block: clamp(40px, 4vh, 64px);
 `;
 

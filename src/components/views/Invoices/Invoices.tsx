@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import {
@@ -40,25 +41,34 @@ const Invoices: React.FC = () => {
       </Drawer>
       <Container>
         <section>
-          <Styled.HeadingWrapper>
-            <InvoicesHeading />
-            <Styled.ButtonsWrapper>
-              <InvoicesStatusFilters />
-              <NewInvoiceButton />
-            </Styled.ButtonsWrapper>
-          </Styled.HeadingWrapper>
+          <AnimatePresence>
+            <Styled.HeadingWrapper
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <InvoicesHeading />
+              <Styled.ButtonsWrapper>
+                <InvoicesStatusFilters />
+                <NewInvoiceButton />
+              </Styled.ButtonsWrapper>
+            </Styled.HeadingWrapper>
+          </AnimatePresence>
           <Styled.InvoicesWrapper>
-            {invoicesLoading.active ?
-              <>
-                <Skeleton variant='invoiceTile' />
-                <Skeleton variant='invoiceTile' />
-                <Skeleton variant='invoiceTile' />
-              </>
-              :
-              <>
-                {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
-              </>
-            }
+            <AnimatePresence>
+              {invoicesLoading.active ?
+                <>
+                  <Skeleton variant='invoiceTile' />
+                  <Skeleton variant='invoiceTile' />
+                  <Skeleton variant='invoiceTile' />
+                </>
+                :
+                <>
+                  {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
+                </>
+              }
+            </AnimatePresence>
           </Styled.InvoicesWrapper>
         </section>
       </Container>

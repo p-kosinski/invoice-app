@@ -14,6 +14,7 @@ import type {
 
 import Typography from '../../common/Typography/Typography';
 import Skeleton from '../../common/Skeleton/Skeleton';
+import AnimateMount from '../../common/AnimateMount/AnimateMount';
 
 import Styled from './Styled';
 
@@ -57,14 +58,16 @@ const InvoicesHeading: React.FC = () => {
       {invoicesLoading.active ?
         <Skeleton variant='text' height='12px' width='75px' />
         :
-        <Typography variant='body1' element='p'>
-          {filteredInvoices.length ? filteredInvoices.length : 'No'}
-          <Styled.SpanHiddenOnMobile>
-            {invoices.length ? ' ' : ''}
-            {getTextContentAdjective(statusFilters, invoices)}
-          </Styled.SpanHiddenOnMobile>
-          &nbsp;{filteredInvoices.length === 1 ? 'invoice' : 'invoices'}
-        </Typography>
+        <AnimateMount variant='fade'>
+          <Typography variant='body1' element='p'>
+            {filteredInvoices.length ? filteredInvoices.length : 'No'}
+            <Styled.SpanHiddenOnMobile>
+              {invoices.length ? ' ' : ''}
+              {getTextContentAdjective(statusFilters, invoices)}
+            </Styled.SpanHiddenOnMobile>
+            &nbsp;{filteredInvoices.length === 1 ? 'invoice' : 'invoices'}
+          </Typography>
+        </AnimateMount>
       }
     </Styled.Wrapper>
   );
