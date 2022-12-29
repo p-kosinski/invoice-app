@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import {
@@ -56,7 +56,7 @@ const Invoices: React.FC = () => {
             </Styled.HeadingWrapper>
           </AnimatePresence>
           <Styled.InvoicesWrapper>
-            <AnimatePresence>
+            <AnimatePresence mode='wait'>
               {invoicesLoading.active ?
                 <>
                   <Skeleton variant='invoiceTile' />
