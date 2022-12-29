@@ -18,9 +18,9 @@ const Skeleton: React.FC<Props> = ({ variant, height, width }) => {
       );
     case 'card':
       return (
-        <>
+        <AnimateMount variant='fade'>
           <Styled.CardSkeleton $height={height} $width={width} />
-        </>
+        </AnimateMount>
       );
     case 'text':
       return (

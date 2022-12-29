@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
-const Toolbar = styled.div(({ theme }) => css`
+const Toolbar = styled(motion.div)(({ theme }) => css`
   position: fixed;
   bottom: 0;
   left: 0;
