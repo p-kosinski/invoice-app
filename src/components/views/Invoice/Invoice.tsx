@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
 
@@ -41,30 +42,51 @@ const Invoice: React.FC = () => {
     !invoices.length && dispatch(fetchInvoiceDataById(id));
   }, [invoices.length]);
 
+  const { active } = invoicesLoading;
+
   return (
     <>
       <Drawer open={drawerOpen}>
-        {(!invoicesLoading.active && invoices.length) && <EditInvoice />}
+        {(!active && invoices.length) && <EditInvoice />}
       </Drawer>
       <DeletionConfirmDialog />
-      <Container>
-        <Styled.GoBackLinkWrapper>
-          <GoBackButton />
-        </Styled.GoBackLinkWrapper>
-          {invoicesLoading.active || !invoices.length ?
-            <Skeleton variant='card' height='96px' width='100%' />
+      <AnimatePresence mode='wait'>
+        <Container>
+          <Styled.GoBackLinkWrapper
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            <GoBackButton />
+          </Styled.GoBackLinkWrapper>
+          {active || !invoices.length ?
+            <Skeleton
+              key='statusCardSkeleton'
+              variant='card'
+              height='96px'
+              width='100%'
+            />
             :
-            <InvoiceStatusCard />
+            <InvoiceStatusCard key='statusCard' />
           }
-        <Styled.InvoiceInfoWrapper>
-          {invoicesLoading.active || !invoices.length ?
-            <Skeleton variant='card' height='400px' width='100%' />
-            :
-            <InvoiceInfo />
-          }
-        </Styled.InvoiceInfoWrapper>
-      </Container>
-      {(!invoicesLoading.active && invoices.length) && <InvoiceActionButtons />}
+          <Styled.InvoiceInfoWrapper>
+            {active || !invoices.length ?
+              <Skeleton
+                key='invoiceInfoSkeleton'
+                variant='card'
+                height='400px'
+                width='100%'
+              />
+              :
+              <InvoiceInfo key='invoiceInfo' />
+            }
+          </Styled.InvoiceInfoWrapper>
+        </Container>
+        {(!active && invoices.length) && 
+          <InvoiceActionButtons key='actionButtons' />
+        }
+      </AnimatePresence>
     </>
   );
 };

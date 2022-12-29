@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
-const GoBackLinkWrapper = styled.div(({ theme }) => css`
+const GoBackLinkWrapper = styled(motion.div)(({ theme }) => css`
   margin-block: 12px;
 
   @media only screen and (min-width: ${theme.breakpoints.sm}) {

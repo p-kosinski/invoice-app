@@ -18,6 +18,7 @@ import Card from '../../common/Card/Card';
 import Typography from '../../common/Typography/Typography';
 import StatusChip from '../../common/StatusChip/StatusChip';
 import Button from '../../common/Button/Button';
+import AnimateMount from '../../common/AnimateMount/AnimateMount';
 
 import Styled from './Styled';
 
@@ -49,42 +50,44 @@ const InvoiceStatusCard: React.FC = () => {
   };
 
   return (
-    <Card element='div'>
-      <Styled.Wrapper>
-        <Styled.StatusWrapper>
-          <Typography variant='body1' element='span'>
-            Status
-          </Typography>
-          <StatusChip status={status} />
-        </Styled.StatusWrapper>
-        <Styled.ButtonsWrapper>
-          <Button
-            variant='edit'
-            ariaLabel='edit invoice'
-            onClick={() => {
-              openDrawer();
-              resetInvoiceDataChangingSuccess();
-            }}
-          >
-            Edit
-          </Button>
-          <Button
-            variant='delete'
-            onClick={() => changeDeletionDialogOpen(true)}
-          >
-            Delete
-          </Button>
-          {status === 'pending' &&
+    <AnimateMount variant='fadeAndGrow'>
+      <Card element='div'>
+        <Styled.Wrapper>
+          <Styled.StatusWrapper>
+            <Typography variant='body1' element='span'>
+              Status
+            </Typography>
+            <StatusChip status={status} />
+          </Styled.StatusWrapper>
+          <Styled.ButtonsWrapper>
             <Button
-              variant='primary'
-              onClick={() => changeInvoiceStatusToPaid()}
+              variant='edit'
+              ariaLabel='edit invoice'
+              onClick={() => {
+                openDrawer();
+                resetInvoiceDataChangingSuccess();
+              }}
             >
-              Mark as paid
+              Edit
             </Button>
-          }
-        </Styled.ButtonsWrapper>
-      </Styled.Wrapper>
-    </Card>
+            <Button
+              variant='delete'
+              onClick={() => changeDeletionDialogOpen(true)}
+            >
+              Delete
+            </Button>
+            {status === 'pending' &&
+              <Button
+                variant='primary'
+                onClick={() => changeInvoiceStatusToPaid()}
+              >
+                Mark as paid
+              </Button>
+            }
+          </Styled.ButtonsWrapper>
+        </Styled.Wrapper>
+      </Card>
+    </AnimateMount>
   );
 };
 
