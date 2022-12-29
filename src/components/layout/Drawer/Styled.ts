@@ -15,7 +15,7 @@ const Backdrop = styled.div<Props>(
       height: 100%;
       width: 100%;
       background-color: hsla(0, 0%, 0%, 1);
-      z-index: 1;
+      z-index: 1000;
       visibility: ${$open ? 'visible' : 'hidden'};
       opacity: ${$open ? 0.5 : 0};
       transition:
@@ -38,7 +38,7 @@ const Drawer = styled.aside<Props>(
     width: 100%;
     background-color: ${theme.colors.backgrounds.form};
     overflow: hidden;
-    z-index: 2;
+    z-index: 1001;
     transform: ${$open ? 'translateX(0)' : 'translateX(-100%)'};
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
