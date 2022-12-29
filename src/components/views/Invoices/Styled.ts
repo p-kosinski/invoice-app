@@ -7,7 +7,7 @@ const HeadingWrapper = styled(motion.div)`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  z-index: 999;
+  z-index: 998;
 `;
 
 const ButtonsWrapper = styled.div(({ theme }) => css`
