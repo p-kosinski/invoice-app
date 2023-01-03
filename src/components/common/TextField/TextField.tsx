@@ -3,13 +3,14 @@ import { ChangeEvent, forwardRef } from 'react';
 import { assertNotNull } from '../../../utils/typeUtils';
 
 import Typography from '../Typography/Typography';
+import Label from '../Label/Label';
 
 import Styled from './Styled';
 
 type Props = {
   input: 'text' | 'numeric' | 'decimal';
   name: string;
-  label?: string;
+  label: string;
   ariaLabel?: string;
   placeholder?: string;
   required?: boolean;
@@ -81,11 +82,7 @@ const TextField = forwardRef<Ref, Props>(({
   return (
     <Styled.Wrapper>
       <Styled.TextWrapper $showLabelOnlyOnMobile={showLabelOnlyOnMobile}>
-        <Styled.Label htmlFor={name} $invalid={invalid}>
-          <Typography variant='body1' element='span'>
-            {label}
-          </Typography>
-        </Styled.Label>
+        <Label htmlFor={name} text={label} invalid={invalid} />
         {errorMsg &&
           <Styled.ErrorMsg $invalid={invalid}>
             <Typography variant='body1' element='p'>
