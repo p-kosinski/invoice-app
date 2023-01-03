@@ -50,8 +50,8 @@ const Invoice: React.FC = () => {
         {(!active && invoices.length) && <EditInvoice />}
       </Drawer>
       <DeletionConfirmDialog />
-      <AnimatePresence mode='wait'>
-        <Container>
+      <Container>
+        <AnimatePresence>
           <Styled.GoBackLinkWrapper
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -60,6 +60,8 @@ const Invoice: React.FC = () => {
           >
             <GoBackButton />
           </Styled.GoBackLinkWrapper>
+        </AnimatePresence>
+        <AnimatePresence mode='wait'>
           {active || !invoices.length ?
             <Skeleton
               key='statusCardSkeleton'
@@ -70,7 +72,9 @@ const Invoice: React.FC = () => {
             :
             <InvoiceStatusCard key='statusCard' />
           }
-          <Styled.InvoiceInfoWrapper>
+        </AnimatePresence>
+        <Styled.InvoiceInfoWrapper>
+          <AnimatePresence mode='wait'>
             {active || !invoices.length ?
               <Skeleton
                 key='invoiceInfoSkeleton'
@@ -81,8 +85,10 @@ const Invoice: React.FC = () => {
               :
               <InvoiceInfo key='invoiceInfo' />
             }
-          </Styled.InvoiceInfoWrapper>
-        </Container>
+          </AnimatePresence>
+        </Styled.InvoiceInfoWrapper>
+      </Container>
+      <AnimatePresence>
         {(!active && invoices.length) && 
           <InvoiceActionButtons key='actionButtons' />
         }
