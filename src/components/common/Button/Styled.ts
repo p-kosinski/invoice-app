@@ -10,17 +10,21 @@ interface ButtonPropsExtended extends ButtonProps {
   $paddingInline?: string;
 };
 
+const buttonBaseStyling = `
+  border: none;
+  margin: 0;
+  outline: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+`;
+
 const ButtonPrimary = styled.button<ButtonProps>(
   ({ theme, $showOnMobile, $hideOnMobile }) => css`
-    border: none;
-    margin: 0;
+    ${buttonBaseStyling};
     padding: 12px 16px;
     border-radius: 24px;
     background-color: ${theme.colors.accent.main};
     color: ${theme.colors.neutral.white};
-    outline: 1px solid transparent;
-    cursor: pointer;
-    white-space: nowrap;
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
       outline ${theme.transitionDuration} ease-in-out;
@@ -59,15 +63,11 @@ const ButtonPrimary = styled.button<ButtonProps>(
 
 const DraftButton = styled.button<ButtonProps>(
   ({ theme, $showOnMobile, $hideOnMobile }) => css`
-    border: none;
-    margin: 0;
+    ${buttonBaseStyling};
     padding: 12px 16px;
     border-radius: 24px;
     background-color: ${theme.colors.buttons.draft.bg};
     color: ${theme.colors.buttons.draft.text};
-    outline: 1px solid transparent;
-    cursor: pointer;
-    white-space: nowrap;
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
       color ${theme.transitionDuration} ease-in-out,
@@ -107,14 +107,11 @@ const DraftButton = styled.button<ButtonProps>(
 
 const DeleteButton = styled.button<ButtonProps>(
   ({ theme, $showOnMobile, $hideOnMobile }) => css`
-    border: none;
-    margin: 0;
+    ${buttonBaseStyling};
     padding: 12px 24px;
     border-radius: 24px;
     background-color: ${theme.colors.error.main};
     color: ${theme.colors.neutral.white};
-    outline: 1px solid transparent;
-    cursor: pointer;
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
       outline ${theme.transitionDuration} ease-in-out;
@@ -153,15 +150,12 @@ const DeleteButton = styled.button<ButtonProps>(
 
 const AddButton = styled.button<ButtonProps>(
   ({ theme, $showOnMobile, $hideOnMobile }) => css`
-    border: none;
-    margin: 0;
+    ${buttonBaseStyling};
     width: 100%;
     padding: 12px 24px;
     border-radius: 24px;
     background-color: ${theme.colors.buttons.add.bg};
     color: ${theme.colors.buttons.add.text};
-    cursor: pointer;
-    outline: 1px solid transparent;
     transition:
       outline ${theme.transitionDuration} ease-in-out,
       background-color ${theme.transitionDuration} ease-in-out,
@@ -201,14 +195,11 @@ const AddButton = styled.button<ButtonProps>(
 
 const DiscardButton = styled.button<ButtonPropsExtended>(
   ({ theme, $showOnMobile, $hideOnMobile, $paddingInline }) => css`
-    border: none;
-    margin: 0;
+    ${buttonBaseStyling};
     padding: 12px ${$paddingInline ? $paddingInline : '16px'};
     border-radius: 24px;
     background-color: ${theme.colors.buttons.discard.bg};
     color: ${theme.colors.buttons.discard.text};
-    outline: 1px solid transparent;
-    cursor: pointer;
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
       color ${theme.transitionDuration} ease-in-out,
@@ -248,14 +239,11 @@ const DiscardButton = styled.button<ButtonPropsExtended>(
 
 const EditButton = styled.button<ButtonProps>(
   ({ theme, $showOnMobile, $hideOnMobile }) => css`
-    border: none;
-    margin: 0;
+    ${buttonBaseStyling};
     padding: 12px 24px;
     border-radius: 24px;
     background-color: ${theme.colors.buttons.edit.bg};
     color: ${theme.colors.buttons.edit.text};
-    outline: 1px solid transparent;
-    cursor: pointer;
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
       color ${theme.transitionDuration} ease-in-out,
@@ -295,16 +283,13 @@ const EditButton = styled.button<ButtonProps>(
 
 const NewInvoiceButton = styled.button<ButtonProps>(
   ({ theme, $showOnMobile, $hideOnMobile }) => css`
-    border: none;
-    margin: 0;
+    ${buttonBaseStyling};
     display: inline-flex;
     align-items: center;
     padding: 8px 8px;
     border-radius: 24px;
     background-color: ${theme.colors.accent.main};
     color: ${theme.colors.neutral.white};
-    cursor: pointer;
-    outline: 1px solid transparent;
     outline-offset: 4px;
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
