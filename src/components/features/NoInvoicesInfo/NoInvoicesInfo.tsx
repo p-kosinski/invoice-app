@@ -1,6 +1,8 @@
 import Typography from '../../common/Typography/Typography';
 
-import { ReactComponent as IllustrationEmpty } from '../../../assets/illustration-empty.svg';
+import {
+  ReactComponent as IllustrationEmpty
+} from '../../../assets/illustration-empty.svg';
 
 import Styled from './Styled';
 

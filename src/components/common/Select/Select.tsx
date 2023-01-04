@@ -1,9 +1,11 @@
 import { useState, useEffect, KeyboardEvent, useRef } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
-import Typography from '../Typography/Typography';
+import Label from '../Label/Label';
 
-import { ReactComponent as ArrowDownIcon } from '../../../assets/icon-arrow-down.svg';
+import {
+  ReactComponent as ArrowDownIcon
+} from '../../../assets/icon-arrow-down.svg';
 
 import Styled from './Styled';
 
@@ -14,7 +16,7 @@ type Option = {
 
 interface Props {
   name: string;
-  label?: string;
+  label: string;
   ariaLabel?: string;
   buttonTabIndex?: number;
   options: Option[];
@@ -87,11 +89,7 @@ const Select: React.FC<Props> = ({
   return (
     <ClickAwayListener onClickAway={() => setOptionsOpen(false)}>
       <Styled.Wrapper>
-        <Styled.Label htmlFor={name}>
-          <Typography variant='body1' element='span'>
-            {label}
-          </Typography>
-        </Styled.Label>
+        <Label htmlFor={name} text={label} />
         <Styled.Select
           tabIndex={buttonTabIndex}
           role='button'
@@ -112,7 +110,9 @@ const Select: React.FC<Props> = ({
           <Styled.OptionsList
             aria-hidden={!optionsOpen}
             role='listbox'
-            aria-activedescendant={options[selectedOptionIndex].value.toString()}
+            aria-activedescendant={
+              options[selectedOptionIndex].value.toString()
+            }
             tabIndex={-1}
             $visible={optionsOpen}
           >

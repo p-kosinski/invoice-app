@@ -15,7 +15,10 @@ export const invoiceViewSlice = createSlice({
   name: 'invoiceView',
   initialState,
   reducers: {
-    setDeletionDialogOpen: (state: InvoiceViewState, action: PayloadAction<boolean>) => {
+    setDeletionDialogOpen: (
+      state: InvoiceViewState,
+      action: PayloadAction<boolean>
+    ) => {
       state.deletionDialogOpen = action.payload;
     },
     setDrawerOpen: (
@@ -32,7 +35,9 @@ export const {
   setDrawerOpen
 } = invoiceViewSlice.actions;
 
-export const selectDeletionDialogOpen = (state: RootState) => state.invoiceView.deletionDialogOpen;
-export const selectDrawerOpen = (state: RootState) => state.invoiceView.drawerOpen;
+export const selectDeletionDialogOpen = (state: RootState) =>
+  state.invoiceView.deletionDialogOpen;
+export const selectDrawerOpen = (state: RootState) =>
+  state.invoiceView.drawerOpen;
 
 export default invoiceViewSlice.reducer;

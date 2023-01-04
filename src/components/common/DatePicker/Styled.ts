@@ -1,12 +1,5 @@
 import styled, { css } from 'styled-components';
 
-const Label = styled.label(({ theme }) => css`
-  display: block;
-  margin-bottom: 12px;
-  color: ${theme.colors.formElements.labelsText};
-  transition: color ${theme.transitionDuration} ease-in-out;
-`);
-
 const Wrapper = styled.div(({ theme }) => css`
   position: relative;
   width: 100%;
@@ -69,7 +62,6 @@ const DateWrapper = styled.div<DateWrapperProps>(({ $disabled }) => css`
 `);
 
 const Styled = {
-  Label: Label,
   Wrapper: Wrapper,
   Input: Input,
   InputWrapper: InputWrapper,

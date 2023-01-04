@@ -9,13 +9,6 @@ const Wrapper = styled.div(({ theme }) => css`
   letter-spacing: ${theme.typography.letterSpacings[4]};
 `);
 
-const Label = styled.label(({ theme }) => css`
-  display: block;
-  margin-bottom: 12px;
-  color: ${theme.colors.formElements.labelsText};
-  transition: color ${theme.transitionDuration} ease-in-out;
-`);
-
 const Select = styled.button(({ theme }) => css`
   box-sizing: border-box;
   display: block;
@@ -142,7 +135,6 @@ const Option = styled.li(({ theme }) => css`
 
 const Styled = {
   Wrapper: Wrapper,
-  Label: Label,
   Select: Select,
   SelectWrapper: SelectWrapper,
   OptionsList: OptionsList,
