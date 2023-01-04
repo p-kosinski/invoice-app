@@ -17,7 +17,10 @@ import type {
 } from '../redux/invoicesSlice';
 
 const generateId = (): string => {
-  const generateRandomString = (characters: string, length: number): string => {
+  const generateRandomString = (
+    characters: string,
+    length: number
+  ): string => {
     let result = '';
 
     for (let i = 0; i < length; i++) {

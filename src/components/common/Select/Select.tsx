@@ -3,7 +3,9 @@ import ClickAwayListener from 'react-click-away-listener';
 
 import Label from '../Label/Label';
 
-import { ReactComponent as ArrowDownIcon } from '../../../assets/icon-arrow-down.svg';
+import {
+  ReactComponent as ArrowDownIcon
+} from '../../../assets/icon-arrow-down.svg';
 
 import Styled from './Styled';
 
@@ -108,7 +110,9 @@ const Select: React.FC<Props> = ({
           <Styled.OptionsList
             aria-hidden={!optionsOpen}
             role='listbox'
-            aria-activedescendant={options[selectedOptionIndex].value.toString()}
+            aria-activedescendant={
+              options[selectedOptionIndex].value.toString()
+            }
             tabIndex={-1}
             $visible={optionsOpen}
           >
