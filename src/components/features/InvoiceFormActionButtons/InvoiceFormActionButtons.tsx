@@ -1,8 +1,3 @@
-import { useAppSelector } from '../../../hooks/reduxHooks';
-
-import { selectThemeMode } from '../../../redux/themeSlice';
-import type { ThemeMode } from '../../../redux/themeSlice';
-
 import Container from '../../layout/Container/Container';
 
 import DiscardButton from './DiscardButton/DiscardButton';
@@ -18,37 +13,33 @@ type Props = {
   variant: 'new' | 'edit';
 };
 
-const InvoiceFormActionButtons: React.FC<Props> = ({ variant }) => {
-  const themeMode: ThemeMode = useAppSelector(selectThemeMode);
-
-  return (
-    <Styled.Toolbar $showShadow={themeMode === 'light'}>
-      <Container>
-        <Styled.ToolbarWrapper $variant={variant}>
+const InvoiceFormActionButtons: React.FC<Props> = ({ variant }) => (
+  <Styled.Toolbar>
+    <Container>
+      <Styled.ToolbarWrapper $variant={variant}>
+        {variant === 'new' &&
+          <>
+            <DiscardButton />
+            <SaveAsDraftButton showOnMobile />
+          </>
+        }
+        <Styled.ButtonsWrapper>
           {variant === 'new' &&
             <>
-              <DiscardButton />
-              <SaveAsDraftButton showOnMobile />
+              <SaveAsDraftButton hideOnMobile />
+              <SaveAndSendButton />
             </>
           }
-          <Styled.ButtonsWrapper>
-            {variant === 'new' &&
-              <>
-                <SaveAsDraftButton hideOnMobile />
-                <SaveAndSendButton />
-              </>
-            }
-            {variant === 'edit' &&
-              <>
-                <CancelButton />
-                <SaveChangesButton />
-              </>
-            }
-          </Styled.ButtonsWrapper>
-        </Styled.ToolbarWrapper>
-      </Container>
-    </Styled.Toolbar>
-  );
-};
+          {variant === 'edit' &&
+            <>
+              <CancelButton />
+              <SaveChangesButton />
+            </>
+          }
+        </Styled.ButtonsWrapper>
+      </Styled.ToolbarWrapper>
+    </Container>
+  </Styled.Toolbar>
+);
 
 export default InvoiceFormActionButtons;

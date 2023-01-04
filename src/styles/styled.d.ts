@@ -53,7 +53,6 @@ interface FormColors {
   optionsText: string;
   labelsText: string;
   dividers: string;
-  shadow: string;
   statusFiltersBg: string;
 };
 
@@ -76,6 +75,16 @@ interface ButtonColors {
   themeToggler: ButtonColorSettings;
 };
 
+type ShadowColorSettings = {
+  main: string;
+  lighter: string;
+};
+
+interface ShadowColors {
+  black: ShadowColorSettings;
+  grey: ShadowColorSettings;
+}
+
 interface ColorPalette {
   success: OpaqueColorVariants;
   warning: OpaqueColorVariants;
@@ -86,6 +95,7 @@ interface ColorPalette {
   lightGrey: LightGreyVariants;
   grey: DefaultColorVariants;
   neutral: NeutralColors;
+  shadows: ShadowColors;
 };
 
 interface ThemeColors {
@@ -103,6 +113,7 @@ interface ThemeColors {
   text: TextColors;
   formElements: FormColors;
   buttons: ButtonColors;
+  shadow: ShadowColorSettings;
 };
 
 interface FontWeights {

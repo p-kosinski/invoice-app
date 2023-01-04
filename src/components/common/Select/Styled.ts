@@ -78,7 +78,7 @@ const OptionsList = styled.ul<OptionsListProps>(
     background-color: ${theme.colors.formElements.background};
     color: ${theme.colors.formElements.optionsText};
     border-radius: 8px;
-    box-shadow: 0px 10px 20px ${theme.colors.formElements.shadow};
+    box-shadow: 0px 10px 20px ${theme.colors.shadow.main};
     width: 100%;
     position: absolute;
     left: 0;

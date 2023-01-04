@@ -26,7 +26,9 @@ const Invoices: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
-  const invoicesLoading: ThunkStatusState = useAppSelector(selectInvoicesLoadingState);
+  const invoicesLoading: ThunkStatusState = useAppSelector(
+    selectInvoicesLoadingState
+  );
 
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 

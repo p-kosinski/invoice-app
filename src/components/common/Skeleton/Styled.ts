@@ -19,11 +19,13 @@ const InvoiceTileSkeleton = styled.div(({ theme }) => css`
   height: 126px;
   margin-bottom: 16px;
   border-radius: 8px;
-  box-shadow: 0px 10px 10px -10px hsla(231, 38%, 45%, 0.1);
+  box-shadow: 0px 10px 10px -10px ${theme.colors.shadow.lighter};
   background-color: ${theme.colors.backgrounds.skeleton};
   overflow: hidden;
   ${pulseAnimation}
-  transition: background-color ${theme.transitionDuration} ease-in-out;
+  transition:
+    background-color ${theme.transitionDuration} ease-in-out,
+    box-shadow ${theme.transitionDuration} ease-in-out;
 
   @media only screen and (min-width: ${theme.breakpoints.md}) {
     height: 80px;
@@ -44,11 +46,13 @@ const CardSkeleton = styled.div<SkeletonProps>(
     width: ${$width};
     margin-bottom: 16px;
     border-radius: 8px;
-    box-shadow: 0px 10px 10px -10px hsla(231, 38%, 45%, 0.1);
+    box-shadow: 0px 10px 10px -10px ${theme.colors.shadow.lighter};
     background-color: ${theme.colors.backgrounds.skeleton};
     overflow: hidden;
     ${pulseAnimation}
-    transition: background-color ${theme.transitionDuration} ease-in-out;
+    transition:
+      background-color ${theme.transitionDuration} ease-in-out,
+      box-shadow ${theme.transitionDuration} ease-in-out;
 
     @media only screen and (min-width: ${theme.breakpoints.md}) {
       height: 80px;

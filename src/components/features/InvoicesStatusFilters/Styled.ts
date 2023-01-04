@@ -71,7 +71,7 @@ const Filters = styled.div<FiltersProps>(({ theme, $visible }) => css`
   width: 120px;
   background-color: ${theme.colors.formElements.statusFiltersBg};
   border-radius: 8px;
-  box-shadow: 0px 10px 20px ${theme.colors.formElements.shadow};
+  box-shadow: 0px 10px 20px ${theme.colors.shadow.main};
   visibility: ${$visible ? 'visible' : 'hidden'};
   opacity: ${$visible ? 1 : 0};
   transform: translateY(${$visible ? '0px' : '20px'});

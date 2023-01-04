@@ -1,25 +1,17 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
-type ToolbarProps = {
-  theme: DefaultTheme;
-  $showShadow?: boolean;
-};
-
-const Toolbar = styled.div<ToolbarProps>(
-  ({ theme, $showShadow }) => css`
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 22px 0;
-    background-color: ${theme.colors.backgrounds.card};
-    box-shadow: ${$showShadow ? '0px -10px 10px -5px hsla(231, 38%, 45%, 0.1)'
-                              : 'none'};
-    transition:
-      background-color ${theme.transitionDuration} ease-in-out,
-      box-shadow ${theme.transitionDuration} ease-in-out;
-  `
-);
+const Toolbar = styled.div(({ theme }) => css`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 22px 0;
+  background-color: ${theme.colors.backgrounds.card};
+  box-shadow: 0px -10px 10px -5px ${theme.colors.shadow.lighter};
+  transition:
+    background-color ${theme.transitionDuration} ease-in-out,
+    box-shadow ${theme.transitionDuration} ease-in-out;
+`);
 
 type ToolbarWrapperProps = {
   theme: DefaultTheme;
