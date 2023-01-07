@@ -10,7 +10,7 @@ const Header = styled.header(({ theme }) => css`
   display: flex;
   justify-content: space-between;
   transition: background-color ${theme.transitionDuration} ease-in-out;
-  z-index: 999;
+  z-index: 1000;
 
   @media only screen and (min-width: ${theme.breakpoints.xl}) {
     width: 103px;

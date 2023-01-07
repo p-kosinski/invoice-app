@@ -15,7 +15,7 @@ const Backdrop = styled.div<Props>(
       height: 100%;
       width: 100%;
       background-color: hsla(0, 0%, 0%, 1);
-      z-index: 1000;
+      z-index: 998;
       visibility: ${$open ? 'visible' : 'hidden'};
       opacity: ${$open ? 0.5 : 0};
       transition:
@@ -38,7 +38,7 @@ const Drawer = styled.aside<Props>(
     width: 100%;
     background-color: ${theme.colors.backgrounds.form};
     overflow: hidden;
-    z-index: 1001;
+    z-index: 999;
     transform: ${$open ? 'translateX(0)' : 'translateX(-120%)'};
     transition:
       background-color ${theme.transitionDuration} ease-in-out,
@@ -57,7 +57,7 @@ const Drawer = styled.aside<Props>(
     @media only screen and (min-width: ${theme.breakpoints.xl}) {
       position: absolute;
       top: 0;
-      left: calc(103px - 20px);
+      left: calc(103px - 15px);
       height: 100vh;
       width: calc((50% - 103px) + 20px);
       padding-left: 20px;
