@@ -9,6 +9,7 @@ import {
 } from '../../../redux/invoicesSlice';
 import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlice';
 import { selectDrawerOpen } from '../../../redux/invoicesViewSlice';
+import { setDeletionDialogOpen } from '../../../redux/invoiceViewSlice';
 
 import Drawer from '../../layout/Drawer/Drawer';
 import NewInvoice from '../../features/NewInvoice/NewInvoice';
@@ -32,9 +33,17 @@ const Invoices: React.FC = () => {
 
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
+  const changeDeletionDialogOpen = (open: boolean) => {
+    dispatch(setDeletionDialogOpen(open))
+  };
+
   useEffect(() => {
     invoices.length <= 1 && dispatch(fetchInvoicesData());
   }, [invoices.length]);
+
+  useEffect(() => {
+    changeDeletionDialogOpen(false);
+  }, []);
 
   return (
     <>
