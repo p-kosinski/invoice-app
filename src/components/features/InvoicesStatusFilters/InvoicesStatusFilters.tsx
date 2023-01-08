@@ -38,7 +38,7 @@ const InvoicesStatusFilters: React.FC = () => {
     dispatch(resetStatusFilters());
   };
 
-  const [filtersOpened, setFiltersOpened] = useState(false);
+  const [filtersOpened, setFiltersOpened] = useState<boolean>(false);
 
   const FILTERS = ['draft', 'pending', 'paid'] as const;
   type Filter = typeof FILTERS[number];

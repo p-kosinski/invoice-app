@@ -16,9 +16,11 @@ type Props = {
   getShownDateString: () => string;
 };
 
-const MonthPicker: React.FC<Props> = (
-  { shownDate, setShownDate, getShownDateString }
-) => {
+const MonthPicker: React.FC<Props> = ({
+  shownDate,
+  setShownDate,
+  getShownDateString
+}) => {
   const handleMonthPickerKeyDown = () => (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.key) {
       case 'ArrowLeft':

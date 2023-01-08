@@ -35,8 +35,8 @@ const Select: React.FC<Props> = ({
   selectedValue,
   onChange,
 }) => {
-  const [optionsOpen, setOptionsOpen] = useState(false);
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
+  const [optionsOpen, setOptionsOpen] = useState<boolean>(false);
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState<number>(0);
 
   const selectButton = useRef<HTMLButtonElement>(null);
 

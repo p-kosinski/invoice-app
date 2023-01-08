@@ -32,7 +32,7 @@ const DatePicker: React.FC<Props> = ({
   selectedDate,
   onChange
 }) => {
-  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
 
   const inputButtonRef = useRef<HTMLButtonElement | null>(null);
 

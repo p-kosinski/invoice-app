@@ -45,7 +45,7 @@ const QuantityField: React.FC<Props> = ({ index }) => {
     dispatch(setItemQuantityByIndex({ index: index, newValue: newValue }));
   };
 
-  const [validate, setValidate] = useState(false);
+  const [validate, setValidate] = useState<boolean>(false);
 
   useEffect(() => {
     (invoiceSavingSuccess || invoiceDataChangingSuccess) && setValidate(false);
