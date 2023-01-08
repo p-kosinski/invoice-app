@@ -4,7 +4,10 @@ import { AnimatePresence } from 'framer-motion';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
 
-import { selectDrawerOpen } from '../../../redux/invoiceViewSlice';
+import {
+  selectDrawerOpen,
+  selectDeletionDialogOpen
+} from '../../../redux/invoiceViewSlice';
 import {
   selectInvoicesData,
   selectInvoicesLoadingState,
@@ -34,6 +37,7 @@ const Invoice: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
+  const dialogOpen: boolean = useAppSelector(selectDeletionDialogOpen);
 
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
   const invoicesLoading: ThunkStatusState = useAppSelector(
@@ -51,7 +55,9 @@ const Invoice: React.FC = () => {
       <Drawer open={drawerOpen}>
         {(!active && invoices.length) && <EditInvoice />}
       </Drawer>
-      <DeletionConfirmDialog />
+      <AnimatePresence>
+        {dialogOpen && <DeletionConfirmDialog />}
+      </AnimatePresence>
       <Container>
         <AnimatePresence>
           <Styled.GoBackLinkWrapper
