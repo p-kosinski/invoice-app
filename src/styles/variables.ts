@@ -45,6 +45,16 @@ export const colorPalette: ColorPalette = {
     dark: 'hsla(233, 30%, 11%, 1)',
     light: 'hsla(240, 27%, 98%, 1)',
     white: 'hsla(0, 0%, 100%, 1)'
+  },
+  shadows: {
+    black: {
+      main: 'hsla(0, 0%, 0%, 0.25)',
+      lighter: 'hsla(0, 0%, 0%, 0.1)'
+    },
+    grey: {
+      main: 'hsla(231, 38%, 45%, 0.25)',
+      lighter: 'hsla(231, 38%, 45%, 0.1)'
+    },
   }
 };
 

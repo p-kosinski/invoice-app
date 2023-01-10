@@ -49,7 +49,6 @@ export const lightTheme: DefaultTheme = {
       optionsText: colorPalette.grey.main,
       labelsText: colorPalette.grey.light,
       dividers: colorPalette.lightGrey.light,
-      shadow: 'hsla(231, 38%, 45%, 0.25)',
       statusFiltersBg: colorPalette.neutral.white
     },
     buttons: {
@@ -77,6 +76,10 @@ export const lightTheme: DefaultTheme = {
         default: colorPalette.grey.light,
         active: colorPalette.lightGrey.light
       }
+    },
+    shadow: {
+      main: colorPalette.shadows.grey.main,
+      lighter: colorPalette.shadows.grey.lighter
     }
   },
   font: fontSettings,
@@ -127,7 +130,6 @@ export const darkTheme: DefaultTheme = {
       optionsText: colorPalette.lightGrey.light,
       labelsText: colorPalette.lightGrey.light,
       dividers: colorPalette.dark.main,
-      shadow: 'hsla(0, 0%, 0%, 0.25)',
       statusFiltersBg: colorPalette.dark.light
     },
     buttons: {
@@ -155,6 +157,10 @@ export const darkTheme: DefaultTheme = {
         default: colorPalette.lightGrey.main,
         active: colorPalette.lightGrey.light
       }
+    },
+    shadow: {
+      main: colorPalette.shadows.black.main,
+      lighter: colorPalette.shadows.black.lighter
     }
   },
   font: fontSettings,

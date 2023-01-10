@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
-const Dialog = styled.dialog(({ theme }) => css`
+const Dialog = styled(motion.dialog)(({ theme }) => css`
   display: block;
   padding: 0;
   border: none;
@@ -10,20 +11,6 @@ const Dialog = styled.dialog(({ theme }) => css`
   height: 100vh;
   background-color: transparent;
   z-index: 1000;
-  transition:
-    opacity ${theme.transitionDuration} ease-in-out,
-    visibility ${theme.transitionDuration} ease-in-out,
-    transform ${theme.transitionDuration} ease-in-out;
-
-  &:not([open]) {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  &[open] {
-    visibility: visible;
-    opacity: 1;
-  }
 
   @media only screen and (min-width: ${theme.breakpoints.xl}) {
     height: calc(100vh + 48px);

@@ -41,20 +41,6 @@ const ErrorMsg = styled.div<InvalidStateProps>(
   `
 );
 
-interface LabelProps extends InvalidStateProps {
-  htmlFor: string;
-};
-
-const Label = styled.label<LabelProps>(
-  ({ theme, $invalid }) => css`
-    display: block;
-    margin-bottom: 12px;
-    color: ${$invalid ? theme.colors.error.main
-                      : theme.colors.formElements.labelsText};
-    transition: color ${theme.transitionDuration} ease-in-out;
-  `
-);
-
 const Input = styled.input(({ theme }) => css`
   box-sizing: border-box;
   display: block;
@@ -105,7 +91,6 @@ const Styled = {
   Wrapper: Wrapper,
   TextWrapper: TextWrapper,
   ErrorMsg: ErrorMsg,
-  Label: Label,
   Input: Input,
 };
 

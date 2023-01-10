@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
 
-import { selectDrawerOpen } from '../../../redux/invoiceViewSlice';
+import {
+  selectDrawerOpen,
+  selectDeletionDialogOpen
+} from '../../../redux/invoiceViewSlice';
 import {
   selectInvoicesData,
   selectInvoicesLoadingState,
@@ -33,38 +37,70 @@ const Invoice: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
+  const dialogOpen: boolean = useAppSelector(selectDeletionDialogOpen);
 
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
-  const invoicesLoading: ThunkStatusState = useAppSelector(selectInvoicesLoadingState);
+  const invoicesLoading: ThunkStatusState = useAppSelector(
+    selectInvoicesLoadingState
+  );
 
   useEffect(() => {
     !invoices.length && dispatch(fetchInvoiceDataById(id));
   }, [invoices.length]);
 
+  const { active } = invoicesLoading;
+
   return (
     <>
       <Drawer open={drawerOpen}>
-        {(!invoicesLoading.active && invoices.length) && <EditInvoice />}
+        {(!active && invoices.length) && <EditInvoice />}
       </Drawer>
-      <DeletionConfirmDialog />
+      <AnimatePresence>
+        {dialogOpen && <DeletionConfirmDialog />}
+      </AnimatePresence>
       <Container>
-        <Styled.GoBackLinkWrapper>
-          <GoBackButton />
-        </Styled.GoBackLinkWrapper>
-          {invoicesLoading.active || !invoices.length ?
-            <Skeleton variant='card' height='96px' width='100%' />
+        <AnimatePresence>
+          <Styled.GoBackLinkWrapper
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            <GoBackButton />
+          </Styled.GoBackLinkWrapper>
+        </AnimatePresence>
+        <AnimatePresence mode='wait'>
+          {active || !invoices.length ?
+            <Skeleton
+              key='statusCardSkeleton'
+              variant='card'
+              height='96px'
+              width='100%'
+            />
             :
-            <InvoiceStatusCard />
+            <InvoiceStatusCard key='statusCard' />
           }
+        </AnimatePresence>
         <Styled.InvoiceInfoWrapper>
-          {invoicesLoading.active || !invoices.length ?
-            <Skeleton variant='card' height='400px' width='100%' />
-            :
-            <InvoiceInfo />
-          }
+          <AnimatePresence mode='wait'>
+            {active || !invoices.length ?
+              <Skeleton
+                key='invoiceInfoSkeleton'
+                variant='card'
+                height='400px'
+                width='100%'
+              />
+              :
+              <InvoiceInfo key='invoiceInfo' />
+            }
+          </AnimatePresence>
         </Styled.InvoiceInfoWrapper>
       </Container>
-      {(!invoicesLoading.active && invoices.length) && <InvoiceActionButtons />}
+      <AnimatePresence>
+        {(!active && invoices.length) && 
+          <InvoiceActionButtons key='actionButtons' />
+        }
+      </AnimatePresence>
     </>
   );
 };

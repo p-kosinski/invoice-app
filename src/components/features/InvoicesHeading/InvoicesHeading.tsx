@@ -1,4 +1,7 @@
+import { AnimatePresence } from 'framer-motion';
+
 import { useAppSelector } from '../../../hooks/reduxHooks';
+
 import { selectStatusFilters } from '../../../redux/invoicesViewSlice';
 import {
   selectInvoicesData,
@@ -14,6 +17,7 @@ import type {
 
 import Typography from '../../common/Typography/Typography';
 import Skeleton from '../../common/Skeleton/Skeleton';
+import AnimateMount from '../../common/AnimateMount/AnimateMount';
 
 import Styled from './Styled';
 
@@ -54,18 +58,22 @@ const InvoicesHeading: React.FC = () => {
       <Typography variant='h1'>
         Invoices
       </Typography>
-      {invoicesLoading.active ?
-        <Skeleton variant='text' height='12px' width='75px' />
-        :
-        <Typography variant='body1' element='p'>
-          {filteredInvoices.length ? filteredInvoices.length : 'No'}
-          <Styled.SpanHiddenOnMobile>
-            {invoices.length ? ' ' : ''}
-            {getTextContentAdjective(statusFilters, invoices)}
-          </Styled.SpanHiddenOnMobile>
-          &nbsp;{filteredInvoices.length === 1 ? 'invoice' : 'invoices'}
-        </Typography>
-      }
+      <AnimatePresence mode='wait'>
+        {invoicesLoading.active ?
+          <Skeleton variant='text' height='12px' width='75px' />
+          :
+          <AnimateMount variant='fade'>
+            <Typography variant='body1' element='p'>
+              {filteredInvoices.length ? filteredInvoices.length : 'No'}
+              <Styled.SpanHiddenOnMobile>
+                {invoices.length ? ' ' : ''}
+                {getTextContentAdjective(statusFilters, invoices)}
+              </Styled.SpanHiddenOnMobile>
+              &nbsp;{filteredInvoices.length === 1 ? 'invoice' : 'invoices'}
+            </Typography>
+          </AnimateMount>
+        }
+      </AnimatePresence>
     </Styled.Wrapper>
   );
 };

@@ -47,7 +47,12 @@ const InvoiceActionButtons: React.FC = () => {
   };
 
   return (
-    <Styled.Toolbar>
+    <Styled.Toolbar
+      initial={{ y: 100 }}
+      animate={{ y: 0 }}
+      exit={{ y: 100 }}
+      transition={{ duration: 0.15 }}
+    >
       <Container>
         <Styled.Wrapper>
           <Button

@@ -40,7 +40,7 @@ const ClientStreetAddress: React.FC = () => {
     dispatch(setClientStreetAddress(newValue));
   };
 
-  const [validate, setValidate] = useState(false);
+  const [validate, setValidate] = useState<boolean>(false);
 
   useEffect(() => {
     (invoiceSavingSuccess || invoiceDataChangingSuccess) && setValidate(false);

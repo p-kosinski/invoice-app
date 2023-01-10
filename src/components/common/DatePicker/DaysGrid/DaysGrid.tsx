@@ -34,7 +34,7 @@ const DaysGrid: React.FC<Props> = ({
   setCalendarOpen,
   inputRef
 }) => {
-  const [focusedDate, setFocusedDate] = useState(dayjs(selectedDate));
+  const [focusedDate, setFocusedDate] = useState<Dayjs>(dayjs(selectedDate));
 
   const handleDaysGridFocus = () => () => {
     if(datesAreInTheSameMonth(selectedDate, shownDate)) {

@@ -5,7 +5,10 @@ export const parsePriceToGBP = (price: number): string => {
     return [charArray[0], charArray.slice(1).join('')].join(' ');
   };
 
-  const parsedPrice = price.toLocaleString('en-US', { style: 'currency', currency: 'GBP'});
+  const parsedPrice = price.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'GBP',
+  });
 
   return addWhitespaceAfterCurrency(parsedPrice);
 };

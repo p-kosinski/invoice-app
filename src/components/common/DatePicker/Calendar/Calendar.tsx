@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, forwardRef } from 'react';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 import { getCalendarRows } from '../../../../utils/dateUtils';
 
@@ -23,7 +23,7 @@ const Calendar = forwardRef<Ref, Props>(({
   selectedDate,
   onChange
 }, ref) => {
-  const [shownDate, setShownDate] = useState(dayjs(selectedDate));
+  const [shownDate, setShownDate] = useState<Dayjs>(dayjs(selectedDate));
 
   useEffect(() => {
     setShownDate(dayjs(selectedDate));

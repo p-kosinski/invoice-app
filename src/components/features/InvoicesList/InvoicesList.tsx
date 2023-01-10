@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { useAppSelector } from '../../../hooks/reduxHooks';
 import { selectStatusFilters } from '../../../redux/invoicesViewSlice';
@@ -23,11 +24,20 @@ const InvoicesList: React.FC = () => {
 
   return (
     <StyledInvoicesList>
-      {filteredInvoices.map((invoice, i) => (
-        <li key={i}>
-          <InvoiceSummaryTile id={invoice.id} />
-        </li>
-      ))}
+      <AnimatePresence>
+        {filteredInvoices.map((invoice, i) => (
+          <motion.li
+            key={invoice.id}
+            layout='position'
+            initial={{ opacity: 0, x: -48 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -48 }}
+            transition={{ duration: 0.15, delay: i * 0.1 }}
+          >
+            <InvoiceSummaryTile id={invoice.id} />
+          </motion.li>
+        ))}
+      </AnimatePresence>
     </StyledInvoicesList>
   );
 };

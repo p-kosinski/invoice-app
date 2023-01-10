@@ -1,11 +1,18 @@
 import Typography from '../../common/Typography/Typography';
 
-import { ReactComponent as IllustrationEmpty } from '../../../assets/illustration-empty.svg';
+import {
+  ReactComponent as IllustrationEmpty
+} from '../../../assets/illustration-empty.svg';
 
 import Styled from './Styled';
 
 const NoInvoicesInfo: React.FC = () => (
-  <Styled.NoInvoicesInfo>
+  <Styled.NoInvoicesInfo
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 0.8 }}
+    transition={{ duration: 0.15 }}
+  >
     <Styled.FlexWrapper>
       <IllustrationEmpty />
       <Styled.TextWrapper>

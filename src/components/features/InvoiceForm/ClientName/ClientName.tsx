@@ -39,7 +39,7 @@ const ClientName: React.FC = () => {
     dispatch(setClientName(newValue));
   };
 
-  const [validate, setValidate] = useState(false);
+  const [validate, setValidate] = useState<boolean>(false);
 
   useEffect(() => {
     (invoiceSavingSuccess || invoiceDataChangingSuccess) && setValidate(false);

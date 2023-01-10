@@ -24,7 +24,11 @@ const getCalendarCells = (date: Dayjs): CalendarCell[] => {
   const daysInMonth = date.daysInMonth();
   const calendarCells: CalendarCell[] = [];
 
-  const prepareCell = (date: Dayjs, dayNumber: number, inShownMonth: boolean) => {
+  const prepareCell = (
+    date: Dayjs,
+    dayNumber: number,
+    inShownMonth: boolean
+  ) => {
     return {
       text: String(dayNumber),
       value: date.clone().set('date', dayNumber),
@@ -41,7 +45,9 @@ const getCalendarCells = (date: Dayjs): CalendarCell[] => {
   const lastMonth = date.subtract(1, 'month');
 
   for (let i = 0; i < Math.floor(cellsToAdd / 2); i++) {
-    calendarCells.unshift(prepareCell(lastMonth, lastMonth.daysInMonth() - i, false));
+    calendarCells.unshift(
+      prepareCell(lastMonth, lastMonth.daysInMonth() - i, false)
+    );
   }
 
   const nextMonth = date.add(1, 'month');
@@ -74,7 +80,10 @@ export const checkIfCellDateIsSelected = (
   return cellDateString === selectedDateString;
 };
 
-export const datesAreInTheSameMonth = (date1: string | Dayjs, date2: string | Dayjs): boolean => {
+export const datesAreInTheSameMonth = (
+  date1: string | Dayjs,
+  date2: string | Dayjs
+): boolean => {
   return dayjs(date1).isSame(date2, 'month');
 };
 
@@ -86,15 +95,22 @@ const isCalendarCell = (cell: any): cell is CalendarCell => {
          (cell as CalendarCell).value !== undefined;
 };
 
-export const getFirstDayOfTheMonth = (rows: CalendarCell[][]): Dayjs | undefined => {
-  const firstDayInMonthCell = rows[0].find(cell => cell.text === '1' && cell.inShownMonth);
-  
-  if(isCalendarCell(firstDayInMonthCell)) {
+export const getFirstDayOfTheMonth = (
+  rows: CalendarCell[][]
+): Dayjs | undefined => {
+  const firstDayInMonthCell = rows[0].find(
+    (cell) => cell.text === '1' && cell.inShownMonth
+  );
+
+  if (isCalendarCell(firstDayInMonthCell)) {
     return firstDayInMonthCell.value;
   }
 };
 
-export const checkIfDatesAreEqual = (date: Dayjs, focusedDate: Dayjs): boolean => {
+export const checkIfDatesAreEqual = (
+  date: Dayjs,
+  focusedDate: Dayjs
+): boolean => {
   return dayjs(date).isSame(focusedDate, 'day');
 };
 

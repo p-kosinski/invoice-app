@@ -39,7 +39,7 @@ const SenderPostCode: React.FC = () => {
     dispatch(setSenderPostCode(newValue));
   };
 
-  const [validate, setValidate] = useState(false);
+  const [validate, setValidate] = useState<boolean>(false);
 
   useEffect(() => {
     (invoiceSavingSuccess || invoiceDataChangingSuccess) && setValidate(false);

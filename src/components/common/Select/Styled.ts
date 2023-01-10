@@ -9,13 +9,6 @@ const Wrapper = styled.div(({ theme }) => css`
   letter-spacing: ${theme.typography.letterSpacings[4]};
 `);
 
-const Label = styled.label(({ theme }) => css`
-  display: block;
-  margin-bottom: 12px;
-  color: ${theme.colors.formElements.labelsText};
-  transition: color ${theme.transitionDuration} ease-in-out;
-`);
-
 const Select = styled.button(({ theme }) => css`
   box-sizing: border-box;
   display: block;
@@ -85,7 +78,7 @@ const OptionsList = styled.ul<OptionsListProps>(
     background-color: ${theme.colors.formElements.background};
     color: ${theme.colors.formElements.optionsText};
     border-radius: 8px;
-    box-shadow: 0px 10px 20px ${theme.colors.formElements.shadow};
+    box-shadow: 0px 10px 20px ${theme.colors.shadow.main};
     width: 100%;
     position: absolute;
     left: 0;
@@ -142,7 +135,6 @@ const Option = styled.li(({ theme }) => css`
 
 const Styled = {
   Wrapper: Wrapper,
-  Label: Label,
   Select: Select,
   SelectWrapper: SelectWrapper,
   OptionsList: OptionsList,

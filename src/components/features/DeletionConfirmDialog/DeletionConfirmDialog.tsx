@@ -1,11 +1,8 @@
 import { useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { useAppSelector, useAppDispatch } from '../../../hooks/reduxHooks';
-import {
-  selectDeletionDialogOpen,
-  setDeletionDialogOpen
-} from '../../../redux/invoiceViewSlice';
+import { useAppDispatch } from '../../../hooks/reduxHooks';
+import { setDeletionDialogOpen } from '../../../redux/invoiceViewSlice';
 import { deleteInvoice } from '../../../redux/invoicesSlice';
 
 import { assertNotUndefined } from '../../../utils/typeUtils';
@@ -24,8 +21,6 @@ const DeletionConfirmDialog: React.FC = () => {
 
   assertNotUndefined(id);
 
-  const dialogOpen: boolean = useAppSelector(selectDeletionDialogOpen);
-
   const changeDeletionDialogOpen = (open: boolean) => {
     dispatch(setDeletionDialogOpen(open))
   };
@@ -38,22 +33,17 @@ const DeletionConfirmDialog: React.FC = () => {
 
   const cancelButton = useRef<HTMLButtonElement | null>(null);
 
-  const focusCancelButton = () => {
-    if(cancelButton !== null && 'current' in cancelButton) {
-      cancelButton.current && cancelButton.current.focus();
-    }
-  };
-
   useEffect(() => {
-    dialogOpen && focusCancelButton();
-  }, [dialogOpen]);
-
-  useEffect(() => {
-    return () => changeDeletionDialogOpen(false);
+    cancelButton.current?.focus();
   }, []);
 
   return (
-    <Styled.Dialog open={dialogOpen}>
+    <Styled.Dialog
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }}
+    >
       <Styled.Wrapper>
         <Card element='article'>
           <Styled.CardWrapper>

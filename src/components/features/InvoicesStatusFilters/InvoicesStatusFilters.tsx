@@ -38,7 +38,7 @@ const InvoicesStatusFilters: React.FC = () => {
     dispatch(resetStatusFilters());
   };
 
-  const [filtersOpened, setFiltersOpened] = useState(false);
+  const [filtersOpened, setFiltersOpened] = useState<boolean>(false);
 
   const FILTERS = ['draft', 'pending', 'paid'] as const;
   type Filter = typeof FILTERS[number];
@@ -55,7 +55,11 @@ const InvoicesStatusFilters: React.FC = () => {
   };
 
   const handleCheckboxKeyDown =
-    (value: StatusFilter) => (e: KeyboardEvent<HTMLInputElement>) => {
+    (value: StatusFilter) => (
+      e: KeyboardEvent<HTMLInputElement> & {
+        target: HTMLInputElement;
+      }
+    ) => {
       switch (e.key) {
         case ' ':
         case 'SpaceBar':

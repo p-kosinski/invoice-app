@@ -2,15 +2,14 @@ import {
   useCallback,
   useState,
   useRef,
-  KeyboardEvent,
   MouseEvent
 } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
 import { parseDateToLocaleString } from '../../../utils/dateUtils';
 
-import Typography from '../Typography/Typography';
 import Calendar from './Calendar/Calendar';
+import Label from '../Label/Label';
 
 import { ReactComponent as CalendarIcon } from '../../../assets/icon-calendar.svg';
 
@@ -33,7 +32,7 @@ const DatePicker: React.FC<Props> = ({
   selectedDate,
   onChange
 }) => {
-  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
 
   const inputButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -52,11 +51,7 @@ const DatePicker: React.FC<Props> = ({
   return (
     <ClickAwayListener onClickAway={() => setCalendarOpen(false)}>
       <Styled.Wrapper>
-        <Styled.Label id={name} htmlFor={name}>
-          <Typography variant='body1' element='span'>
-            {label}
-          </Typography>
-        </Styled.Label>
+        <Label htmlFor={name} text={label} />
         <Styled.Input
           id={name}
           name={name}

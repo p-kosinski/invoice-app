@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import {
@@ -8,6 +9,7 @@ import {
 } from '../../../redux/invoicesSlice';
 import type { InvoicesData, ThunkStatusState } from '../../../redux/invoicesSlice';
 import { selectDrawerOpen } from '../../../redux/invoicesViewSlice';
+import { setDeletionDialogOpen } from '../../../redux/invoiceViewSlice';
 
 import Drawer from '../../layout/Drawer/Drawer';
 import NewInvoice from '../../features/NewInvoice/NewInvoice';
@@ -25,13 +27,23 @@ const Invoices: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const invoices: InvoicesData = useAppSelector(selectInvoicesData);
-  const invoicesLoading: ThunkStatusState = useAppSelector(selectInvoicesLoadingState);
+  const invoicesLoading: ThunkStatusState = useAppSelector(
+    selectInvoicesLoadingState
+  );
 
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
+
+  const changeDeletionDialogOpen = (open: boolean) => {
+    dispatch(setDeletionDialogOpen(open))
+  };
 
   useEffect(() => {
     invoices.length <= 1 && dispatch(fetchInvoicesData());
   }, [invoices.length]);
+
+  useEffect(() => {
+    changeDeletionDialogOpen(false);
+  }, []);
 
   return (
     <>
@@ -40,25 +52,34 @@ const Invoices: React.FC = () => {
       </Drawer>
       <Container>
         <section>
-          <Styled.HeadingWrapper>
-            <InvoicesHeading />
-            <Styled.ButtonsWrapper>
-              <InvoicesStatusFilters />
-              <NewInvoiceButton />
-            </Styled.ButtonsWrapper>
-          </Styled.HeadingWrapper>
+          <AnimatePresence>
+            <Styled.HeadingWrapper
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <InvoicesHeading />
+              <Styled.ButtonsWrapper>
+                <InvoicesStatusFilters />
+                <NewInvoiceButton />
+              </Styled.ButtonsWrapper>
+            </Styled.HeadingWrapper>
+          </AnimatePresence>
           <Styled.InvoicesWrapper>
-            {invoicesLoading.active ?
-              <>
-                <Skeleton variant='invoiceTile' />
-                <Skeleton variant='invoiceTile' />
-                <Skeleton variant='invoiceTile' />
-              </>
-              :
-              <>
-                {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
-              </>
-            }
+            <AnimatePresence mode='wait'>
+              {invoicesLoading.active ?
+                <>
+                  <Skeleton variant='invoiceTile' />
+                  <Skeleton variant='invoiceTile' />
+                  <Skeleton variant='invoiceTile' />
+                </>
+                :
+                <>
+                  {!invoices.length ? <NoInvoicesInfo /> : <InvoicesList />}
+                </>
+              }
+            </AnimatePresence>
           </Styled.InvoicesWrapper>
         </section>
       </Container>

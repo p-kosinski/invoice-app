@@ -14,12 +14,13 @@ const Calendar = styled.div<CalendarProps>(
     padding: 12px;
     background-color: ${theme.colors.formElements.background};
     border-radius: 8px;
-    box-shadow: 0px 10px 20px ${theme.colors.formElements.shadow};
+    box-shadow: 0px 10px 20px ${theme.colors.shadow.main};
     visibility: ${$visible ? 'visible' : 'hidden'};
     opacity: ${$visible ? 1 : 0};
     transform: translateY(${$visible ? '0px' : '20px'});
     z-index: 998;
-    transition: box-shadow ${theme.transitionDuration} ease-in-out,
+    transition:
+      box-shadow ${theme.transitionDuration} ease-in-out,
       background-color ${theme.transitionDuration} ease-in-out,
       opacity ${theme.transitionDuration} ease-in-out,
       transform ${theme.transitionDuration} ease-in-out,
