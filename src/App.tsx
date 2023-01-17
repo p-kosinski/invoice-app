@@ -14,6 +14,7 @@ import {
 
 import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
 import MainLayout from './components/layout/MainLayout/MainLayout';
+import AlertPopups from './components/features/AlertPopups/AlertPopups';
 import Invoices from './components/views/Invoices/Invoices';
 import Invoice from './components/views/Invoice/Invoice';
 
@@ -68,6 +69,7 @@ const App: React.FC = () => {
       <GlobalStyle $noScroll={invoicesDrawerOpen || invoiceDrawerOpen} />
       <BrowserRouter>
         <MainLayout>
+          <AlertPopups />
           <ScrollToTop>
             <Routes>
               <Route path='/' element={<Invoices />} />

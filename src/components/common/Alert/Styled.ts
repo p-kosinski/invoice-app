@@ -24,6 +24,10 @@ const Alert = styled(motion.div)<AlertProps>(({ theme, $severity }) => css`
     box-shadow ${theme.transitionDuration} ease-in-out,
     border ${theme.transitionDuration} ease-in-out;
 
+  :not(:last-of-type) {
+    margin-bottom: 24px;
+  }
+
   p {
     color: inherit;
     margin-bottom: 0;
