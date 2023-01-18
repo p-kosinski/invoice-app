@@ -71,7 +71,7 @@ interface InvoicesState {
   loading: ThunkStatusState;
   statusChanging: ThunkStatusState;
   dataChanging: ThunkStatusWithSuccessState;
-  deleting: ThunkStatusState;
+  deleting: ThunkStatusWithSuccessState;
   saving: ThunkStatusWithSuccessState;
   data: InvoicesData;
 };
@@ -93,6 +93,7 @@ const initialState: InvoicesState = {
   deleting: {
     active: false,
     error: false,
+    success: false,
   },
   saving: {
     active: false,
@@ -191,17 +192,53 @@ export const invoicesSlice = createSlice({
   name: 'invoices',
   initialState,
   reducers: {
-    setInvoiceSavingSuccess: (
+    setInvoiceLoadingError: (
       state: InvoicesState,
       action: PayloadAction<boolean>
     ) => {
-      state.saving.success = action.payload;
+      state.loading.error = action.payload;
+    },
+    setInvoiceStatusChangingError: (
+      state: InvoicesState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.statusChanging.error = action.payload;
+    },
+    setInvoiceDataChangingError: (
+      state: InvoicesState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.dataChanging.error = action.payload;
     },
     setInvoiceDataChangingSuccess: (
       state: InvoicesState,
       action: PayloadAction<boolean>
     ) => {
       state.dataChanging.success = action.payload;
+    },
+    setInvoiceDeletingError: (
+      state: InvoicesState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.deleting.error = action.payload;
+    },
+    setInvoiceDeletingSuccess: (
+      state: InvoicesState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.deleting.success = action.payload;
+    },
+    setInvoiceSavingError: (
+      state: InvoicesState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.saving.error = action.payload;
+    },
+    setInvoiceSavingSuccess: (
+      state: InvoicesState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.saving.success = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -255,6 +292,7 @@ export const invoicesSlice = createSlice({
     builder.addCase(deleteInvoice.pending, (state, action) => {
       state.deleting.active = true;
       state.deleting.error = false;
+      state.deleting.success = false;
     }),
     builder.addCase(deleteInvoice.fulfilled, (state, action) => {
       const deletedInvoiceIndex = state.data.findIndex(
@@ -264,10 +302,12 @@ export const invoicesSlice = createSlice({
       state.data.splice(deletedInvoiceIndex, 1);
       state.deleting.active = false;
       state.deleting.error = false;
+      state.deleting.success = true;
     }),
     builder.addCase(deleteInvoice.rejected, (state, action) => {
       state.deleting.active = false;
       state.deleting.error = true;
+      state.deleting.success = false;
     }),
     builder.addCase(saveInvoice.pending, (state, action) => {
       state.saving.active = true;
@@ -311,8 +351,14 @@ export const invoicesSlice = createSlice({
 });
 
 export const {
-  setInvoiceSavingSuccess,
-  setInvoiceDataChangingSuccess
+  setInvoiceLoadingError,
+  setInvoiceStatusChangingError,
+  setInvoiceDataChangingError,
+  setInvoiceDataChangingSuccess,
+  setInvoiceDeletingError,
+  setInvoiceDeletingSuccess,
+  setInvoiceSavingError,
+  setInvoiceSavingSuccess
 } = invoicesSlice.actions;
 
 export const selectInvoicesData = (state: RootState) => state.invoices.data;
