@@ -13,7 +13,9 @@ import Alert from '../../../common/Alert/Alert';
 const StatusChangeAlerts: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const statusChanging: ThunkStatusState = useAppSelector(selectInvoiceStatusChangingState);
+  const statusChanging: ThunkStatusState = useAppSelector(
+    selectInvoiceStatusChangingState
+  );
 
   const dismissError = () => {
     dispatch(setInvoiceStatusChangingError(false));
