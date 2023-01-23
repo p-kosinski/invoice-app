@@ -9,6 +9,7 @@ import type {
 export const colorPalette: ColorPalette = {
   success: {
     main: 'hsla(160, 67%, 52%, 1)',
+    dark: 'hsla(160, 67%, 39%, 1)',
     opaque: 'hsla(160, 67%, 52%, 0.06)',
   },
   warning: {
@@ -17,7 +18,8 @@ export const colorPalette: ColorPalette = {
   },
   error: {
     main: 'hsla(0, 80%, 63%, 1)',
-    light: 'hsla(0, 100%, 80%, 1)'
+    dark: 'hsla(0, 80%, 57%, 1)',
+    light: 'hsla(0, 100%, 80%, 1)',
   },
   accent: {
     main: 'hsla(252, 94%, 67%, 1)',

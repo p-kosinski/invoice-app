@@ -5,6 +5,10 @@ interface DefaultColorVariants {
   light: string;
 };
 
+interface DefaultWithDarkColorVariants extends DefaultColorVariants {
+  dark: string;
+};
+
 interface ExtendedColorVariants extends DefaultColorVariants {
   lighter: string;
 };
@@ -12,6 +16,14 @@ interface ExtendedColorVariants extends DefaultColorVariants {
 interface OpaqueColorVariants {
   main: string;
   opaque: string;
+};
+
+interface OpaqueWithDarkColorVariants extends OpaqueColorVariants {
+  dark: string;
+};
+
+type SeverityColorExtend<T extends {}> = T & {
+  alertBg: string;
 };
 
 interface LightGreyVariants extends ExtendedColorVariants {
@@ -85,10 +97,15 @@ interface ShadowColors {
   grey: ShadowColorSettings;
 }
 
+interface AlertColorSettings {
+  success: string;
+  error: string;
+};
+
 interface ColorPalette {
-  success: OpaqueColorVariants;
+  success: OpaqueWithDarkColorVariants;
   warning: OpaqueColorVariants;
-  error: DefaultColorVariants;
+  error: DefaultWithDarkColorVariants;
   accent: DefaultColorVariants;
   black: OpaqueColorVariants;
   dark: DefaultColorVariants;
@@ -99,9 +116,9 @@ interface ColorPalette {
 };
 
 interface ThemeColors {
-  success: OpaqueColorVariants;
+  success: OpaqueWithDarkColorVariants;
   warning: OpaqueColorVariants;
-  error: DefaultColorVariants;
+  error: DefaultWithDarkColorVariants;
   accent: DefaultColorVariants;
   draft: OpaqueColorVariants;
   black: OpaqueColorVariants;
@@ -114,6 +131,7 @@ interface ThemeColors {
   formElements: FormColors;
   buttons: ButtonColors;
   shadow: ShadowColorSettings;
+  alerts: AlertColorSettings;
 };
 
 interface FontWeights {

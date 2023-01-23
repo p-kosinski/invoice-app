@@ -80,6 +80,10 @@ export const lightTheme: DefaultTheme = {
     shadow: {
       main: colorPalette.shadows.grey.main,
       lighter: colorPalette.shadows.grey.lighter
+    },
+    alerts: {
+      success: colorPalette.success.dark,
+      error: colorPalette.error.dark,
     }
   },
   font: fontSettings,
@@ -161,6 +165,10 @@ export const darkTheme: DefaultTheme = {
     shadow: {
       main: colorPalette.shadows.black.main,
       lighter: colorPalette.shadows.black.lighter
+    },
+    alerts: {
+      success: colorPalette.success.main,
+      error: colorPalette.error.main,
     }
   },
   font: fontSettings,
