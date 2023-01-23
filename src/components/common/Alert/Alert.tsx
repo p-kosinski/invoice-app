@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -18,6 +18,13 @@ type Props = {
 };
 
 const Alert: React.FC<Props> = ({ severity, closeFunc, children }) => {
+  useEffect(() => {
+    const autoCloseAlert = setTimeout(() => {
+      closeFunc();
+    }, 8000);
+    return () => clearTimeout(autoCloseAlert);
+  }, []);
+
   return (
     <Styled.Alert
       $severity={severity}
