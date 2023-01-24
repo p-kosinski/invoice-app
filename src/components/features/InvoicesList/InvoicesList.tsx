@@ -34,7 +34,13 @@ const InvoicesList: React.FC = () => {
             exit={{ opacity: 0, x: -48 }}
             transition={{ duration: 0.15, delay: i * 0.1 }}
           >
-            <InvoiceSummaryTile id={invoice.id} />
+            <InvoiceSummaryTile
+              id={invoice.id}
+              clientName={invoice.clientName}
+              paymentDue={invoice.paymentDue}
+              total={invoice.total}
+              status={invoice.status}
+            />
           </motion.li>
         ))}
       </AnimatePresence>
