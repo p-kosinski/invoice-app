@@ -14,15 +14,23 @@ import Styled from './Styled';
 type Props = {
   severity: 'success' | 'error';
   closeFunc: () => void;
+  autoClose?: boolean;
   children?: ReactNode;
 };
 
-const Alert: React.FC<Props> = ({ severity, closeFunc, children }) => {
+const Alert: React.FC<Props> = ({
+  severity,
+  closeFunc,
+  autoClose,
+  children
+}) => {
   useEffect(() => {
-    const autoCloseAlert = setTimeout(() => {
-      closeFunc();
-    }, 8000);
-    return () => clearTimeout(autoCloseAlert);
+    if(autoClose) {
+      const autoCloseAlert = setTimeout(() => {
+        closeFunc();
+      }, 8000);
+      return () => clearTimeout(autoCloseAlert);
+    }
   }, []);
 
   return (

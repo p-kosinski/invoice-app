@@ -35,6 +35,7 @@ const SavingAlerts: React.FC = () => {
           key='savingError'
           severity='error'
           closeFunc={dismissError}
+          autoClose
         >
           Sorry, unable to save invoice.<br />
           Please try again.
@@ -45,6 +46,7 @@ const SavingAlerts: React.FC = () => {
           key='savingSuccess'
           severity='success'
           closeFunc={dismissSuccess}
+          autoClose
         >
           Invoice has been saved successfully!
         </Alert>

@@ -26,12 +26,6 @@ const SaveAsDraftButton: React.FC<Props> = ({
   const formValues: FormValuesState = useAppSelector(selectFormValues);
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
-  const saveInvoiceAsDraft = () => {
-    const invoiceDataObject = prepareInvoiceDataObject('draft', formValues);
-
-    dispatch(saveInvoice(invoiceDataObject));
-  };
-
   const resetFormState = () => {
     dispatch(resetForm());
   };
@@ -40,10 +34,16 @@ const SaveAsDraftButton: React.FC<Props> = ({
     dispatch(setDrawerOpen(false));
   };
 
-  const handleClick = () => {
-    saveInvoiceAsDraft();
-    closeDrawer();
-    resetFormState();
+  const handleClick = async () => {
+    const invoiceDataObject = prepareInvoiceDataObject('draft', formValues);
+
+    try {
+      await dispatch(saveInvoice(invoiceDataObject)).unwrap();
+      closeDrawer();
+      resetFormState();
+    } catch (error) {
+      console.error('Failed to save the invoice: ', error);
+    }
   };
 
   return (
