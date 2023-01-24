@@ -35,6 +35,7 @@ const DeletionAlerts: React.FC = () => {
           key='deletingError'
           severity='error'
           closeFunc={dismissError}
+          autoClose
         >
           Sorry, unable to delete this invoice.<br />
           Please try again.
@@ -45,6 +46,7 @@ const DeletionAlerts: React.FC = () => {
           key='deletingSuccess'
           severity='success'
           closeFunc={dismissSuccess}
+          autoClose
         >
           Invoice has been deleted successfully!
         </Alert>

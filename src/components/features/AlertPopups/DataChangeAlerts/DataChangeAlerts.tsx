@@ -35,6 +35,7 @@ const DataChangeAlerts: React.FC = () => {
           key='dataChangingError'
           severity='error'
           closeFunc={dismissError}
+          autoClose
         >
           Sorry, unable to save changes.<br />
           Please try again.
@@ -45,6 +46,7 @@ const DataChangeAlerts: React.FC = () => {
           key='dataChangingSuccess'
           severity='success'
           closeFunc={dismissSuccess}
+          autoClose
         >
           Invoice data has been changed successfully!
         </Alert>

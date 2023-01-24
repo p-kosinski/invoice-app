@@ -30,6 +30,7 @@ const StatusChangeAlerts: React.FC = () => {
           key='statusChangeError'
           severity='error'
           closeFunc={dismissError}
+          autoClose
         >
           Sorry, unable to change invoice status.<br />
           Please try again.
