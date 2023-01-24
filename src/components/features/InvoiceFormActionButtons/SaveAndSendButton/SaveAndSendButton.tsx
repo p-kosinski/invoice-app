@@ -25,12 +25,6 @@ const SaveAndSendButton: React.FC = () => {
   const formValues: FormValuesState = useAppSelector(selectFormValues);
   const drawerOpen: boolean = useAppSelector(selectDrawerOpen);
 
-  const saveInvoiceAsPending = () => {
-    const invoiceDataObject = prepareInvoiceDataObject('pending', formValues);
-
-    dispatch(saveInvoice(invoiceDataObject));
-  };
-
   const resetFormState = () => {
     dispatch(resetForm());
   };
@@ -126,13 +120,19 @@ const SaveAndSendButton: React.FC = () => {
     return formIsValid;
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const formIsValid = validateForm();
 
     if (formIsValid) {
-      saveInvoiceAsPending();
-      closeDrawer();
-      resetFormState();
+      const invoiceDataObject = prepareInvoiceDataObject('pending', formValues);
+
+      try {
+        await dispatch(saveInvoice(invoiceDataObject)).unwrap();
+        closeDrawer();
+        resetFormState();
+      } catch (error) {
+        console.error('Failed to save the invoice: ', error);
+      }
     }
   };
 
