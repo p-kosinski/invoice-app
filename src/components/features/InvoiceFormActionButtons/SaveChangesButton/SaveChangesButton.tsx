@@ -38,14 +38,6 @@ const SaveChangesButton: React.FC = () => {
     selectInvoiceStatusById(state, id)
   );
 
-  const saveInvoiceDataChanges = () => {
-    const getNewInvoiceStatus = (): Status => status === 'draft' ? 'pending' : status;
-    const newInvoiceStatus = getNewInvoiceStatus();
-    const invoiceDataObject = prepareChangedInvoiceDataObject(newInvoiceStatus, formValues);
-
-    dispatch(changeInvoiceData({id: id, changedData: invoiceDataObject}));
-  };
-
   const resetFormState = () => {
     dispatch(resetForm());
   };
@@ -141,13 +133,27 @@ const SaveChangesButton: React.FC = () => {
     return formIsValid;
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const formIsValid = validateForm();
 
     if (formIsValid) {
-      saveInvoiceDataChanges();
-      closeDrawer();
-      resetFormState();
+      const getNewInvoiceStatus = (): Status =>
+        status === 'draft' ? 'pending' : status;
+      const newInvoiceStatus = getNewInvoiceStatus();
+      const invoiceDataObject = prepareChangedInvoiceDataObject(
+        newInvoiceStatus,
+        formValues
+      );
+
+      try {
+        await dispatch(
+          changeInvoiceData({ id: id, changedData: invoiceDataObject })
+        ).unwrap();
+        closeDrawer();
+        resetFormState();
+      } catch (error) {
+        console.error('Failed to change invoice data: ', error);
+      }
     }
   };
 
