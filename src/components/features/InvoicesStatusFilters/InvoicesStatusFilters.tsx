@@ -90,6 +90,7 @@ const InvoicesStatusFilters: React.FC = () => {
         <Styled.FiltersButton
           aria-haspopup='menu'
           aria-expanded={filtersOpened}
+          aria-label='filter by status'
           onClick={() => setFiltersOpened(!filtersOpened)}
         >
           <Typography variant='h4' element='span'>
