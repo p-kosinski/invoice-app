@@ -46,14 +46,14 @@ type ThemeIconProps = {
   $active: boolean;
 };
 
-const LightThemeIconWrapper = styled.div<ThemeIconProps>(
+const LightThemeIconWrapper = styled.span<ThemeIconProps>(
   ({ theme, $active }) => css`
     opacity: ${$active ? 1 : 0};
     transition: opacity ${theme.transitionDuration} ease-in-out;
   `
 );
 
-const DarkThemeIconWrapper = styled.div<ThemeIconProps>(
+const DarkThemeIconWrapper = styled.span<ThemeIconProps>(
   ({ theme, $active }) => css`
     opacity: ${$active ? 1 : 0};
     transition: opacity ${theme.transitionDuration} ease-in-out;
