@@ -47,7 +47,7 @@ const Input = styled.button(({ theme, disabled }) => css`
   }
 `);
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.span`
   display: flex;
   justify-content: space-between;
   align-items: center;
