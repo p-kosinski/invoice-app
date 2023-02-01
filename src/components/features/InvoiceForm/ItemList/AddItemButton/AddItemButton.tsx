@@ -8,12 +8,17 @@ import { selectDrawerOpen } from '../../../../../redux/invoicesViewSlice';
 
 import Button from '../../../../common/Button/Button';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const AddItemButtonWrapper = styled.div`
+const AddItemButtonWrapper = styled.div(({ theme }) => css`
   display: flex;
   justify-content: center;
-`;
+  margin-top: 48px;
+
+  @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    margin-top: 16px;
+  }
+`);
 
 const AddItemButton: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -22,8 +22,8 @@ const ItemList: React.FC = () => {
         {items.map((item, i) => (
           <Item key={i} index={i} />
         ))}
-        <AddItemButton />
       </Styled.ItemList>
+      <AddItemButton />
     </Styled.ItemListWrapper>
   );
 };
