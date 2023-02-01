@@ -57,7 +57,7 @@ type DateWrapperProps = {
   $disabled: boolean | undefined;
 };
 
-const DateWrapper = styled.div<DateWrapperProps>(({ $disabled }) => css`
+const DateWrapper = styled.span<DateWrapperProps>(({ $disabled }) => css`
   opacity: ${$disabled ? 0.5 : 1};
 `);
 
