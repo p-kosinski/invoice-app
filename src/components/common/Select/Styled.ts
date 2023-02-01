@@ -7,12 +7,12 @@ const Wrapper = styled.div(({ theme }) => css`
   font-size: ${theme.typography.fontSizes.s};
   line-height: ${theme.typography.lineHeights[0]};
   letter-spacing: ${theme.typography.letterSpacings[4]};
+  position: relative;
 `);
 
 const Select = styled.button(({ theme }) => css`
   box-sizing: border-box;
   display: block;
-  position: relative;
   width: 100%;
   min-height: 48px;
   padding: 15.5px 20px;
@@ -60,7 +60,7 @@ const Select = styled.button(({ theme }) => css`
   }
 `);
 
-const SelectWrapper = styled.div`
+const SelectWrapper = styled.span`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -82,7 +82,7 @@ const OptionsList = styled.ul<OptionsListProps>(
     width: 100%;
     position: absolute;
     left: 0;
-    top: 55.5px;
+    top: calc(63px + 20px);
     visibility: ${$visible ? 'visible' : 'hidden'};
     opacity: ${$visible ? 1 : 0};
     transform: translateY(${$visible ? '0px' : '20px'});

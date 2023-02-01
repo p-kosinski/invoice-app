@@ -107,30 +107,30 @@ const Select: React.FC<Props> = ({
             {options[selectedOptionIndex].label}
             <ArrowDownIcon />
           </Styled.SelectWrapper>
-          <Styled.OptionsList
-            aria-hidden={!optionsOpen}
-            role='listbox'
-            aria-activedescendant={
-              options[selectedOptionIndex].value.toString()
-            }
-            tabIndex={-1}
-            $visible={optionsOpen}
-          >
-            {options.map((option, i) => (
-              <Styled.Option
-                key={i}
-                id={option.value.toString()}
-                tabIndex={0}
-                role='option'
-                aria-selected={selectedOptionIndex === i}
-                onClick={handleOptionClick(i, option.value)}
-                onKeyDown={handleOptionKeyDown(i, option.value)}
-              >
-                {option.label}
-              </Styled.Option>
-            ))}
-          </Styled.OptionsList>
         </Styled.Select>
+        <Styled.OptionsList
+          aria-hidden={!optionsOpen}
+          role='listbox'
+          aria-activedescendant={
+            options[selectedOptionIndex].value.toString()
+          }
+          tabIndex={-1}
+          $visible={optionsOpen}
+        >
+          {options.map((option, i) => (
+            <Styled.Option
+              key={i}
+              id={option.value.toString()}
+              tabIndex={0}
+              role='option'
+              aria-selected={selectedOptionIndex === i}
+              onClick={handleOptionClick(i, option.value)}
+              onKeyDown={handleOptionKeyDown(i, option.value)}
+            >
+              {option.label}
+            </Styled.Option>
+          ))}
+        </Styled.OptionsList>
       </Styled.Wrapper>
     </ClickAwayListener>
   );

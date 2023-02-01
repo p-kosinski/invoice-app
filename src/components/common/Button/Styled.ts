@@ -326,7 +326,7 @@ const NewInvoiceButton = styled.button<ButtonProps>(
   `
 );
 
-const AddIcon = styled.div(({ theme }) => css`
+const AddIcon = styled.span(({ theme }) => css`
   height: 32px;
   width: 32px;
   border-radius: 16px;
@@ -341,7 +341,7 @@ const AddIcon = styled.div(({ theme }) => css`
   }
 `);
 
-const TextWrapper = styled.div`
+const TextWrapper = styled.span`
   display: inline-block;
   margin: 0 8px 0 16px;
 `;
