@@ -92,7 +92,6 @@ const Select: React.FC<Props> = ({
         <Label htmlFor={name} text={label} />
         <Styled.Select
           tabIndex={buttonTabIndex}
-          role='button'
           id={name}
           aria-label={ariaLabel}
           aria-haspopup='listbox'
