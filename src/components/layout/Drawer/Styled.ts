@@ -34,7 +34,7 @@ const Drawer = styled.aside<Props>(
     position: absolute;
     top: 72px;
     left: 0;
-    height: calc(100vh - 72px);
+    height: calc(100svh - 72px);
     width: 100%;
     background-color: ${theme.colors.backgrounds.form};
     overflow: hidden;
